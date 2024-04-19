@@ -1,14 +1,16 @@
 import SignUpForm from '@/components/Forms/SignUpForm/SignUpForm';
-import {Card, CardContent, Typography} from '@mui/material';
+import {Box, Card, CardContent, Typography} from '@mui/material';
 
 const SignUp = (): JSX.Element => {
   return (
-    <Card>
-      <CardContent>
-        <Typography variant="h5">Sign Up</Typography>
-        <SignUpForm />
-      </CardContent>
-    </Card>
+    <Box className="m-auto flex h-full justify-center">
+      <Card>
+        <CardContent>
+          <Typography className="pb-5 font-display text-2xl font-semibold">Sign Up</Typography>
+          <SignUpForm />
+        </CardContent>
+      </Card>
+    </Box>
   );
 };
 

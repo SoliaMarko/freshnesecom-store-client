@@ -5,7 +5,7 @@ const AppLayout = (): JSX.Element => {
   return (
     <>
       <Header />
-      <main>
+      <main className="h-full">
         <Outlet />
       </main>
     </>

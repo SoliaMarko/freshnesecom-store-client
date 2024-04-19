@@ -1,6 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  corePlugins: {preflight: false},
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  important: '#root',
   theme: {
     colors: {
       transparent: 'transparent',
@@ -45,6 +47,12 @@ export default {
         400: '#B9E6E8',
         500: '#ECF6F6'
       }
+    },
+    fontFamily: {
+      sans: ['ui-sans-serif', 'system-ui'],
+      serif: ['ui-serif', 'Georgia'],
+      mono: ['ui-monospace', 'SFMono-Regular'],
+      display: ['Poppins']
     },
     extend: {}
   },
