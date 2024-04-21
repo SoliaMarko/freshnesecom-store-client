@@ -1,4 +1,6 @@
-const Error = (): JSX.Element => {
+import {ReactElement} from 'react';
+
+const Error = (): ReactElement => {
   return <div>Error Page</div>;
 };
 

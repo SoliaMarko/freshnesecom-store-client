@@ -1,8 +1,9 @@
+import {ReactElement} from 'react';
 import {NavLink} from 'react-router-dom';
 
-const StyledNavLink = ({children, link}: {children: string; link: string}): JSX.Element => {
+const StyledNavLink = ({children, to}: {children: string; to: string}): ReactElement => {
   return (
-    <NavLink to={link} className="text-secondary no-underline">
+    <NavLink to={to} className="hover:text-red-500 text-secondary no-underline">
       {children}
     </NavLink>
   );

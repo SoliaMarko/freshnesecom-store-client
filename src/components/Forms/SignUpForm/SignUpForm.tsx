@@ -1,13 +1,14 @@
+import {ReactElement} from 'react';
 import {useForm} from 'react-hook-form';
+import {Box} from '@mui/material';
 import {yupResolver} from '@hookform/resolvers/yup';
 import PrimaryButton from '@/components/Buttons/PrimaryButton';
-import TextFieldWithLabel from '@/components/Fields/TextFieldWithLabel';
+import StyledTextField from '@/components/Inputs/StyledTextField';
 import {SignUpFormValues} from '@/interfaces/form/signUpFormValues.interface';
-import {Box} from '@mui/material';
-import {signUpSchema} from '@/validations/signUpForm.validation';
+import {SignUpFormSchema} from '@/validations/signUpForm.validation';
 
-const SignUpForm = (): JSX.Element => {
-  const formMethods = useForm<SignUpFormValues>({resolver: yupResolver(signUpSchema)});
+const SignUpForm = (): ReactElement => {
+  const formMethods = useForm<SignUpFormValues>({resolver: yupResolver(SignUpFormSchema)});
   const {
     register,
     handleSubmit,
@@ -21,22 +22,25 @@ const SignUpForm = (): JSX.Element => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmitHandler)} style={{display: 'flex', flexDirection: 'column', gap: '20px', minWidth: '360px'}}>
-      <TextFieldWithLabel type="string" required={true} register={register} errors={errors}>
+    <form onSubmit={handleSubmit(onSubmitHandler)} style={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
+      <StyledTextField type="string" register={register} errors={errors} labeled required>
         First name
-      </TextFieldWithLabel>
-      <TextFieldWithLabel type="string" required={true} register={register} errors={errors}>
+      </StyledTextField>
+      <StyledTextField type="string" register={register} errors={errors} labeled required>
         Last name
-      </TextFieldWithLabel>
-      <TextFieldWithLabel type="email" required={true} register={register} errors={errors}>
+      </StyledTextField>
+      <StyledTextField type="email" register={register} errors={errors} labeled required>
         Email
-      </TextFieldWithLabel>
-      <TextFieldWithLabel type="password" required={true} register={register} errors={errors}>
+      </StyledTextField>
+      <StyledTextField type="password" register={register} errors={errors} labeled required>
         Password
-      </TextFieldWithLabel>
-      <TextFieldWithLabel type="tel" register={register} errors={errors}>
+      </StyledTextField>
+      <StyledTextField type="password" register={register} errors={errors} labeled required>
+        Re-enter password
+      </StyledTextField>
+      <StyledTextField type="tel" register={register} errors={errors} labeled>
         Phone number
-      </TextFieldWithLabel>
+      </StyledTextField>
       <Box className="flex justify-end">
         <PrimaryButton>Sign Up</PrimaryButton>
       </Box>

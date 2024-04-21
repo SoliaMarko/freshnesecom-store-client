@@ -1,4 +1,6 @@
-const Main = (): JSX.Element => {
+import {ReactElement} from 'react';
+
+const Main = (): ReactElement => {
   return <div>Main Page</div>;
 };
 

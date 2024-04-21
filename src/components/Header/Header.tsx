@@ -1,7 +1,8 @@
+import {ReactElement} from 'react';
 import {Divider} from '@mui/material';
 import Navigation from '../Navigation/Navigation';
 
-const Header = (): JSX.Element => {
+const Header = (): ReactElement => {
   return (
     <>
       <Navigation />
