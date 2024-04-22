@@ -6,7 +6,7 @@ import {routes} from '@/constants/global.constant';
 
 const SignUp = (): ReactElement => {
   return (
-    <Box className="mx-auto my-2 flex justify-center">
+    <Box className="mx-auto my-12 flex justify-center">
       <Card>
         <CardContent>
           <Box className="flex min-w-72 flex-col gap-5">

@@ -4,11 +4,11 @@ import {Box} from '@mui/material';
 import {yupResolver} from '@hookform/resolvers/yup';
 import PrimaryButton from '@/components/Buttons/PrimaryButton';
 import StyledTextField from '@/components/Inputs/StyledTextField';
-import {SignUpFormValues} from '@/interfaces/form/signUpFormValues.interface';
 import {SignUpFormSchema} from '@/validations/signUpForm.validation';
+import {SignUpFormType} from '@/types/signUpFormType';
 
 const SignUpForm = (): ReactElement => {
-  const formMethods = useForm<SignUpFormValues>({resolver: yupResolver(SignUpFormSchema)});
+  const formMethods = useForm<SignUpFormType>({resolver: yupResolver(SignUpFormSchema)});
   const {
     register,
     handleSubmit,
@@ -16,7 +16,7 @@ const SignUpForm = (): ReactElement => {
     reset
   } = formMethods;
 
-  const onSubmitHandler = (data: SignUpFormValues): void => {
+  const onSubmitHandler = (data: SignUpFormType): void => {
     console.log({data});
     reset();
   };
