@@ -9,7 +9,7 @@ const SearchBar = (): ReactElement => {
 
   return (
     <Paper component="form" className=" flex w-3/6 bg-primary-700">
-      <CustomMenu label="All categories" options={categoriesHeaders} />
+      <CustomMenu options={categoriesHeaders}>All categories</CustomMenu>
       <Divider className="m-1 h-9" orientation="vertical" />
       <InputBase className="ml-1 flex-1" placeholder="Search Products, categories ..." inputProps={{'aria-label': 'search google maps'}} />
       <IconButton type="button" className="p-2.5" aria-label="search">

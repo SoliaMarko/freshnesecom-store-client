@@ -9,7 +9,7 @@ const MenusBlock = (): ReactElement => {
       {temporalCategories.map(
         (categoryInfo, index): ReactElement => (
           <Box key={`${index}-${categoryInfo.header}`}>
-            <CustomMenu label={categoryInfo.header} options={categoryInfo.subcategories} />
+            <CustomMenu options={categoryInfo.subcategories}>{categoryInfo.header}</CustomMenu>
           </Box>
         )
       )}
