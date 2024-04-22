@@ -36,7 +36,7 @@ const SignUpForm = (): ReactElement => {
         Password
       </StyledTextField>
       <StyledTextField type="password" register={register} errors={errors} labeled required>
-        Re-enter password
+        Confirm password
       </StyledTextField>
       <StyledTextField type="tel" register={register} errors={errors} labeled>
         Phone number
