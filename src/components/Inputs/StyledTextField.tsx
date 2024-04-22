@@ -3,18 +3,14 @@ import {Box, InputLabel, TextField} from '@mui/material';
 import {StyledTextFieldProps} from '@/interfaces/form/styledTextFieldProps.interface';
 import {getCamelCase} from '@/utils/stringFormatters';
 
-const StyledTextField = ({children, type = 'text', labeled, required, placeholder, register, errors}: StyledTextFieldProps): ReactElement => {
+const StyledTextField = ({children, type = 'text', label = '', required, placeholder, register, errors}: StyledTextFieldProps): ReactElement => {
   const name = getCamelCase(children);
 
   return (
     <Box className="flex flex-col">
-      {labeled ? (
-        <InputLabel id={`${name}Label`} htmlFor={name} className={`text-left font-semibold leading-5 text-primary `} required={required}>
-          {children}
-        </InputLabel>
-      ) : (
-        ''
-      )}
+      <InputLabel id={`${name}Label`} htmlFor={name} className={`text-left font-semibold leading-5 text-primary `} required={required}>
+        {label}
+      </InputLabel>
       <TextField
         type={type}
         id={name}

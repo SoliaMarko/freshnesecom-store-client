@@ -2,7 +2,7 @@
 export interface StyledTextFieldProps {
   children: string;
   type?: string;
-  labeled?: boolean;
+  label?: string;
   required?: boolean;
   placeholder?: string;
   register: any;
