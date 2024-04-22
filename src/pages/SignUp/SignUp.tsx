@@ -6,20 +6,20 @@ import {routes} from '@/constants/global.constant';
 
 const SignUp = (): ReactElement => {
   return (
-    <Box className="m-auto flex h-full justify-center">
+    <Box className="mx-auto my-2 flex justify-center">
       <Card>
         <CardContent>
-          <Box style={{display: 'flex', flexDirection: 'column', gap: '20px', minWidth: '280px'}}>
+          <Box className="flex min-w-72 flex-col gap-5">
             <Typography className="pb-5 font-display text-2xl font-semibold">Sign Up</Typography>
             <SignUpForm />
             <Typography>
               By creating an account, you agree to Freshenesecom's
-              <StyledNavLink to={`${routes.ROOT}/${routes.LOGIN}`}>Conditions of Use</StyledNavLink> and{' '}
+              <StyledNavLink to="#"> Conditions of Use</StyledNavLink> and
               <StyledNavLink to="#">Privacy Notice</StyledNavLink>.
             </Typography>
             <Divider />
             <Typography>
-              Already have an account? <StyledNavLink to="#">Sign in</StyledNavLink>
+              Already have an account? <StyledNavLink to={`${routes.ROOT}${routes.LOGIN}`}>Sign in</StyledNavLink>
             </Typography>
           </Box>
         </CardContent>

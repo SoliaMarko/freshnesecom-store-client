@@ -41,3 +41,67 @@ export const temporalProductTags = [
   'Fresh food',
   'Lemons'
 ];
+
+export const temporalCategories = [
+  {
+    header: 'Electronics',
+    subcategories: [
+      'Laptops',
+      'Tablets',
+      'Smartphones',
+      'Cameras',
+      'Headphones',
+      'Game Consoles',
+      'Televisions',
+      'Batteries',
+      'Cables',
+      'Accessories'
+    ]
+  },
+  {
+    header: 'Food',
+    subcategories: ['Pantry', 'Grocery', 'Fruits', 'Vegetables', 'Dairy', 'Meat', 'Frozen Foods', 'Beverages', 'Bakery', 'Health & Wellness']
+  },
+  {
+    header: 'Clothes',
+    subcategories: [
+      'Shirts',
+      'Sweaters',
+      'Pants/Jeans',
+      'Shorts',
+      'Suits',
+      'Jackets & Coats',
+      'Dresses',
+      'Skirts',
+      'Accessories (hats, belts, socks etc.)'
+    ]
+  },
+  {
+    header: 'Sports and outdoors',
+    subcategories: [
+      'Exercise & Fitness',
+      'Team Sports',
+      'Racket Sports',
+      'Water Sports',
+      'Winter Sports',
+      'Climbing',
+      'Cycling',
+      'Camping & Hiking',
+      'Fishing'
+    ]
+  },
+  {
+    header: 'Books',
+    subcategories: [
+      'Fiction',
+      'Nonfiction',
+      "Children's Books",
+      'Religion & Spirituality',
+      'Arts & Photography',
+      'Travel',
+      'Calendars & Planners',
+      'Coloring Books',
+      'Comics & Graphic Novel'
+    ]
+  }
+];

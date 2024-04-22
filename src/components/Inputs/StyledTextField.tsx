@@ -3,7 +3,7 @@ import {Box, InputLabel, TextField} from '@mui/material';
 import {StyledTextFieldProps} from '@/interfaces/form/styledTextFieldProps.interface';
 import {getCamelCase} from '@/utils/stringFormatters';
 
-const StyledTextField = ({children, type = 'text', labeled = false, required = false, register, errors}: StyledTextFieldProps): ReactElement => {
+const StyledTextField = ({children, type = 'text', labeled, required, placeholder, register, errors}: StyledTextFieldProps): ReactElement => {
   const name = getCamelCase(children);
 
   return (
@@ -18,7 +18,7 @@ const StyledTextField = ({children, type = 'text', labeled = false, required = f
       <TextField
         type={type}
         id={name}
-        placeholder={children}
+        placeholder={placeholder ? placeholder : ''}
         required={required}
         className="rounded-xl bg-primary-700"
         variant="outlined"

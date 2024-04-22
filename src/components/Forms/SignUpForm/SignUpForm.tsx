@@ -22,7 +22,7 @@ const SignUpForm = (): ReactElement => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmitHandler)} style={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
+    <form onSubmit={handleSubmit(onSubmitHandler)} className="flex flex-col gap-5">
       <StyledTextField type="string" register={register} errors={errors} labeled required>
         First name
       </StyledTextField>

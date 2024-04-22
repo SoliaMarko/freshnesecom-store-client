@@ -4,6 +4,7 @@ export interface StyledTextFieldProps {
   type?: string;
   labeled?: boolean;
   required?: boolean;
+  placeholder?: string;
   register: any;
   errors: any;
 }
