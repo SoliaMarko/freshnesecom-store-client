@@ -1,10 +1,17 @@
-import { Outlet } from 'react-router-dom';
+import {ReactElement} from 'react';
+import {Outlet} from 'react-router-dom';
+import Header from '@/components/Layout/Header/Header';
+import Footer from '@/components/Layout/Footer/Footer';
 
-const AppLayout = () => {
+const AppLayout = (): ReactElement => {
   return (
-    <main>
-      <Outlet />
-    </main>
+    <>
+      <Header />
+      <main className="my-3">
+        <Outlet />
+      </main>
+      <Footer />
+    </>
   );
 };
 
