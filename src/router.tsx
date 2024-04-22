@@ -5,6 +5,7 @@ import Error from './pages/Error/Error';
 import {routes} from './constants/global.constant';
 import LogIn from './pages/LogIn/LogIn';
 import SignUp from './pages/SignUp/SignUp';
+import Cart from './pages/Cart/Cart';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: `/${routes.SIGNUP}`,
         element: <SignUp />
+      },
+      {
+        path: `/${routes.CART}`,
+        element: <Cart />
       }
     ]
   }

@@ -1,9 +1,11 @@
 import {ReactElement} from 'react';
 import {NavLink} from 'react-router-dom';
+import {fontSizes} from '@/constants/global.constant';
+import {FontSizeKey} from '@/types/global.type';
 
-const StyledNavLink = ({children, to}: {children: string; to: string}): ReactElement => {
+const StyledNavLink = ({children, to, size = 5}: {children: string; to: string; size?: FontSizeKey}): ReactElement => {
   return (
-    <NavLink to={to} className="hover:text-red-500 text-secondary no-underline">
+    <NavLink to={to} className={`text-${fontSizes[size]} text-secondary no-underline hover:text-red-500`}>
       {children}
     </NavLink>
   );
