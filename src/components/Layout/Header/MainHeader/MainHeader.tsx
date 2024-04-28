@@ -2,11 +2,12 @@ import {ReactElement} from 'react';
 import {NavLink} from 'react-router-dom';
 import {Box, Button, IconButton} from '@mui/material';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import SearchBar from './SearchBar/SearchBar';
 import CustomBadge from '@/components/CustomBadge/CustomBadge';
 import CustomMenu from '@/components/CustomMenu/CustomMenu';
-import {routes} from '@/constants/global.constant';
+import {commonRoutes, userRoutes} from '@/constants/globalConstants/global.constant';
 
 const MainHeader = (): ReactElement => {
   const authorized = false;
@@ -15,7 +16,7 @@ const MainHeader = (): ReactElement => {
     <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
       {authorized ? (
         <>
-          <NavLink to="#">
+          <NavLink to={`/${userRoutes.USER}/${userRoutes.PROFILE}`}>
             <Button>Profile</Button>
           </NavLink>
           <NavLink to="#">
@@ -24,11 +25,11 @@ const MainHeader = (): ReactElement => {
         </>
       ) : (
         <>
-          <NavLink to={`/${routes.SIGNUP}`}>
-            <Button>Sign Up</Button>
-          </NavLink>
-          <NavLink to={`/${routes.LOGIN}`}>
+          <NavLink to={`/${commonRoutes.LOGIN}`}>
             <Button>Log In</Button>
+          </NavLink>
+          <NavLink to={`/${commonRoutes.SIGNUP}`}>
+            <Button>Sign Up</Button>
           </NavLink>
         </>
       )}
@@ -37,7 +38,7 @@ const MainHeader = (): ReactElement => {
 
   return (
     <Box className="my-2 flex items-center justify-between ">
-      <NavLink to={`${routes.ROOT}`}>
+      <NavLink to={`${commonRoutes.ROOT}`}>
         <Box className="py-4 text-lg">[LOGO]</Box>
       </NavLink>
       <SearchBar />
@@ -45,7 +46,19 @@ const MainHeader = (): ReactElement => {
         <CustomMenu options={[userPopover]}>
           <PersonOutlineIcon className="text-3xl text-primary" />
         </CustomMenu>
-        <NavLink to={`/${routes.CART}`}>
+        {authorized ? (
+          <NavLink to={`/${userRoutes.USER}/${userRoutes.FAVORITE}`}>
+            <Box className="relative">
+              <IconButton>
+                <FavoriteBorderIcon className="text-3xl text-primary" />
+                <CustomBadge content="4" alignX="left" alignY="bottom" />
+              </IconButton>
+            </Box>
+          </NavLink>
+        ) : (
+          ''
+        )}
+        <NavLink to={`/${commonRoutes.CART}`}>
           <Box className="relative">
             <IconButton>
               <ShoppingBasketIcon className="text-3xl text-primary" />

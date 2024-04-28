@@ -1,4 +1,4 @@
-import {fontSizes} from '@/constants/global.constant';
+import {fontSizes} from '@/constants/globalConstants/global.constant';
 import {FontSizeKey} from '@/types/global.type';
 import {Typography} from '@mui/material';
 import {ReactElement} from 'react';

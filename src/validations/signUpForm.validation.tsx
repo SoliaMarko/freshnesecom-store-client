@@ -1,6 +1,6 @@
 import * as yup from 'yup';
-import {validationError} from '@/constants/errorMessages.constant';
-import {regexp} from '@/constants/regexps.constant';
+import {validationError} from '@/constants/errorConstants/errorMessages.constant';
+import {regexp} from '@/constants/validationConstants/regexps.constant';
 
 export const SignUpFormSchema = yup.object().shape({
   firstName: yup.string().required(validationError.REQUIRED).min(2, validationError.MIN_LENGTH_2),
