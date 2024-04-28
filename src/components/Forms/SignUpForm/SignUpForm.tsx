@@ -31,13 +31,13 @@ const SignUpForm = (): ReactElement => {
     if (isSignupError) {
       const error = signupError as
         | {
-            data?: unknown;
-            message?: unknown;
+            data?: {message: string};
+            message?: string;
           }
         | SerializedError;
 
       if ('data' in error) {
-        alert(error.data);
+        alert(error.data?.message);
       }
 
       if ('message' in error) {
