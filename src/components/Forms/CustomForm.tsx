@@ -17,15 +17,14 @@ const CustomForm = ({formMethods, onSubmitHandler, fields, submitTitle}: FormPro
         (field, index): ReactElement => (
           <StyledTextField
             key={`${index}-${field}`}
+            name={field.field}
             type={field.type}
             register={register}
             errors={errors}
             label={field.label}
             placeholder={field.placeholder ?? ''}
             required
-          >
-            {field.field}
-          </StyledTextField>
+          />
         )
       )}
       <Box className="flex justify-end">

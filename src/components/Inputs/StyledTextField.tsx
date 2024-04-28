@@ -1,11 +1,8 @@
 import {ReactElement} from 'react';
 import {Box, InputLabel, TextField} from '@mui/material';
 import {StyledTextFieldProps} from '@/interfaces/form/styledTextFieldProps.interface';
-import {getCamelCase} from '@/utils/stringFormatters';
 
-const StyledTextField = ({children, type = 'text', label = '', required, placeholder, register, errors}: StyledTextFieldProps): ReactElement => {
-  const name = getCamelCase(children);
-
+const StyledTextField = ({name, type = 'text', label = '', required, placeholder, register, errors}: StyledTextFieldProps): ReactElement => {
   return (
     <Box className="flex flex-col">
       <InputLabel id={`${name}Label`} htmlFor={name} className={`text-left font-semibold leading-5 text-primary `} required={required}>
