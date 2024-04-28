@@ -1,9 +1,9 @@
-import {ReactElement, useState} from 'react';
+import {ReactElement, ReactNode, useState} from 'react';
 import {Button, Menu} from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import MenuItems from './MenuItems';
 
-const CustomMenu = ({children, options}: {children: string | ReactElement; options: string[] | ReactElement[]}): ReactElement => {
+const CustomMenu = ({children, options}: {children: ReactNode; options: string[] | ReactElement[]}): ReactElement => {
   const [anchorElement, setAnchorElement] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorElement);
 

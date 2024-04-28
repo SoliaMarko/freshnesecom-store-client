@@ -1,7 +1,7 @@
-import {ReactElement} from 'react';
+import {ReactElement, ReactNode} from 'react';
 import {Box, Card, CardContent, Typography} from '@mui/material';
 
-const CustomCard = ({children, title = ''}: {children: ReactElement | string; title?: string}): ReactElement => {
+const CustomCard = ({children, title = ''}: {children: ReactNode; title?: string}): ReactElement => {
   return (
     <Card>
       <CardContent>

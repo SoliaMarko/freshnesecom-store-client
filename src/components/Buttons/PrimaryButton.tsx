@@ -1,7 +1,7 @@
-import {ReactElement} from 'react';
+import {ReactElement, ReactNode} from 'react';
 import {Button} from '@mui/material';
 
-const PrimaryButton = ({children, variant = 'filled'}: {children: string; variant?: 'filled' | 'outlined'}): ReactElement => {
+const PrimaryButton = ({children, variant = 'filled'}: {children: ReactNode; variant?: 'filled' | 'outlined'}): ReactElement => {
   return (
     <Button
       type="submit"

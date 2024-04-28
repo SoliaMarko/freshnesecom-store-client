@@ -1,9 +1,9 @@
 import {fontSizes} from '@/constants/globalConstants/global.constant';
 import {FontSizeKey} from '@/types/global.type';
 import {Typography} from '@mui/material';
-import {ReactElement} from 'react';
+import {ReactElement, ReactNode} from 'react';
 
-const StyledHeader = ({children, align = 'left', size = 1}: {children: string; align?: string; size?: FontSizeKey}): ReactElement => {
+const StyledHeader = ({children, align = 'left', size = 1}: {children: ReactNode; align?: string; size?: FontSizeKey}): ReactElement => {
   return <Typography className={`mb-4 text-${align} font-display text-${fontSizes[size]} font-semibold`}>{children}</Typography>;
 };
 
