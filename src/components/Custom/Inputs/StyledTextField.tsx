@@ -1,6 +1,6 @@
 import {ReactElement} from 'react';
 import {Box, InputLabel, TextField} from '@mui/material';
-import {StyledTextFieldProps} from '@/interfaces/props/Custom/Inputs/styledTextFieldProps.interface';
+import {StyledTextFieldProps} from '@/interfaces/props/CustomProps/Inputs/styledTextFieldProps.interface';
 
 const StyledTextField = ({name, type = 'text', label = '', required, placeholder, register, errors}: StyledTextFieldProps): ReactElement => {
   return (

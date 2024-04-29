@@ -2,7 +2,7 @@ import {ReactElement} from 'react';
 import {Box} from '@mui/material';
 import StyledHeader from '@/components/Custom/CustomTypography/StyledHeader';
 import LinksList from './LinksList';
-import {LinksBlockProps} from '@/interfaces/props/Layout/Footer/usefulLinks.interface';
+import {LinksBlockProps} from '@/interfaces/props/LayoutProps/Footer/usefulLinks.interface';
 
 const LinksBlock = ({linksData}: LinksBlockProps): ReactElement => {
   return (

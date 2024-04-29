@@ -12,7 +12,7 @@ const LogInForm = (): ReactElement => {
 
   const onSubmitHandler = async (data: LogInFormType): Promise<void> => {
     console.log(data);
-    formMethods.reset();
+    formMethods.reset(LOGIN_DEFAULTS);
   };
 
   return <CustomForm formMethods={formMethods} onSubmitHandler={onSubmitHandler} fields={logInFields} submitTitle="Log In" />;

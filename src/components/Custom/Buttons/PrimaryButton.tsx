@@ -1,7 +1,7 @@
 import {ReactElement} from 'react';
 import {Button} from '@mui/material';
 import clsx from 'clsx';
-import {PrimaryButtonProps} from '@/interfaces/props/Custom/Buttons/primaryButtonProps.interface';
+import {PrimaryButtonProps} from '@/interfaces/props/CustomProps/Buttons/primaryButtonProps.interface';
 
 const PrimaryButton = ({children, variant = 'filled'}: PrimaryButtonProps): ReactElement => {
   return (

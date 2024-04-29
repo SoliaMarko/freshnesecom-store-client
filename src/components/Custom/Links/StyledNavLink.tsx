@@ -1,7 +1,7 @@
 import {ReactElement} from 'react';
 import {NavLink} from 'react-router-dom';
 import {fontSizes} from '@/constants/globalConstants/global.constant';
-import {StyledNavLinkProps} from '@/interfaces/props/Custom/Links/styledNavLinkProps.interface';
+import {StyledNavLinkProps} from '@/interfaces/props/CustomProps/Links/styledNavLinkProps.interface';
 
 const StyledNavLink = ({children, to, size = 5}: StyledNavLinkProps): ReactElement => {
   return (

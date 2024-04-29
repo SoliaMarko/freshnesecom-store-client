@@ -24,7 +24,7 @@ const SignUpForm = (): ReactElement => {
     if (isSignupSuccess) {
       alert('User Registered Successfully');
       navigate(`/${userRoutes.USER}/${userRoutes.PROFILE}`);
-      formMethods.reset();
+      formMethods.reset(SIGNUP_DEFAULTS);
     }
   }, [isSignupSuccess]);
 

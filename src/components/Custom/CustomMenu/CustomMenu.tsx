@@ -2,7 +2,7 @@ import {ReactElement, useState} from 'react';
 import {Button, Menu} from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import MenuItems from './MenuItems';
-import {CustomMenuProps} from '@/interfaces/props/Custom/Menus/customMenuProps.interface';
+import {CustomMenuProps} from '@/interfaces/props/CustomProps/Menus/customMenuProps.interface';
 
 const CustomMenu = ({children, options}: CustomMenuProps): ReactElement => {
   const [anchorElement, setAnchorElement] = useState<null | HTMLElement>(null);
