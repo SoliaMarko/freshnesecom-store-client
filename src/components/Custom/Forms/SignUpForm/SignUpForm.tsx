@@ -9,9 +9,10 @@ import {useRegisterUserMutation} from '@/store/services/authApi';
 import {userRoutes} from '@/constants/globalConstants/global.constant';
 import CustomForm from '../CustomForm';
 import {SerializedError} from '@reduxjs/toolkit';
+import {SIGNUP_DEFAULTS} from '@/utils/forms.utils';
 
 const SignUpForm = (): ReactElement => {
-  const formMethods = useForm<SignUpFormType>({resolver: yupResolver(SignUpFormSchema)});
+  const formMethods = useForm<SignUpFormType>({defaultValues: SIGNUP_DEFAULTS, resolver: yupResolver(SignUpFormSchema)});
   const [registerUser, {isSuccess: isSignupSuccess, isError: isSignupError, error: signupError}] = useRegisterUserMutation();
   const navigate = useNavigate();
 
@@ -37,7 +38,7 @@ const SignUpForm = (): ReactElement => {
         | SerializedError;
 
       if ('data' in error) {
-        alert();
+        alert(error.data?.message);
       }
 
       if ('message' in error) {

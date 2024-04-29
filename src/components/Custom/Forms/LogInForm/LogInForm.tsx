@@ -5,9 +5,10 @@ import {LogInFormType} from '@/types/forms.type';
 import {LogInFormSchema} from '@/validations/logInForm.validation';
 import {logInFields} from '@/constants/formConstants/logInFields.constant';
 import CustomForm from '../CustomForm';
+import {LOGIN_DEFAULTS} from '@/utils/forms.utils';
 
 const LogInForm = (): ReactElement => {
-  const formMethods = useForm<LogInFormType>({resolver: yupResolver(LogInFormSchema)});
+  const formMethods = useForm<LogInFormType>({defaultValues: LOGIN_DEFAULTS, resolver: yupResolver(LogInFormSchema)});
 
   const onSubmitHandler = async (data: LogInFormType): Promise<void> => {
     console.log(data);
