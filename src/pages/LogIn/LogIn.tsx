@@ -1,9 +1,9 @@
 import {ReactElement} from 'react';
 import {Box, Divider, Typography} from '@mui/material';
-import StyledNavLink from '@/components/Links/StyledNavLink';
+import StyledNavLink from '@/components/Custom/Links/StyledNavLink';
 import {storeInfo, commonRoutes} from '@/constants/globalConstants/global.constant';
-import CustomCard from '@/components/CustomCard/CustomCard';
-import LogInForm from '@/components/Forms/LogInForm/LogInForm';
+import CustomCard from '@/components/Custom/CustomCard/CustomCard';
+import LogInForm from '@/components/Custom/Forms/LogInForm/LogInForm';
 
 const LogIn = (): ReactElement => {
   return (

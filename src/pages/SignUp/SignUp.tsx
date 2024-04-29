@@ -1,9 +1,9 @@
 import {ReactElement} from 'react';
-import SignUpForm from '@/components/Forms/SignUpForm/SignUpForm';
+import SignUpForm from '@/components/Custom/Forms/SignUpForm/SignUpForm';
 import {Box, Divider, Typography} from '@mui/material';
-import StyledNavLink from '@/components/Links/StyledNavLink';
+import StyledNavLink from '@/components/Custom/Links/StyledNavLink';
 import {storeInfo, commonRoutes} from '@/constants/globalConstants/global.constant';
-import CustomCard from '@/components/CustomCard/CustomCard';
+import CustomCard from '@/components/Custom/CustomCard/CustomCard';
 
 const SignUp = (): ReactElement => {
   return (

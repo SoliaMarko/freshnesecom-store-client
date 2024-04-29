@@ -1,9 +1,10 @@
 import {ReactElement} from 'react';
 import {Box} from '@mui/material';
-import StyledHeader from '@/components/Headers/StyledHeader';
+import StyledHeader from '@/components/Custom/CustomTypography/StyledHeader';
 import LinksList from './LinksList';
+import {LinksBlockProps} from '@/interfaces/props/Layout/Footer/usefulLinks.interface';
 
-const LinksBlock = ({linksData}: {linksData: {header: string; items: string[]; links: string[]}[]}): ReactElement => {
+const LinksBlock = ({linksData}: LinksBlockProps): ReactElement => {
   return (
     <>
       {linksData.map(

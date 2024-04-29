@@ -1,7 +1,7 @@
 import {Box} from '@mui/material';
 import {ReactElement} from 'react';
-import StyledChip from '@/components/Chips/StyledChip';
-import StyledHeader from '@/components/Headers/StyledHeader';
+import StyledChip from '@/components/Custom/Chips/StyledChip';
+import StyledHeader from '@/components/Custom/CustomTypography/StyledHeader';
 import {temporalProductTags} from '@/temporalData/temporalData';
 
 const ProductTags = (): ReactElement => {

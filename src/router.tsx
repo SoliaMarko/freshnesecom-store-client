@@ -8,7 +8,7 @@ import SignUp from './pages/SignUp/SignUp';
 import Cart from './pages/Cart/Cart';
 import UserProfile from './pages/UserProfile/UserProfile';
 import Favorites from './pages/Favorites/Favorites';
-import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import PrivateRoute from './components/PrivatePage/PrivatePage';
 
 const router = createBrowserRouter([
   {

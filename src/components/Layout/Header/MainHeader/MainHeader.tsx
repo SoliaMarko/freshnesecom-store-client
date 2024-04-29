@@ -5,8 +5,8 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import SearchBar from './SearchBar/SearchBar';
-import CustomBadge from '@/components/CustomBadge/CustomBadge';
-import CustomMenu from '@/components/CustomMenu/CustomMenu';
+import CustomBadge from '@/components/Custom/CustomBadge/CustomBadge';
+import CustomMenu from '@/components/Custom/CustomMenu/CustomMenu';
 import {commonRoutes, userRoutes} from '@/constants/globalConstants/global.constant';
 
 const MainHeader = (): ReactElement => {

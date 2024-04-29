@@ -1,10 +1,10 @@
 import {ReactElement} from 'react';
 import {Box} from '@mui/material';
-import StyledHeader from '@/components/Headers/StyledHeader';
+import StyledHeader from '@/components/Custom/CustomTypography/StyledHeader';
 import {storeInfo, commonRoutes} from '@/constants/globalConstants/global.constant';
-import StyledNavLink from '@/components/Links/StyledNavLink';
+import StyledNavLink from '@/components/Custom/Links/StyledNavLink';
 import {NavLink} from 'react-router-dom';
-import PrimaryButton from '@/components/Buttons/PrimaryButton';
+import PrimaryButton from '@/components/Custom/Buttons/PrimaryButton';
 
 const Cart = (): ReactElement => {
   return (

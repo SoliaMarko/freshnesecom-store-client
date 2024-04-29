@@ -1,7 +1,7 @@
 import {ReactElement} from 'react';
 import {Divider, IconButton, InputBase, Paper} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import CustomMenu from '@/components/CustomMenu/CustomMenu';
+import CustomMenu from '@/components/Custom/CustomMenu/CustomMenu';
 import {temporalCategories} from '@/temporalData/temporalData';
 
 const SearchBar = (): ReactElement => {

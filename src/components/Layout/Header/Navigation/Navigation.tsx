@@ -1,6 +1,6 @@
 import {ReactElement} from 'react';
 import {Box, Typography} from '@mui/material';
-import StyledNavLink from '@/components/Links/StyledNavLink';
+import StyledNavLink from '@/components/Custom/Links/StyledNavLink';
 
 export const Navigation = (): ReactElement => {
   return (
