@@ -1,6 +1,5 @@
 import {ReactElement} from 'react';
-import {Box} from '@mui/material';
-import StyledHeader from '@/components/Custom/CustomTypography/StyledHeader';
+import {Box, Typography} from '@mui/material';
 import LinksList from './LinksList';
 import {LinksBlockProps} from '@/interfaces/props/LayoutProps/Footer/usefulLinks.interface';
 
@@ -10,9 +9,9 @@ const LinksBlock = ({linksData}: LinksBlockProps): ReactElement => {
       {linksData.map(
         (link, index): ReactElement => (
           <Box key={`${index}-${link.header}`}>
-            <StyledHeader align="left" size={3}>
+            <Typography className="customH3" align="left">
               {link.header}
-            </StyledHeader>
+            </Typography>
             <LinksList labels={linksData[index].items} />
           </Box>
         )

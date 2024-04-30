@@ -10,6 +10,7 @@ import {userRoutes} from '@/constants/globalConstants/global.constant';
 import CustomForm from '../CustomForm';
 import {SerializedError} from '@reduxjs/toolkit';
 import {SIGNUP_DEFAULTS} from '@/utils/forms.utils';
+import {ExtendedError} from '@/interfaces/error/extendedError.interface';
 
 const SignUpForm = (): ReactElement => {
   const formMethods = useForm<SignUpFormType>({defaultValues: SIGNUP_DEFAULTS, resolver: yupResolver(SignUpFormSchema)});
@@ -30,20 +31,8 @@ const SignUpForm = (): ReactElement => {
 
   useEffect(() => {
     if (isSignupError) {
-      const error = signupError as
-        | {
-            data?: {message: string};
-            message?: string;
-          }
-        | SerializedError;
-
-      if ('data' in error) {
-        alert(error.data?.message);
-      }
-
-      if ('message' in error) {
-        alert(error.message);
-      }
+      const error = signupError as ExtendedError | SerializedError;
+      alert((error as ExtendedError)?.data?.message || error.message);
     }
   }, [isSignupError]);
 

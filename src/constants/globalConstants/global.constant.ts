@@ -25,12 +25,4 @@ const routes = {
 export const commonRoutes = routes.common;
 export const userRoutes = routes.user;
 
-export const fontSizes = {
-  1: '3xl',
-  2: '2xl',
-  3: 'lg',
-  4: 'base',
-  5: 'sm'
-};
-
 export const SECONDS_TO_REDIRECT = 5;
