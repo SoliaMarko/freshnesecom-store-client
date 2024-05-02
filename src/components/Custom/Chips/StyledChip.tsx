@@ -3,7 +3,7 @@ import {Chip} from '@mui/material';
 import {StyledChipProps} from '@/interfaces/props/CustomProps/Chips/styledChipProps.interface';
 
 const StyledChip = ({product, index}: StyledChipProps): ReactElement => {
-  const handleClick = () => {
+  const handleClick = (): void => {
     console.info('Chip clicked');
   };
 
