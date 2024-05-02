@@ -33,7 +33,6 @@ axiosInstance.interceptors.response.use(
       originalRequest._retry = true;
       try {
         const response = await axios.post(baseURL + '/auth/refresh', {refresh: getRefreshToken()});
-        console.log('response', response);
         const {accessToken, refreshToken} = response.data;
         updateLocalStorageTokens({accessToken, refreshToken});
         originalRequest.headers.Authorization = `Bearer ${accessToken}`;

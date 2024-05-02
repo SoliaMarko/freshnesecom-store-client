@@ -9,14 +9,12 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (_state, action) => {
-      console.log({authorized: true, ...action.payload});
       return {
         authorized: true,
         ...action.payload
       };
     },
     resetUser: () => {
-      console.log('resetted');
       return initialState;
     }
   }

@@ -1,18 +1,17 @@
 import {useEffect} from 'react';
 import {UseFormReturn} from 'react-hook-form';
-import {SIGNUP_DEFAULTS} from '@/utils/forms.utils';
-import {SignUpFormType} from '@/types/forms.type';
+import {SignUpFormModel} from '@/models/SignUpForm.model';
 
 interface UseSignUpSuccessParams {
   isSignupSuccess: boolean;
-  formMethods: UseFormReturn<SignUpFormType, undefined>;
+  formMethods: UseFormReturn<SignUpFormModel, undefined>;
 }
 
 export const useSignUpSuccess = ({isSignupSuccess, formMethods}: UseSignUpSuccessParams) => {
   useEffect(() => {
     if (isSignupSuccess) {
       alert('User Registered Successfully');
-      formMethods.reset(SIGNUP_DEFAULTS);
+      formMethods.reset(new SignUpFormModel());
     }
   }, [isSignupSuccess]);
 };

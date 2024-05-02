@@ -1,5 +1,6 @@
 import {createApi} from '@reduxjs/toolkit/query/react';
-import {LogInFormType, SignUpFormType} from '@/types/forms.type';
+import {SignUpFormModel} from '@/models/SignUpForm.model';
+import {LogInFormModel} from '@/models/LogInForm.model';
 import {axiosBaseQuery} from './axiosBaseQuery';
 
 export const authApi = createApi({
@@ -7,7 +8,7 @@ export const authApi = createApi({
   baseQuery: axiosBaseQuery(),
   endpoints: (builder) => ({
     registerUser: builder.mutation({
-      query: (body: SignUpFormType) => {
+      query: (body: SignUpFormModel) => {
         return {
           url: '/auth/signup',
           method: 'POST',
@@ -20,7 +21,7 @@ export const authApi = createApi({
     }),
 
     loginUser: builder.mutation({
-      query: (body: LogInFormType) => {
+      query: (body: LogInFormModel) => {
         return {
           url: '/auth/login',
           method: 'POST',
