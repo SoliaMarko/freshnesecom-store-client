@@ -16,6 +16,11 @@ const SignUpForm = (): ReactElement => {
   const [registerUser, {isSuccess: isSignupSuccess, isError: isSignupError, error: signupError}] = useRegisterUserMutation();
   const [loginUser, {data: loginData, isSuccess: isLoginSuccess, isError: isLoginError, error: loginError}] = useLoginUserMutation();
 
+  useSignUpSuccess({isSignupSuccess, formMethods});
+  useSignUpError({isSignupError, signupError});
+  useLogInSuccess({isLoginSuccess, loginData});
+  useLogInError({isLoginError, loginError});
+
   const onSubmitHandler = async (data: SignUpFormModel): Promise<void> => {
     await registerUser(data);
     await loginUser({
@@ -24,12 +29,7 @@ const SignUpForm = (): ReactElement => {
     });
   };
 
-  useSignUpSuccess({isSignupSuccess, formMethods});
-  useSignUpError({isSignupError, signupError});
-  useLogInSuccess({isLoginSuccess, loginData});
-  useLogInError({isLoginError, loginError});
-
-  return <CustomForm formMethods={formMethods} onSubmitHandler={onSubmitHandler} fields={signUpFields} submitTitle="Sign Up" />;
+  return <CustomForm<SignUpFormModel> formMethods={formMethods} onSubmitHandler={onSubmitHandler} fields={signUpFields} submitTitle="Sign Up" />;
 };
 
 export default SignUpForm;

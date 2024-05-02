@@ -13,15 +13,15 @@ const LogInForm = (): ReactElement => {
   const formMethods = useForm<LogInFormModel>({defaultValues: new LogInFormModel(), resolver: yupResolver(LogInFormSchema)});
   const [loginUser, {data: loginData, isSuccess: isLoginSuccess, isError: isLoginError, error: loginError}] = useLoginUserMutation();
 
+  useLogInSuccess({isLoginSuccess, loginData, formMethods});
+  useLogInError({isLoginError, loginError});
+
   const onSubmitHandler = async (data: LogInFormModel): Promise<void> => {
     const {email, password} = data;
     await loginUser({email, password});
   };
 
-  useLogInSuccess({isLoginSuccess, loginData, formMethods});
-  useLogInError({isLoginError, loginError});
-
-  return <CustomForm formMethods={formMethods} onSubmitHandler={onSubmitHandler} fields={logInFields} submitTitle="Log In" />;
+  return <CustomForm<LogInFormModel> formMethods={formMethods} onSubmitHandler={onSubmitHandler} fields={logInFields} submitTitle="Log In" />;
 };
 
 export default LogInForm;
