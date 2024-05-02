@@ -1,13 +1,13 @@
 import {ReactNode} from 'react';
-import {useSelector} from 'react-redux';
 import LoadingToRedirect from '../LoadingToRedirect/LoadingToRedirect';
-import {selectAuth} from '@/store/slices/authSlice';
 import {PrivatePageProps} from '@/interfaces/props/PagesProps/privatePageProps.interface';
+import {useSelector} from 'react-redux';
+import {selectUser} from '@/store/slices/user.slice';
 
 const PrivatePage = ({children}: PrivatePageProps): ReactNode => {
-  const {token} = useSelector(selectAuth);
+  const user = useSelector(selectUser);
 
-  return token ? children : <LoadingToRedirect />;
+  return user.authorized ? children : <LoadingToRedirect />;
 };
 
 export default PrivatePage;
