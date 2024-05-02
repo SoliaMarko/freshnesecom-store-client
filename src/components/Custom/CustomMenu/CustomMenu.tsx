@@ -1,8 +1,12 @@
-import {ReactElement, useState} from 'react';
+import {ReactElement, ReactNode, useState} from 'react';
 import {Button, Menu} from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import MenuItems from './MenuItems';
-import {CustomMenuProps} from '@/interfaces/props/CustomProps/Menus/customMenuProps.interface';
+
+interface CustomMenuProps {
+  children: ReactNode;
+  options: string[] | ReactElement[];
+}
 
 const CustomMenu = ({children, options}: CustomMenuProps): ReactElement => {
   const [anchorElement, setAnchorElement] = useState<null | HTMLElement>(null);

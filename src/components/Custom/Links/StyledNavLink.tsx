@@ -1,7 +1,12 @@
-import {ReactElement} from 'react';
+import {ReactElement, ReactNode} from 'react';
 import {NavLink} from 'react-router-dom';
-import {StyledNavLinkProps} from '@/interfaces/props/CustomProps/Links/styledNavLinkProps.interface';
 import clsx from 'clsx';
+
+interface StyledNavLinkProps {
+  children: ReactNode;
+  to: string;
+  size?: string;
+}
 
 const StyledNavLink = ({children, to, size = 'sm'}: StyledNavLinkProps): ReactElement => {
   return (

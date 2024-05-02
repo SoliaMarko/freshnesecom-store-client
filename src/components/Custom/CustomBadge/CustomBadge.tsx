@@ -1,6 +1,11 @@
 import {ReactElement} from 'react';
 import {Badge} from '@mui/material';
-import {CustomBadgeProps} from '@/interfaces/props/CustomProps/Badge/customBadgeProps.interface';
+
+interface CustomBadgeProps {
+  content: string;
+  alignY?: 'top' | 'bottom';
+  alignX?: 'left' | 'right';
+}
 
 const CustomBadge = ({content, alignY = 'top', alignX = 'right'}: CustomBadgeProps): ReactElement => {
   return (

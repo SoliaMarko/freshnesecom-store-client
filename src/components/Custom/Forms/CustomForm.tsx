@@ -2,7 +2,15 @@ import {ReactElement} from 'react';
 import {Box} from '@mui/material';
 import StyledTextField from '../Inputs/StyledTextField';
 import PrimaryButton from '../Buttons/PrimaryButton';
-import {CustomFormProps} from '@/interfaces/props/CustomProps/Forms/customFormProps.interface';
+import {UseFormReturn} from 'react-hook-form';
+import {FormFields} from '@/interfaces/form/formFields.interface';
+
+interface CustomFormProps {
+  formMethods: UseFormReturn<any>;
+  onSubmitHandler: (data: any) => Promise<any>;
+  fields: FormFields[];
+  submitTitle: string;
+}
 
 const CustomForm = ({formMethods, onSubmitHandler, fields, submitTitle}: CustomFormProps): ReactElement => {
   const {

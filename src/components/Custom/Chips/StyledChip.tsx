@@ -1,6 +1,10 @@
 import {ReactElement} from 'react';
 import {Chip} from '@mui/material';
-import {StyledChipProps} from '@/interfaces/props/CustomProps/Chips/styledChipProps.interface';
+
+interface StyledChipProps {
+  product: string;
+  index: number;
+}
 
 const StyledChip = ({product, index}: StyledChipProps): ReactElement => {
   const handleClick = (): void => {

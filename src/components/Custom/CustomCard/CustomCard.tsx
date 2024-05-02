@@ -1,6 +1,10 @@
-import {ReactElement} from 'react';
+import {ReactElement, ReactNode} from 'react';
 import {Box, Card, CardContent, Typography} from '@mui/material';
-import {CustomCardProps} from '@/interfaces/props/CustomProps/Cards/customCardProps.interface';
+
+interface CustomCardProps {
+  children: ReactNode;
+  title?: string;
+}
 
 const CustomCard = ({children, title = ''}: CustomCardProps): ReactElement => {
   return (
