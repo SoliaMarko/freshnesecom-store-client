@@ -1,15 +1,17 @@
 import {ReactElement} from 'react';
-import {Box} from '@mui/material';
-import StyledHeader3 from '@/components/Headers/StyledHeader3';
+import {Box, Typography} from '@mui/material';
 import LinksList from './LinksList';
+import {LinksBlockProps} from '@/interfaces/props/LayoutProps/Footer/usefulLinks.interface';
 
-const LinksBlock = ({linksData}: {linksData: {header: string; items: string[]; links: string[]}[]}): ReactElement => {
+const LinksBlock = ({linksData}: LinksBlockProps): ReactElement => {
   return (
     <>
       {linksData.map(
         (link, index): ReactElement => (
           <Box key={`${index}-${link.header}`}>
-            <StyledHeader3>{link.header}</StyledHeader3>
+            <Typography className="customH3" align="left">
+              {link.header}
+            </Typography>
             <LinksList labels={linksData[index].items} />
           </Box>
         )

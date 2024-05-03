@@ -1,7 +1,7 @@
 import {ReactElement} from 'react';
 import {Box} from '@mui/material';
 import {temporalCategories} from '@/temporalData/temporalData';
-import CustomMenu from '@/components/CustomMenu/CustomMenu';
+import CustomMenu from '@/components/Custom/CustomMenu/CustomMenu';
 
 const MenusBlock = (): ReactElement => {
   return (
@@ -9,7 +9,7 @@ const MenusBlock = (): ReactElement => {
       {temporalCategories.map(
         (categoryInfo, index): ReactElement => (
           <Box key={`${index}-${categoryInfo.header}`}>
-            <CustomMenu label={categoryInfo.header} options={categoryInfo.subcategories} />
+            <CustomMenu options={categoryInfo.subcategories}>{categoryInfo.header}</CustomMenu>
           </Box>
         )
       )}
