@@ -1,7 +1,7 @@
 import {ReactNode} from 'react';
 import LoadingToRedirect from '@features/LoadingToRedirect/LoadingToRedirect';
-import {useSelector} from 'react-redux';
 import {selectUser} from '@/store/slices/user.slice';
+import {useAppSelector} from '@/hooks/apiHooks';
 
 interface PrivatePageProps {
   children: ReactNode;

@@ -2,15 +2,11 @@ import {ExtendedError} from '@/interfaces/error/extendedError.interface';
 import {SerializedError} from '@reduxjs/toolkit';
 import {useEffect} from 'react';
 
+type ErrorType = ExtendedError | SerializedError;
+
 interface UseSignUpErrorParams {
   isSignupError: boolean;
-  signupError:
-    | {
-        status: number | undefined;
-        data: {};
-      }
-    | SerializedError
-    | undefined;
+  signupError?: ErrorType;
 }
 
 export const useSignUpError = ({isSignupError: isError, signupError: error}: UseSignUpErrorParams) => {

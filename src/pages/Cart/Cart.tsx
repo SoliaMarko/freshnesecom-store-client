@@ -4,11 +4,11 @@ import {storeInfo, commonRoutes} from '@/constants/globalConstants/global.consta
 import StyledNavLink from '@/components/Custom/Links/StyledNavLink';
 import {NavLink} from 'react-router-dom';
 import PrimaryButton from '@/components/Custom/Buttons/PrimaryButton';
-import {useSelector} from 'react-redux';
 import {selectUser} from '@/store/slices/user.slice';
+import {useAppSelector} from '@/hooks/apiHooks';
 
 const Cart = (): ReactElement => {
-  const user = useSelector(selectUser);
+  const user = useAppSelector(selectUser);
 
   return (
     <Box className="my-48 flex flex-col gap-12">
@@ -16,9 +16,7 @@ const Cart = (): ReactElement => {
       <StyledNavLink to={commonRoutes.ROOT} size="2xl">
         Shop now
       </StyledNavLink>
-      {user.authorized ? (
-        ''
-      ) : (
+      {!user.authorized && (
         <Box className="flex justify-center gap-12">
           <NavLink to={`/${commonRoutes.LOGIN}`}>
             <PrimaryButton>Log In</PrimaryButton>

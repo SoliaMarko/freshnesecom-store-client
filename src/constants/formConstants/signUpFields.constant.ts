@@ -1,4 +1,6 @@
-export const signUpFields = [
+import {FormFields} from '@/interfaces/form/formFields.interface';
+
+export const signUpFields: FormFields[] = [
   {type: 'string', field: 'firstName', label: 'First name'},
   {type: 'string', field: 'lastName', label: 'Last name'},
   {type: 'email', field: 'email', label: 'Email'},
