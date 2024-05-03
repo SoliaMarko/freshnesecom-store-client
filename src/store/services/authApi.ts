@@ -2,12 +2,13 @@ import {createApi} from '@reduxjs/toolkit/query/react';
 import {SignUpFormModel} from '@/models/SignUpForm.model';
 import {LogInFormModel} from '@/models/LogInForm.model';
 import {axiosBaseQuery} from './axiosBaseQuery';
+import {LogoutUserArgs, MutationReturnType, QueryReturnType} from '@/interfaces/api/queries.interface';
 
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: axiosBaseQuery(),
   endpoints: (builder) => ({
-    registerUser: builder.mutation({
+    registerUser: builder.mutation<MutationReturnType, SignUpFormModel>({
       query: (body: SignUpFormModel) => {
         return {
           url: '/auth/signup',
@@ -20,7 +21,7 @@ export const authApi = createApi({
       }
     }),
 
-    loginUser: builder.mutation({
+    loginUser: builder.mutation<MutationReturnType, LogInFormModel>({
       query: (body: LogInFormModel) => {
         return {
           url: '/auth/login',
@@ -33,7 +34,7 @@ export const authApi = createApi({
       }
     }),
 
-    logoutUser: builder.mutation({
+    logoutUser: builder.mutation<MutationReturnType, LogoutUserArgs>({
       query: (body: {email: string}) => {
         return {
           url: '/auth/logout',
@@ -46,7 +47,7 @@ export const authApi = createApi({
       }
     }),
 
-    getUser: builder.query({
+    getUser: builder.query<QueryReturnType, void>({
       query: () => {
         return {
           url: '/user',

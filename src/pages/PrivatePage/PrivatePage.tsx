@@ -8,7 +8,7 @@ interface PrivatePageProps {
 }
 
 const PrivatePage = ({children}: PrivatePageProps): ReactNode => {
-  const user = useSelector(selectUser);
+  const user = useAppSelector(selectUser);
 
   return user.authorized ? children : <LoadingToRedirect />;
 };
