@@ -8,7 +8,7 @@ import {setUser} from './store/slices/user.slice';
 import {useGetUserQuery} from './store/services/authApi';
 
 function App(): ReactElement {
-  const {data} = useGetUserQuery({});
+  const {data} = useGetUserQuery();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
