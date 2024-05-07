@@ -12,7 +12,7 @@ import PrivateRoute from './components/PrivatePage/PrivatePage';
 
 const router = createBrowserRouter([
   {
-    errorElement: <Error />,
+    errorElement: <Error content="Error Page" />,
     element: <AppLayout />,
     children: [
       {

@@ -1,11 +1,12 @@
-import {useAppSelector} from '@/hooks/apiHooks';
-import {selectAuth} from '@/store/slices/authSlice';
 import {ReactElement} from 'react';
+import {Box} from '@mui/material';
+import {useSelector} from 'react-redux';
+import {selectUser} from '@/store/slices/user.slice';
 
 const UserProfile = (): ReactElement => {
-  const {name} = useAppSelector(selectAuth);
+  const user = useSelector(selectUser);
 
-  return <div>{`👋 ${name}`}</div>;
+  return <Box>{`👋 ${user.firstName}`}</Box>;
 };
 
 export default UserProfile;

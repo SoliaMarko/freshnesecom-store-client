@@ -1,7 +1,12 @@
+import {Box} from '@mui/material';
 import {ReactElement} from 'react';
 
-const Error = (): ReactElement => {
-  return <div>Error Page</div>;
+interface ErrorProps {
+  content?: string;
+}
+
+const Error = ({content}: ErrorProps): ReactElement => {
+  return <Box>{content ? content : 'Error Page'}</Box>;
 };
 
 export default Error;

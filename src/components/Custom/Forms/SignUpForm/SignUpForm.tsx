@@ -1,40 +1,33 @@
-import {ReactElement, useEffect} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {ReactElement} from 'react';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {SignUpFormSchema} from '@/validations/signUpForm.validation';
-import {SignUpFormType} from '@/types/forms.type';
+import {SignUpFormModel} from '@/models/SignUpForm.model';
 import {signUpFields} from '@/constants/formConstants/signUpFields.constant';
-import {useRegisterUserMutation} from '@/store/services/authApi';
-import {userRoutes} from '@/constants/globalConstants/global.constant';
+import {useLoginUserMutation, useRegisterUserMutation} from '@/store/services/authApi';
 import CustomForm from '../CustomForm';
-import {SerializedError} from '@reduxjs/toolkit';
-import {SIGNUP_DEFAULTS} from '@/utils/forms.utils';
-import {ExtendedError} from '@/interfaces/error/extendedError.interface';
+import {useLogInSuccess} from '@/hooks/useLogInSuccess';
+import {useLogInError} from '@/hooks/useLogInError';
+import {useSignUpError} from '@/hooks/useSignUpError';
+import {useSignUpSuccess} from '@/hooks/useSignUpSuccess';
 
 const SignUpForm = (): ReactElement => {
-  const formMethods = useForm<SignUpFormType>({defaultValues: SIGNUP_DEFAULTS, resolver: yupResolver(SignUpFormSchema)});
+  const formMethods = useForm<SignUpFormModel>({defaultValues: new SignUpFormModel(), resolver: yupResolver(SignUpFormSchema)});
   const [registerUser, {isSuccess: isSignupSuccess, isError: isSignupError, error: signupError}] = useRegisterUserMutation();
-  const navigate = useNavigate();
+  const [loginUser, {data: loginData, isSuccess: isLoginSuccess, isError: isLoginError, error: loginError}] = useLoginUserMutation();
 
-  const onSubmitHandler = async (data: SignUpFormType): Promise<void> => {
+  const onSubmitHandler = async (data: SignUpFormModel): Promise<void> => {
     await registerUser(data);
+    await loginUser({
+      email: data.email,
+      password: data.password
+    });
   };
 
-  useEffect(() => {
-    if (isSignupSuccess) {
-      alert('User Registered Successfully');
-      navigate(`/${userRoutes.USER}/${userRoutes.PROFILE}`);
-      formMethods.reset(SIGNUP_DEFAULTS);
-    }
-  }, [isSignupSuccess]);
-
-  useEffect(() => {
-    if (isSignupError) {
-      const error = signupError as ExtendedError | SerializedError;
-      alert((error as ExtendedError)?.data?.message || error.message);
-    }
-  }, [isSignupError]);
+  useSignUpSuccess({isSignupSuccess, formMethods});
+  useSignUpError({isSignupError, signupError});
+  useLogInSuccess({isLoginSuccess, loginData});
+  useLogInError({isLoginError, loginError});
 
   return <CustomForm formMethods={formMethods} onSubmitHandler={onSubmitHandler} fields={signUpFields} submitTitle="Sign Up" />;
 };
