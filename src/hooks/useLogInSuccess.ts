@@ -7,6 +7,7 @@ import {useNavigate} from 'react-router-dom';
 import {LogInData} from '@/interfaces/store/logInData.interface';
 import {LogInFormModel} from '@/models/LogInForm.model';
 import {UseFormReturn} from 'react-hook-form';
+import {AUTH_TOKENS_STORAGE} from '@/constants/storageConstants/localStorage.constant';
 
 interface UseLogInSuccessParams {
   isLoginSuccess: boolean;
@@ -26,7 +27,7 @@ export const useLogInSuccess = ({isLoginSuccess, loginData, formMethods}: UseLog
       };
       dispatch(setAuthTokens(userInfo));
       dispatch(setUser(loginData.user));
-      localStorage.setItem('authTokens', JSON.stringify(userInfo));
+      localStorage.setItem(AUTH_TOKENS_STORAGE, JSON.stringify(userInfo));
       if (formMethods) formMethods.reset(new LogInFormModel());
       alert('Authorization successful');
       navigate(`/${userRoutes.USER}/${userRoutes.PROFILE}`);

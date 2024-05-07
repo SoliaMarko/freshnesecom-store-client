@@ -1,11 +1,16 @@
-import {ReactElement} from 'react';
+import {ReactElement, ReactNode} from 'react';
 import {NavLink} from 'react-router-dom';
-import {StyledNavLinkProps} from '@/interfaces/props/CustomProps/Links/styledNavLinkProps.interface';
 import clsx from 'clsx';
+
+interface StyledNavLinkProps {
+  children: ReactNode;
+  to: string;
+  size?: string;
+}
 
 const StyledNavLink = ({children, to, size = 'sm'}: StyledNavLinkProps): ReactElement => {
   return (
-    <NavLink to={to} className={clsx('text-secondary', `text-${size}`, 'no-underline', 'hover:text-red-500', 'hover:underline')}>
+    <NavLink to={to} className={clsx('text-secondary no-underline hover:text-red-500 hover:underline', `text-${size}`)}>
       {children}
     </NavLink>
   );

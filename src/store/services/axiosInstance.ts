@@ -1,5 +1,7 @@
+import {AUTH_TOKENS_STORAGE} from '@/constants/storageConstants/localStorage.constant';
 import {getRefreshToken, updateLocalStorageTokens} from '@/utils/tokens.utils';
 import axios from 'axios';
+
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
   headers: {
@@ -9,7 +11,7 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    const user = localStorage.getItem('authTokens');
+    const user = localStorage.getItem(AUTH_TOKENS_STORAGE);
     if (user) {
       const parsedUser = JSON.parse(user);
       config.headers.Authorization = `Bearer ${parsedUser.accessToken}`;
@@ -18,7 +20,6 @@ axiosInstance.interceptors.request.use(
     return config;
   },
   (error) => {
-    console.error(error);
     return Promise.reject(error);
   }
 );
@@ -39,8 +40,8 @@ axiosInstance.interceptors.response.use(
 
         return axios(originalRequest);
       } catch (error) {
-        console.log('error', error);
-        localStorage.removeItem('authTokens');
+        localStorage.removeItem(AUTH_TOKENS_STORAGE);
+
         return Promise.reject(error);
       }
     }

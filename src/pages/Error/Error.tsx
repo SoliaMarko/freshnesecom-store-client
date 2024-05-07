@@ -6,7 +6,7 @@ interface ErrorProps {
 }
 
 const Error = ({content}: ErrorProps): ReactElement => {
-  return <Box>{content ? content : 'Error Page'}</Box>;
+  return <Box>{content || 'Error Page'}</Box>;
 };
 
 export default Error;

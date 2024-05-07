@@ -1,7 +1,10 @@
 import {ReactElement} from 'react';
 import {Box} from '@mui/material';
 import StyledNavLink from '@/components/Custom/Links/StyledNavLink';
-import {LinksListProps} from '@/interfaces/props/LayoutProps/Footer/usefulLinks.interface';
+
+interface LinksListProps {
+  labels: string[];
+}
 
 const LinksList = ({labels}: LinksListProps): ReactElement => (
   <Box className="align-left flex flex-col items-start justify-between gap-4">

@@ -14,13 +14,13 @@ const MainHeader = (): ReactElement => {
 
   return (
     <Box className="my-2 flex items-center justify-between ">
-      <NavLink to={`${commonRoutes.ROOT}`}>
+      <NavLink to={commonRoutes.ROOT}>
         <Box className="py-4 text-lg">[LOGO]</Box>
       </NavLink>
       <SearchBar />
       <Box className="flex gap-4">
         <UserButton />
-        {user.authorized ? <FavoritesButton /> : ''}
+        {user.authorized && <FavoritesButton />}
         <BasketButton />
       </Box>
     </Box>

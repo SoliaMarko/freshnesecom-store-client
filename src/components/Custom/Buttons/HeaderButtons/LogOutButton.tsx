@@ -1,4 +1,5 @@
 import {commonRoutes} from '@/constants/globalConstants/global.constant';
+import {AUTH_TOKENS_STORAGE} from '@/constants/storageConstants/localStorage.constant';
 import {useAppDispatch} from '@/hooks/apiHooks';
 import {useLogoutUserMutation} from '@/store/services/authApi';
 import {resetUser, selectUser} from '@/store/slices/user.slice';
@@ -17,7 +18,7 @@ const LogOutButton = (): ReactElement => {
     if (!user.authorized) return;
     await logoutUser({email: user.email});
     dispatch(resetUser());
-    localStorage.removeItem('authTokens');
+    localStorage.removeItem(AUTH_TOKENS_STORAGE);
     navigate(`${commonRoutes.ROOT}`);
   };
 

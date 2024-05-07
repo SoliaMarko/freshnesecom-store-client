@@ -1,6 +1,10 @@
 import {ReactElement} from 'react';
 import {MenuItem} from '@mui/material';
-import {MenuItemsProps} from '@/interfaces/props/CustomProps/Menus/menuItemsProps.interface';
+
+interface MenuItemsProps {
+  items: string[] | ReactElement[];
+  onClick: () => void;
+}
 
 const MenuItems = ({items, onClick}: MenuItemsProps): ReactElement[] =>
   items.map(

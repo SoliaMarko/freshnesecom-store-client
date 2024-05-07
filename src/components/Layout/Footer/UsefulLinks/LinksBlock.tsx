@@ -1,7 +1,10 @@
 import {ReactElement} from 'react';
 import {Box, Typography} from '@mui/material';
 import LinksList from './LinksList';
-import {LinksBlockProps} from '@/interfaces/props/LayoutProps/Footer/usefulLinks.interface';
+
+interface LinksBlockProps {
+  linksData: {header: string; items: string[]; links: string[]}[];
+}
 
 const LinksBlock = ({linksData}: LinksBlockProps): ReactElement => {
   return (

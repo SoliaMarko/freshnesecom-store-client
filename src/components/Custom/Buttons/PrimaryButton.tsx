@@ -1,7 +1,11 @@
-import {ReactElement} from 'react';
+import {ReactElement, ReactNode} from 'react';
 import {Button} from '@mui/material';
 import clsx from 'clsx';
-import {PrimaryButtonProps} from '@/interfaces/props/CustomProps/Buttons/primaryButtonProps.interface';
+
+interface PrimaryButtonProps {
+  children: ReactNode;
+  variant?: 'filled' | 'outlined';
+}
 
 const PrimaryButton = ({children, variant = 'filled'}: PrimaryButtonProps): ReactElement => {
   return (

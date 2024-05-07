@@ -1,7 +1,8 @@
 import {ReactElement} from 'react';
+import {Box} from '@mui/material';
 
 const Favorites = (): ReactElement => {
-  return <div>[Favorites]</div>;
+  return <Box>[Favorites]</Box>;
 };
 
 export default Favorites;
