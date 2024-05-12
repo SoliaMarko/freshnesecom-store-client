@@ -2,13 +2,14 @@ import {createBrowserRouter} from 'react-router-dom';
 import AppLayout from './pages/AppLayout';
 import Main from './pages/Home/Home';
 import Error from './pages/Error/Error';
-import {commonRoutes, userRoutes} from './constants/globalConstants/global.constant';
+import {commonRoutes, productRoutes, userRoutes} from './constants/globalConstants/global.constant';
 import LogIn from './pages/LogIn/LogIn';
 import SignUp from './pages/SignUp/SignUp';
 import Cart from './pages/Cart/Cart';
 import UserProfile from './pages/UserProfile/UserProfile';
 import Favorites from './pages/Favorites/Favorites';
 import PrivateRoute from './pages/PrivatePage/PrivatePage';
+import ProductDetails from './pages/ProductDetails/ProductDetails';
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
             <Favorites />
           </PrivateRoute>
         )
+      },
+      {
+        path: `/${productRoutes.PRODUCT}/${productRoutes.ID}`,
+        element: <ProductDetails />
       }
     ]
   }

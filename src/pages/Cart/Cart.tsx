@@ -19,10 +19,14 @@ const Cart = (): ReactElement => {
       {!user.authorized && (
         <Box className="flex justify-center gap-12">
           <NavLink to={`/${commonRoutes.LOGIN}`}>
-            <PrimaryButton>Log In</PrimaryButton>
+            <PrimaryButton>
+              <Typography className="text-lg font-semibold">Log In</Typography>
+            </PrimaryButton>
           </NavLink>
           <NavLink to={`/${commonRoutes.SIGNUP}`}>
-            <PrimaryButton variant="outlined">Sign Up</PrimaryButton>
+            <PrimaryButton variant="outlined">
+              <Typography className="text-lg font-semibold">Sign Up</Typography>
+            </PrimaryButton>
           </NavLink>
         </Box>
       )}

@@ -1,10 +1,10 @@
 import {ReactElement, useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {Box} from '@mui/material';
-import {SECONDS_TO_REDIRECT, commonRoutes} from '@/constants/globalConstants/global.constant';
+import {generalAppInfo, commonRoutes} from '@/constants/globalConstants/global.constant';
 
 const LoadingToRedirect = (): ReactElement => {
-  const [count, setCount] = useState<number>(SECONDS_TO_REDIRECT);
+  const [count, setCount] = useState<number>(generalAppInfo.SECONDS_TO_REDIRECT);
   const navigate = useNavigate();
 
   useEffect(() => {
