@@ -1,5 +1,5 @@
 import {ReactElement} from 'react';
-import {Box} from '@mui/material';
+import {Box, Typography} from '@mui/material';
 import StyledTextField from '../Inputs/StyledTextField';
 import PrimaryButton from '../Buttons/PrimaryButton';
 import {FieldValues, UseFormReturn} from 'react-hook-form';
@@ -41,7 +41,9 @@ const CustomForm = <FieldsModel extends FieldValues>({
         )
       )}
       <Box className="flex justify-end">
-        <PrimaryButton>{submitTitle}</PrimaryButton>
+        <PrimaryButton>
+          <Typography className="text-lg font-semibold">{submitTitle}</Typography>
+        </PrimaryButton>
       </Box>
     </form>
   );

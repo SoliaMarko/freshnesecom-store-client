@@ -8,6 +8,14 @@ export const storeInfo = {
   }
 };
 
+export const generalAppInfo = {
+  SECONDS_TO_REDIRECT: 5,
+  pagination: {
+    INITIAL_PAGE: 0,
+    ITEMS_PER_PAGE: 10
+  }
+};
+
 const routes = {
   common: {
     ROOT: '/',
@@ -19,10 +27,13 @@ const routes = {
     USER: 'user',
     FAVORITE: 'favorite',
     PROFILE: 'profile'
+  },
+  product: {
+    PRODUCT: 'product',
+    ID: ':id'
   }
 };
 
 export const commonRoutes = routes.common;
 export const userRoutes = routes.user;
-
-export const SECONDS_TO_REDIRECT = 5;
+export const productRoutes = routes.product;
