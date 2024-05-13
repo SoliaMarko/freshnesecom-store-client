@@ -4,17 +4,23 @@ import clsx from 'clsx';
 
 interface PrimaryButtonProps {
   children: ReactNode;
-  variant?: 'filled' | 'outlined';
+  type?: 'filled' | 'outlined';
+  onClickHandler?: () => void;
 }
 
-const PrimaryButton = ({children, variant = 'filled'}: PrimaryButtonProps): ReactElement => {
+const PrimaryButton = ({children, type = 'filled', onClickHandler}: PrimaryButtonProps): ReactElement => {
+  const handleClick = (): void => {
+    onClickHandler && onClickHandler();
+  };
+
   return (
     <Button
       type="submit"
-      className={clsx('w-56 rounded-xl border-2 border-solid border-secondary-200 p-3 capitalize', {
-        'bg-secondary text-white': variant === 'filled',
-        'bg-white text-secondary': variant !== 'filled'
+      className={clsx('min-w-56 rounded-xl border-2 border-solid border-secondary-200 p-3 capitalize', {
+        'bg-secondary text-white': type === 'filled',
+        'bg-white text-secondary': type !== 'filled'
       })}
+      onClick={handleClick}
     >
       {children}
     </Button>

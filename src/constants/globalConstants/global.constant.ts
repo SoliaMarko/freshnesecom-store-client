@@ -11,7 +11,7 @@ export const storeInfo = {
 export const generalAppInfo = {
   SECONDS_TO_REDIRECT: 5,
   pagination: {
-    INITIAL_PAGE: 0,
+    INITIAL_PAGE: 1,
     ITEMS_PER_PAGE: 10
   }
 };
