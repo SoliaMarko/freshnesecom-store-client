@@ -2,11 +2,11 @@ import {ReactElement} from 'react';
 import {Box, Typography} from '@mui/material';
 
 interface ProductItemAdditionalInfoItemProps {
-  title: string;
-  content: string;
+  title?: string;
+  content?: string;
 }
 
-const ProductItemAdditionalInfoItem = ({title, content}: ProductItemAdditionalInfoItemProps): ReactElement | '' => {
+const ProductItemAdditionalInfoItem = ({title = '', content = ''}: ProductItemAdditionalInfoItemProps): ReactElement | '' => {
   return (
     title && (
       <Box className="flex flex-row justify-start">
