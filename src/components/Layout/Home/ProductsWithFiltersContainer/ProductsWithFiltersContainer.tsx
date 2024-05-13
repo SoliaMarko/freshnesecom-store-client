@@ -37,7 +37,7 @@ const ProductsWithFiltersContainer = (): ReactElement => {
 
   useEffect(() => {
     if (dataWithMeta) {
-      dispatch(setProducts([dataWithMeta]));
+      if (!currentPageData) dispatch(setProducts([dataWithMeta]));
     }
   }, [dataWithMeta]);
 

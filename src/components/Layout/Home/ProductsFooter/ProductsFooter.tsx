@@ -13,7 +13,6 @@ interface ProductsFooterProps {
 }
 
 const ProductsFooter = ({productsData, page, handlePageChange}: ProductsFooterProps): ReactElement => {
-  console.log(productsData);
   const {meta: productsMetadata} = productsData;
   const {pagesCount} = productsMetadata;
 
