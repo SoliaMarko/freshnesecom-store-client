@@ -7,16 +7,21 @@ interface ProductItemAdditionalInfoListProps {
   productData: CardProductType;
 }
 
+type ProductAdditionalData = 'freshness' | 'delivery' | undefined | 'stock';
+
 const ProductItemAdditionalInfoList = ({productData}: ProductItemAdditionalInfoListProps): ReactElement => {
   const {freshness, producer, delivery, stock} = productData;
-  const productAdditional = {freshness, [producer?.category || '']: producer?.name || '', delivery, stock};
-  const additionalProductProps = Object.keys(productAdditional);
+  const category = producer?.category ? {[producer.category]: producer?.name || ''} : {};
+  const productAdditional = {freshness, ...category, delivery, stock};
+  const additionalProductProps = Object.keys(productAdditional) as ProductAdditionalData[];
 
   return (
     <Box className="mt-6 flex flex-col gap-2">
-      {additionalProductProps.map((prop: string, index: number) => (
-        <ProductItemAdditionalInfoItem key={`${index}-${prop}`} title={prop} content={productAdditional[prop]?.toString() || ''} />
-      ))}
+      {additionalProductProps.map(
+        (prop: ProductAdditionalData, index: number): ReactElement => (
+          <ProductItemAdditionalInfoItem key={`${index}-${prop}`} title={prop?.toString()} content={prop && productAdditional[prop]?.toString()} />
+        )
+      )}
     </Box>
   );
 };

@@ -11,7 +11,7 @@ const PrimaryButton = ({children, variant = 'filled'}: PrimaryButtonProps): Reac
   return (
     <Button
       type="submit"
-      className={clsx('w-56 rounded-xl border-2 border-solid border-secondary-200 p-3 capitalize', {
+      className={clsx('min-w-56 rounded-xl border-2 border-solid border-secondary-200 p-3 capitalize', {
         'bg-secondary text-white': variant === 'filled',
         'bg-white text-secondary': variant !== 'filled'
       })}

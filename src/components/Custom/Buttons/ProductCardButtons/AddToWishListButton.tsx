@@ -6,14 +6,15 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const AddToWishListButton = (): ReactElement => {
   const [isFavorite, setIsFavorite] = useState<boolean>(true);
-  const handleIsFavorite = () => {
+
+  const handleIsFavorite = (): void => {
     setIsFavorite((current) => !current);
   };
 
   return (
     <SecondaryButton onClickHandler={handleIsFavorite}>
       {isFavorite ? <FavoriteIcon className="text-tangerineShade" /> : <FavoriteBorderIcon />}
-      <Typography className="text-lg font-semibold">{isFavorite ? 'Remove From Wishes' : 'Add To Wishlist'}</Typography>
+      <Typography className="text-lg font-semibold">{isFavorite ? 'Remove Wish' : 'Add To Wishlist'}</Typography>
     </SecondaryButton>
   );
 };

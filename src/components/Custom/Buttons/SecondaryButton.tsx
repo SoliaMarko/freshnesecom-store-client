@@ -14,7 +14,7 @@ const SecondaryButton = ({children, onClickHandler}: SecondaryButtonProps): Reac
   return (
     <Button
       type="submit"
-      className="flex min-w-72 flex-row items-center justify-between rounded-xl bg-primary-600 px-6 py-1.5 capitalize text-primary"
+      className="flex min-w-56 flex-row items-center justify-between rounded-xl bg-primary-600 px-6 py-1.5 capitalize text-primary"
       onClick={handleClick}
     >
       {children}
