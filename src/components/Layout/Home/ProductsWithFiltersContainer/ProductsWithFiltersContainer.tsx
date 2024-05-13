@@ -14,6 +14,8 @@ import {ScrollableElement} from '@/interfaces/global/scrollableElement.interface
 
 const ProductsWithFiltersContainer = (): ReactElement => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const dispatch = useAppDispatch();
+  const productListWrapper = useRef<ScrollableElement>(null);
   const productsData = useSelector((state: IRootState) => state.products);
   const [currentPage, setCurrentPage] = useState<string | number>(searchParams.get('page') || generalAppInfo.pagination.INITIAL_PAGE);
   const currentPageIndex = Number(currentPage) - 1;
@@ -21,9 +23,7 @@ const ProductsWithFiltersContainer = (): ReactElement => {
     page: currentPageIndex,
     itemsPerPage: generalAppInfo.pagination.ITEMS_PER_PAGE
   });
-  const dispatch = useAppDispatch();
   const currentPageData = productsData.find((data: {meta: {page: string | number}}) => data.meta.page === currentPageIndex)?.data;
-  const productListWrapper = useRef<ScrollableElement>(null);
 
   const scrollToProductListStart = (): void => {
     if (productListWrapper.current) productListWrapper.current.scrollIntoView({behavior: 'instant'});
