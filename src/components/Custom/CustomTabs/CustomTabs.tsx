@@ -17,8 +17,6 @@ export interface CustomTabProps {
 const CustomTabs = ({tabsData}: CustomTabProps): ReactElement => {
   const [value, setValue] = useState<number>(0);
 
-  console.log('product tabs data', tabsData);
-
   const handleChange = (_event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };

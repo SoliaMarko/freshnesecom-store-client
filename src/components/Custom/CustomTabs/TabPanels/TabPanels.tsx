@@ -1,7 +1,7 @@
 import {ReactElement} from 'react';
 import {TabDataInterface} from '../CustomTabs';
 import CustomTabPanel from '../CustomTabPanel/CustomTabPanel';
-import AdditionalDescriptionBlock from '@/components/Layout/ProductDetails/ProductDetailsInfoBlock/ProductTabs/AdditionalDescriptionBlock';
+import AdditionalDescriptionBlock from '@/components/Layout/ProductDetails/ProductDetailsInfoBlock/ProductTabs/AdditionalDescriptionBlock/AdditionalDescriptionBlock';
 import {AdditionalDescription} from '@/interfaces/products/productEntity.interface';
 import {Typography} from '@mui/material';
 
