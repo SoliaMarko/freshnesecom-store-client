@@ -48,7 +48,7 @@ const ProductsWithFiltersContainer = (): ReactElement => {
         <Filters />
         {currentPageData ? <ProductsList currentPageData={currentPageData} /> : <Box>Loading...</Box>}
       </Box>
-      {dataWithMeta && <ProductsFooter productsData={dataWithMeta} handlePageChange={handlePageChange} page={Number(currentPage) + 1} />}
+      {dataWithMeta && <ProductsFooter productsData={dataWithMeta} handlePageChange={handlePageChange} page={currentPageIndex + 1} />}
     </Box>
   );
 };
