@@ -18,7 +18,7 @@ const ProductsWithFiltersContainer = (): ReactElement => {
   const productListWrapper = useRef<ScrollableElement>(null);
   const productsData = useSelector((state: IRootState) => state.products);
   const [currentPage, setCurrentPage] = useState<string | number>(searchParams.get('page') || generalAppInfo.pagination.INITIAL_PAGE);
-  const currentPageIndex = Number(currentPage) - 1;
+  const currentPageIndex = Number(currentPage);
   const {data: dataWithMeta} = useGetAllProductsQuery({
     page: currentPageIndex,
     itemsPerPage: generalAppInfo.pagination.ITEMS_PER_PAGE
@@ -30,7 +30,7 @@ const ProductsWithFiltersContainer = (): ReactElement => {
   };
 
   const handlePageChange = (_event: ChangeEvent<unknown>, newPage: number): void => {
-    const newPageIndex = newPage - 1;
+    const newPageIndex = newPage;
     setSearchParams({page: newPageIndex.toString()});
     setCurrentPage(newPageIndex || generalAppInfo.pagination.INITIAL_PAGE);
     scrollToProductListStart();
