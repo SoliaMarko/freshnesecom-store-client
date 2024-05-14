@@ -28,7 +28,7 @@ const CustomMenu = ({children, options}: CustomMenuProps): ReactElement => {
         disableElevation
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon className="text-secondary" />}
-        className="border-none font-semibold capitalize text-primary hover:bg-primary-500"
+        className="border-none text-base font-semibold capitalize text-primary hover:bg-primary-500"
       >
         {children}
       </Button>

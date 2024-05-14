@@ -5,6 +5,9 @@ export default {
   important: '#root',
   theme: {
     extend: {
+      aspectRatio: {
+        '4/3': '4 / 3'
+      },
       fontFamily: {
         sans: ['ui-sans-serif', 'system-ui'],
         serif: ['ui-serif', 'Georgia'],

@@ -9,7 +9,7 @@ import Cart from './pages/Cart/Cart';
 import UserProfile from './pages/UserProfile/UserProfile';
 import Favorites from './pages/Favorites/Favorites';
 import PrivateRoute from './pages/PrivatePage/PrivatePage';
-import ProductDetails from './pages/ProductDetails/ProductDetails';
+import ProductDetailsPage from './pages/ProductDetailsPage/ProductDetailsPage';
 
 const router = createBrowserRouter([
   {
@@ -50,7 +50,7 @@ const router = createBrowserRouter([
       },
       {
         path: `/${productRoutes.PRODUCT}/${productRoutes.ID}`,
-        element: <ProductDetails />
+        element: <ProductDetailsPage />
       }
     ]
   }
