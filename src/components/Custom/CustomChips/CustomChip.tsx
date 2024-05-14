@@ -21,10 +21,10 @@ const CustomChip = ({value, index, textColor, bgColor, paddingX}: CustomChipProp
       label={value}
       variant="outlined"
       className={clsx(
-        'rounded-2xl border-transparent py-1 font-display text-sm font-semibold',
-        {[`text-${textColor}`]: textColor, 'text-primary': !textColor},
-        {[`bg-${bgColor}`]: bgColor, 'bg-primary-600': !bgColor},
-        {[`px-${paddingX}`]: paddingX, 'px-2.5': !paddingX}
+        'rounded-2xl border-transparent bg-primary-600 px-2.5 py-1 font-display text-sm font-semibold text-primary',
+        `text-${textColor}`,
+        `bg-${bgColor}`,
+        `px-${paddingX}`
       )}
       onClick={handleClick}
     />
