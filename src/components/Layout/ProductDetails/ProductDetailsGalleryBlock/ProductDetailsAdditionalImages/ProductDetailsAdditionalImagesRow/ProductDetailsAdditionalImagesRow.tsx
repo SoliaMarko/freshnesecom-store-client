@@ -1,6 +1,6 @@
 import {Box} from '@mui/material';
 import {Fragment, ReactElement} from 'react';
-import ProductDetailsAdditionalImageItem from '../ProductDetailsAdditionalImageItem/ProductDeatailsAdditionalImageItem';
+import ProductDetailsAdditionalImageItem from '../ProductDetailsAdditionalImageItem/ProductDetailsAdditionalImageItem';
 
 interface ProductDetailsAdditionalImagesRowProps {
   images: string[];

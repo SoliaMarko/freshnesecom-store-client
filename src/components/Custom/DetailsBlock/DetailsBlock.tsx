@@ -2,20 +2,20 @@ import {ReactElement} from 'react';
 import DetailsBlockItem from './DetailsBlockItem/DetailsBlockItem';
 
 type DetailsBlockProps = {
-  keys: string[] | number[] | undefined[];
-  details: {[key: string]: string | string[] | number | number[] | boolean | undefined};
+  keys: string[] | number[];
+  details: unknown;
 };
 
-const DetailsBlock = ({keys, details}: DetailsBlockProps): ReactElement | undefined => {
+const DetailsBlock = ({keys = [], details}: DetailsBlockProps): ReactElement | undefined => {
   return (
     <>
-      {keys.map((prop, index): ReactElement | undefined => {
-        if (!prop || !details[prop]) return;
+      {keys.map((key, index) => {
+        if (!key || !details[key]) return;
 
-        const validTitle = prop.toString();
-        const validContent = Array.isArray(details[prop]) ? (details[prop] as string[])?.join(', ') : details[prop]?.toString();
+        const validTitle = key.toString();
+        const validContent = Array.isArray(details[key]) ? details[key]?.join(', ') : details[key]?.toString();
 
-        return <DetailsBlockItem key={`${index}-${prop}`} title={validTitle} content={validContent} />;
+        return <DetailsBlockItem key={`${index}-${key}`} title={validTitle} content={validContent} />;
       })}
     </>
   );
