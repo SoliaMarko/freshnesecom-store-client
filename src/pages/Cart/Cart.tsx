@@ -24,7 +24,7 @@ const Cart = (): ReactElement => {
             </PrimaryButton>
           </NavLink>
           <NavLink to={`/${commonRoutes.SIGNUP}`}>
-            <PrimaryButton variant="outlined">
+            <PrimaryButton type="outlined">
               <Typography className="text-lg font-semibold">Sign Up</Typography>
             </PrimaryButton>
           </NavLink>

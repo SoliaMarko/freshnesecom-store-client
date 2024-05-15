@@ -8,7 +8,7 @@ interface StyledNavLinkProps {
   size?: string;
 }
 
-const StyledNavLink = ({children, to, size = 'sm'}: StyledNavLinkProps): ReactElement => {
+const StyledNavLink = ({children, to, size = 'medium'}: StyledNavLinkProps): ReactElement => {
   return (
     <NavLink to={to} className={clsx('text-secondary no-underline hover:text-red-500 hover:underline', `text-${size}`)}>
       {children}

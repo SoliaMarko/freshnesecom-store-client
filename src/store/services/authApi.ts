@@ -4,6 +4,7 @@ import {LogInFormModel} from '@/models/LogInForm.model';
 import {axiosBaseQuery} from './axiosBaseQuery';
 import {LogoutUserArgs, MutationReturnType, QueryReturnType} from '@/interfaces/api/queries.interface';
 
+// TODO: fix return types
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: axiosBaseQuery(),

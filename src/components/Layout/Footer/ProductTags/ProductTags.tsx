@@ -1,6 +1,6 @@
 import {Box, Typography} from '@mui/material';
 import {ReactElement} from 'react';
-import StyledChip from '@/components/Custom/Chips/StyledChip';
+import CustomChip from '@/components/Custom/CustomChips/CustomChip';
 import {temporalProductTags} from '@/temporalData/temporalData';
 
 const ProductTags = (): ReactElement => {
@@ -12,7 +12,7 @@ const ProductTags = (): ReactElement => {
       <Box className="flex flex-wrap justify-start gap-4">
         {temporalProductTags.map(
           (product, index): ReactElement => (
-            <StyledChip key={`${index}-${product}`} product={product} index={index} />
+            <CustomChip key={`${index}-${product}`} value={product} index={index} />
           )
         )}
       </Box>
