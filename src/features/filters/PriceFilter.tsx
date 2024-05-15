@@ -1,4 +1,4 @@
-// import CustomedSlider from '@/components/Custom/CustomSlider/CustomSlider';
+import CustomedSlider from '@/components/Custom/CustomSlider/CustomSlider';
 import {Box, Typography} from '@mui/material';
 import {ReactElement} from 'react';
 
@@ -8,8 +8,7 @@ const PriceFilter = (): ReactElement => {
       <Typography className="customH2" align="left">
         Price
       </Typography>
-      {/* <CustomedSlider /> */}
-      {/* <Slider /> */}
+      <CustomedSlider />
       {/* <RangeInputs /> */}
     </Box>
   );
