@@ -13,9 +13,11 @@ const ProductDetailsBlock = (): ReactElement => {
   const transformedData = getTransformedProductsData([productData])[0];
 
   return (
-    <Box className="flex flex-row justify-between gap-8">
-      <ProductDetailsGalleryBlock productData={transformedData} />
-      <ProductDetailsInfoBlock productData={transformedData} />
+    <Box className="flex flex-row justify-center">
+      <Box className="flex max-w-7xl flex-row justify-between gap-12">
+        <ProductDetailsGalleryBlock productData={transformedData} />
+        <ProductDetailsInfoBlock productData={transformedData} />
+      </Box>
     </Box>
   );
 };

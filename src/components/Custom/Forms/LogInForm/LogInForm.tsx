@@ -1,4 +1,4 @@
-import {ReactElement} from 'react';
+import {ReactElement, useContext} from 'react';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {LogInFormSchema} from '@/validations/logInForm.validation';
@@ -8,13 +8,15 @@ import CustomForm from '../CustomForm';
 import {useLoginUserMutation} from '@/store/services/authApi';
 import {useLogInSuccess} from '@/hooks/useLogInSuccess';
 import {useLogInError} from '@/hooks/useLogInError';
+import {ToastContext} from '@/App';
 
 const LogInForm = (): ReactElement => {
+  const {toast, onHandleToast} = useContext(ToastContext);
   const formMethods = useForm<LogInFormModel>({defaultValues: new LogInFormModel(), resolver: yupResolver(LogInFormSchema)});
   const [loginUser, {data: loginData, isSuccess: isLoginSuccess, isError: isLoginError, error: loginError}] = useLoginUserMutation();
 
-  useLogInSuccess({isLoginSuccess, loginData, formMethods});
-  useLogInError({isLoginError, loginError});
+  useLogInSuccess({isLoginSuccess, loginData, formMethods, toast, onHandleToast});
+  useLogInError({isLoginError, loginError, toast, onHandleToast});
 
   const onSubmitHandler = async (data: LogInFormModel): Promise<void> => {
     const {email, password} = data;

@@ -12,7 +12,7 @@ const ProductsList = ({currentPageData}: ProductsListProps): ReactElement => {
   const transformedData = getTransformedProductsData(currentPageData);
 
   return (
-    <Box className="flex w-3/4 flex-col justify-stretch gap-8">
+    <Box className="flex w-3/4 flex-col items-center justify-stretch gap-8">
       {transformedData && transformedData.map((productData, index) => <ProductItemCard key={`${index}-${productData}`} productData={productData} />)}
     </Box>
   );

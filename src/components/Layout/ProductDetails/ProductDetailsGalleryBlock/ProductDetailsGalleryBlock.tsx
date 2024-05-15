@@ -24,8 +24,8 @@ const ProductDetailsGalleryBlock = ({productData}: ProductDetailsGalleryBlockPro
   return (
     <Box className="flex flex-1 flex-col gap-8">
       <Box>
-        <Box className="mb-2 ml-8 flex flex-row gap-6">
-          {discount && <CustomChip value={`-${discount}%`} textColor="secondary" bgColor="secondary-500" />}
+        <Box className="mb-2 ml-4 flex flex-row gap-6">
+          {discount ? <CustomChip value={`-${discount}%`} textColor="secondary" bgColor="secondary-500" /> : ''}
           {freeShipping && <CustomChip value={'Free shipping'} textColor="secondary" bgColor="secondary-500" />}
         </Box>
         <ProductDetailsMainImage imageURL={mainImage} />

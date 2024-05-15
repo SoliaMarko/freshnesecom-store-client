@@ -1,5 +1,5 @@
 import {ReactElement, ReactNode} from 'react';
-import {Box, Typography} from '@mui/material';
+import {Box} from '@mui/material';
 
 interface CustomTabPanelProps {
   children?: ReactNode;
@@ -10,11 +10,7 @@ interface CustomTabPanelProps {
 const CustomTabPanel = ({children, index, value}: CustomTabPanelProps): ReactElement => {
   return (
     <Box role="tabpanel" hidden={value !== index}>
-      {value === index && (
-        <Box className="p-6">
-          <Typography>{children}</Typography>
-        </Box>
-      )}
+      {value === index && <Box className="p-6">{children}</Box>}
     </Box>
   );
 };
