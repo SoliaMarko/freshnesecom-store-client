@@ -17,6 +17,7 @@ const ProductDetailsAdditionalImages = ({images, imagesInRow = 2, handleClick}: 
     <Box>
       {imagesChunks.map((images: string[]) => {
         const [keyID] = useId();
+        console.log('kid', keyID);
 
         return (
           <Fragment key={keyID}>

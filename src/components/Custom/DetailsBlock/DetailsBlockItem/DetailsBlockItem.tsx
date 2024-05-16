@@ -8,8 +8,9 @@ interface DetailsBlockItemProps {
   valueColor?: string;
 }
 
-const DetailsBlockItem = ({title = '', content = ''}: DetailsBlockItemProps): ReactElement => {
+const DetailsBlockItem = ({title = '', content = ''}: DetailsBlockItemProps): ReactElement | undefined => {
   const formattedTitle = getFormatedLabel(title);
+  if (!title || !content) return;
 
   return (
     <Box className="flex flex-row justify-start">

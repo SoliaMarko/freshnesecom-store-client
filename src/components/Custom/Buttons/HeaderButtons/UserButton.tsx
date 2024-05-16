@@ -14,7 +14,7 @@ const UserButton = (): ReactElement => {
   const user = useSelector(selectUser);
 
   const userPopover = (
-    <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
+    <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: 0, margin: 0}}>
       {user.authorized ? (
         <>
           <NavLink to={`/${userRoutes.USER}/${userRoutes.PROFILE}`}>

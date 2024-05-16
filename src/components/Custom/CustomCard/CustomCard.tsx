@@ -9,8 +9,8 @@ interface CustomCardProps {
 const CustomCard = ({children, title = ''}: CustomCardProps): ReactElement => {
   return (
     <Card>
-      <CardContent>
-        <Box className="flex min-w-72 flex-col gap-5">
+      <CardContent className="max-w-2xl border-2 border-solid border-primary-200 bg-primary-500 py-8 shadow-xl">
+        <Box className="flex w-full flex-col gap-5">
           <Typography className="pb-5 font-display text-2xl font-semibold">{title}</Typography>
           {children}
         </Box>
