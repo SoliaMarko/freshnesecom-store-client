@@ -1,6 +1,7 @@
 import {Box} from '@mui/material';
 import {Fragment, ReactElement} from 'react';
 import ProductDetailsAdditionalImageItem from '../ProductDetailsAdditionalImageItem/ProductDetailsAdditionalImageItem';
+import {useId} from 'react-id-generator';
 
 interface ProductDetailsAdditionalImagesRowProps {
   images: string[];
@@ -10,13 +11,14 @@ interface ProductDetailsAdditionalImagesRowProps {
 const ProductDetailsAdditionalImagesRow = ({images, handleClick}: ProductDetailsAdditionalImagesRowProps): ReactElement => {
   return (
     <Box className="flex flex-row gap-10">
-      {images.map(
-        (image: string, imageIndex: number): ReactElement => (
-          <Fragment key={`${image}-${imageIndex}`}>
+      {images.map((image: string): ReactElement => {
+        const [keyID] = useId();
+        return (
+          <Fragment key={keyID}>
             <ProductDetailsAdditionalImageItem imageURL={image} handleClick={handleClick} />
           </Fragment>
-        )
-      )}
+        );
+      })}
     </Box>
   );
 };

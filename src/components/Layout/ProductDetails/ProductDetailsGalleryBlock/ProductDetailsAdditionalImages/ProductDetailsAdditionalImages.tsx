@@ -2,6 +2,7 @@ import {Fragment, ReactElement} from 'react';
 import {Box} from '@mui/material';
 import {getArrayChunks} from '@/utils/arrayFormaters/getArrayChunks';
 import ProductDetailsAdditionalImagesRow from './ProductDetailsAdditionalImagesRow/ProductDetailsAdditionalImagesRow';
+import {useId} from 'react-id-generator';
 
 interface ProductDetailsAdditionalImagesProps {
   images: string[];
@@ -14,11 +15,15 @@ const ProductDetailsAdditionalImages = ({images, imagesInRow = 2, handleClick}: 
 
   return (
     <Box>
-      {imagesChunks.map((images: string[], chunkIndex: number) => (
-        <Fragment key={chunkIndex}>
-          <ProductDetailsAdditionalImagesRow images={images} handleClick={handleClick} />
-        </Fragment>
-      ))}
+      {imagesChunks.map((images: string[]) => {
+        const [keyID] = useId();
+
+        return (
+          <Fragment key={keyID}>
+            <ProductDetailsAdditionalImagesRow images={images} handleClick={handleClick} />
+          </Fragment>
+        );
+      })}
     </Box>
   );
 };

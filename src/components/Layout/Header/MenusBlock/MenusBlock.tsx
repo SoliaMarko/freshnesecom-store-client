@@ -2,17 +2,20 @@ import {ReactElement} from 'react';
 import {Box} from '@mui/material';
 import {temporalCategories} from '@/temporalData/temporalData';
 import CustomMenu from '@/components/Custom/CustomMenu/CustomMenu';
+import {useId} from 'react-id-generator';
 
 const MenusBlock = (): ReactElement => {
   return (
     <Box className="mb-3.5 mt-2 flex justify-between bg-primary-700 px-11 py-3">
-      {temporalCategories.map(
-        (categoryInfo, index): ReactElement => (
-          <Box key={`${index}-${categoryInfo.header}`}>
+      {temporalCategories.map((categoryInfo) => {
+        const [keyID] = useId();
+
+        return (
+          <Box key={keyID}>
             <CustomMenu options={categoryInfo.subcategories}>{categoryInfo.header}</CustomMenu>
           </Box>
-        )
-      )}
+        );
+      })}
     </Box>
   );
 };
