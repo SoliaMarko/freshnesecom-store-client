@@ -2,7 +2,7 @@ import {Box} from '@mui/material';
 import {ReactElement, useMemo} from 'react';
 import {useParams} from 'react-router-dom';
 import {useGetProductByIdQuery} from '@/store/services/productsApi';
-import {getTransformedProductsData} from '@/utils/productsHelpers/getTransformedProductsData';
+import {getTransformedProductData} from '@/utils/productsHelpers/getTransformedProductData';
 import ProductDetailsGalleryBlock from './ProductDetailsGalleryBlock/ProductDetailsGalleryBlock';
 import ProductDetailsInfoBlock from './ProductDetailsInfoBlock/ProductDetailsInfoBlock';
 
@@ -10,7 +10,7 @@ const ProductDetailsBlock = (): ReactElement => {
   const productID = useParams();
   const {data: productData, isLoading} = useGetProductByIdQuery(productID);
   const transformedData = useMemo(() => {
-    return productData && getTransformedProductsData([productData])[0];
+    return productData && getTransformedProductData(productData);
   }, [productData]);
 
   if (isLoading) return <Box>Loading...</Box>;
