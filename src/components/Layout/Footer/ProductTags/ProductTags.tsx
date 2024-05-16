@@ -2,6 +2,7 @@ import {Box, Typography} from '@mui/material';
 import {ReactElement} from 'react';
 import CustomChip from '@/components/Custom/CustomChips/CustomChip';
 import {temporalProductTags} from '@/temporalData/temporalData';
+import {useId} from 'react-id-generator';
 
 const ProductTags = (): ReactElement => {
   return (
@@ -10,11 +11,11 @@ const ProductTags = (): ReactElement => {
         Product tags
       </Typography>
       <Box className="flex flex-wrap justify-start gap-4">
-        {temporalProductTags.map(
-          (product, index): ReactElement => (
-            <CustomChip key={`${index}-${product}`} value={product} index={index} />
-          )
-        )}
+        {temporalProductTags.map((product) => {
+          const [keyID] = useId();
+
+          return <CustomChip key={keyID} value={product} />;
+        })}
       </Box>
     </Box>
   );

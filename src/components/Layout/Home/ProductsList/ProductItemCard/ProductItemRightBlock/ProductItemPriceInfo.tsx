@@ -7,11 +7,7 @@ interface ProductItemPriceInfoProps {
 }
 
 const ProductItemPriceInfo = ({productData}: ProductItemPriceInfoProps): ReactElement => {
-  return (
-    <>
-      <CustomPriceBlock productData={productData} />
-    </>
-  );
+  return <CustomPriceBlock productData={productData} />;
 };
 
 export default ProductItemPriceInfo;

@@ -7,7 +7,7 @@ import TabsBlock from './TabsBlocks/TabsBlock';
 export interface TabDataInterface {
   label: string;
   hasLabelChip: boolean;
-  content: string | AdditionalDescription[] | undefined;
+  content?: string | AdditionalDescription[];
 }
 
 export interface CustomTabProps {
@@ -17,13 +17,13 @@ export interface CustomTabProps {
 const CustomTabs = ({tabsData}: CustomTabProps): ReactElement => {
   const [value, setValue] = useState<number>(0);
 
-  const handleChange = (_event: SyntheticEvent, newValue: number) => {
+  const handleChange = (_event: SyntheticEvent, newValue: number): void => {
     setValue(newValue);
   };
 
   return (
     <Box className="w-full">
-      <Box className="border-x-0 border-b border-t-0 border-solid border-b-primary-600">
+      <Box className="border-0 border-solid border-b-primary-600">
         <TabsBlock value={value} onChange={handleChange} tabsData={tabsData} />
       </Box>
       <TabPanels tabsData={tabsData} value={value} />

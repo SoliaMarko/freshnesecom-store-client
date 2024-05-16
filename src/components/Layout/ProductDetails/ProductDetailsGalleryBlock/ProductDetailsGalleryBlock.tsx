@@ -2,7 +2,7 @@ import {TransformedProductType} from '@/interfaces/products/transformedProductTy
 import {Box} from '@mui/material';
 import {ReactElement, useState} from 'react';
 import ProductDetailsMainImage from './ProductDetailsMainImage/ProductDetailsMainImage';
-import ProductDeatailsAdditionalImages from './ProductDeatailsAdditionalImages/ProductDetailsAdditionalImages';
+import ProductDetailsAdditionalImages from './ProductDetailsAdditionalImages/ProductDetailsAdditionalImages';
 import CustomChip from '@/components/Custom/CustomChips/CustomChip';
 
 interface ProductDetailsGalleryBlockProps {
@@ -31,7 +31,7 @@ const ProductDetailsGalleryBlock = ({productData}: ProductDetailsGalleryBlockPro
         <ProductDetailsMainImage imageURL={mainImage} />
       </Box>
 
-      <ProductDeatailsAdditionalImages images={additionalImages} handleClick={handleSetMainImageIndex} />
+      <ProductDetailsAdditionalImages images={additionalImages} handleClick={handleSetMainImageIndex} />
     </Box>
   );
 };

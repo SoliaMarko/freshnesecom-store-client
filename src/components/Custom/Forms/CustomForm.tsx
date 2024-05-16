@@ -4,6 +4,7 @@ import StyledTextField from '../Inputs/StyledTextField';
 import PrimaryButton from '../Buttons/PrimaryButton';
 import {FieldValues, UseFormReturn} from 'react-hook-form';
 import {FormFields} from '@/interfaces/form/formFields.interface';
+import {useId} from 'react-id-generator';
 
 interface CustomFormProps<FieldsModel extends FieldValues> {
   formMethods: UseFormReturn<FieldsModel>;
@@ -26,10 +27,12 @@ const CustomForm = <FieldsModel extends FieldValues>({
 
   return (
     <form onSubmit={handleSubmit(onSubmitHandler)} className="flex flex-col gap-5">
-      {fields.map(
-        (field, index): ReactElement => (
+      {fields.map((field) => {
+        const [keyID] = useId();
+
+        return (
           <StyledTextField<FieldsModel>
-            key={`${index}-${field}`}
+            key={keyID}
             name={field.field}
             type={field.type}
             register={register}
@@ -38,8 +41,8 @@ const CustomForm = <FieldsModel extends FieldValues>({
             placeholder={field.placeholder ?? ''}
             required
           />
-        )
-      )}
+        );
+      })}
       <Box className="flex justify-end">
         <PrimaryButton>
           <Typography className="text-lg font-semibold">{submitTitle}</Typography>
