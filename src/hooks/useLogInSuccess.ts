@@ -17,7 +17,7 @@ interface UseLogInSuccessParams extends UseToastProps {
   formMethods?: UseFormReturn<LogInFormModel, undefined>;
 }
 
-export const useLogInSuccess = ({isLoginSuccess, loginData, formMethods, toast, onHandleToast}: UseLogInSuccessParams) => {
+export const useLogInSuccess = ({isLoginSuccess, loginData, formMethods, toast, onHandleToast}: UseLogInSuccessParams): void => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const {openToastSuccess} = useToast({toast, onHandleToast});

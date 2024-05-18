@@ -10,7 +10,7 @@ interface UseSignUpErrorParams extends UseToastProps {
   signupError?: ErrorType;
 }
 
-export const useSignUpError = ({isSignupError: isError, signupError: error, toast, onHandleToast}: UseSignUpErrorParams) => {
+export const useSignUpError = ({isSignupError: isError, signupError: error, toast, onHandleToast}: UseSignUpErrorParams): void => {
   const {openToastError} = useToast({toast, onHandleToast});
 
   useEffect(() => {

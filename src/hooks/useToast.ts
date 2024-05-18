@@ -5,7 +5,19 @@ export interface UseToastProps {
   onHandleToast: (value: ToastValuesType) => void;
 }
 
-export const useToast = ({toast, onHandleToast}: UseToastProps) => {
+type OpenToastHandler = (message: string) => void;
+type CloseToastHandler = () => void;
+
+interface UseToastReturnValues {
+  toast: ToastValuesType;
+  openToastSuccess: OpenToastHandler;
+  openToastInfo: OpenToastHandler;
+  openToastWarning: OpenToastHandler;
+  openToastError: OpenToastHandler;
+  closeToast: CloseToastHandler;
+}
+
+export const useToast = ({toast, onHandleToast}: UseToastProps): UseToastReturnValues => {
   const openToastSuccess = (message: string) => {
     onHandleToast({
       message,

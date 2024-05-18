@@ -10,7 +10,7 @@ interface UseLogInErrorParams extends UseToastProps {
   loginError?: ErrorType;
 }
 
-export const useLogInError = ({isLoginError: isError, loginError: error, toast, onHandleToast}: UseLogInErrorParams) => {
+export const useLogInError = ({isLoginError: isError, loginError: error, toast, onHandleToast}: UseLogInErrorParams): void => {
   const {openToastError} = useToast({toast, onHandleToast});
 
   useEffect(() => {
