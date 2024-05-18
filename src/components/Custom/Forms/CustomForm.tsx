@@ -4,7 +4,6 @@ import StyledTextField from '../Inputs/StyledTextField';
 import PrimaryButton from '../Buttons/PrimaryButton';
 import {FieldValues, UseFormReturn} from 'react-hook-form';
 import {FormFields} from '@/interfaces/form/formFields.interface';
-import {useId} from 'react-id-generator';
 
 interface CustomFormProps<FieldsModel extends FieldValues> {
   formMethods: UseFormReturn<FieldsModel>;
@@ -28,17 +27,17 @@ const CustomForm = <FieldsModel extends FieldValues>({
   return (
     <form onSubmit={handleSubmit(onSubmitHandler)} className="flex flex-col gap-5">
       {fields.map((field) => {
-        const [keyID] = useId();
+        const {id, type, label, placeholder} = field;
 
         return (
           <StyledTextField<FieldsModel>
-            key={keyID}
+            key={id}
             name={field.field}
-            type={field.type}
+            type={type}
             register={register}
             errors={errors}
-            label={field.label}
-            placeholder={field.placeholder ?? ''}
+            label={label}
+            placeholder={placeholder ?? ''}
             required
           />
         );
