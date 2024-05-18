@@ -12,11 +12,11 @@ const ProductDetailsAdditionalImagesRow = ({images, handleClick}: ProductDetails
   return (
     <Box className="flex flex-row gap-10">
       {images.map((image) => {
-        const {id, values} = image;
+        const {id, value} = image;
 
         return (
           <Fragment key={id}>
-            <ProductDetailsAdditionalImageItem imageURL={values} handleClick={handleClick} />
+            <ProductDetailsAdditionalImageItem imageURL={value} handleClick={handleClick} />
           </Fragment>
         );
       })}

@@ -9,11 +9,11 @@ interface MenuItemsProps {
 
 const MenuItems = ({items, onClick}: MenuItemsProps): ReactElement[] => {
   return items.map((item): ReactElement => {
-    const {id, values} = item;
+    const {id, value} = item;
 
     return (
       <MenuItem key={id} onClick={onClick} disableRipple>
-        {values}
+        {value}
       </MenuItem>
     );
   });

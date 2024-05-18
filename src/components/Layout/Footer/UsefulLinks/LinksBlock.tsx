@@ -7,15 +7,24 @@ export interface LinkItemProps {
   value: string;
 }
 
+export interface LinksProps {
+  header: string;
+  items: LinkItemProps[];
+  links: {}[];
+}
+
 interface LinksBlockProps {
-  linksData: {id: string; header: string; items: LinkItemProps[]; links: {}[]}[];
+  linksData: {id: string; value: LinksProps}[];
 }
 
 const LinksBlock = ({linksData: links}: LinksBlockProps): ReactElement => {
   return (
     <>
       {links.map((link) => {
-        const {id, header, items} = link;
+        const {
+          id,
+          value: {header, items}
+        } = link;
 
         return (
           <Box key={id}>

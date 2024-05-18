@@ -13,13 +13,13 @@ interface ProductDetailsGalleryBlockProps {
 const ProductDetailsGalleryBlock = ({productData}: ProductDetailsGalleryBlockProps): ReactElement => {
   const {images, discount, freeShipping} = productData;
   const [mainImageIndex, setMainImageIndex] = useState<number>(0);
-  const mainImage = images[mainImageIndex].values;
-  const additionalImages = [...getTransformedArrayWithIDs(images)].map((image) => image.values);
+  const mainImage = images[mainImageIndex].value;
+  const additionalImages = [...getTransformedArrayWithIDs(images)].map((image) => image.value);
   additionalImages.splice(mainImageIndex, 1);
 
   const handleSetMainImageIndex = (imgURL: string): void => {
     const imgIndex = images.findIndex((image) => {
-      return image.values === imgURL;
+      return image.value === imgURL;
     });
     setMainImageIndex(() => imgIndex);
   };

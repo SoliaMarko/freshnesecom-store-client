@@ -1,79 +1,53 @@
-import {v4 as uuid} from 'uuid';
+import {getTransformedArrayWithIDs} from '@/utils/productsHelpers/getTransformedArrayWithIDs';
 
-export const temporalUsefulLinks = [
+export const temporalUsefulLinks = getTransformedArrayWithIDs([
   {
-    id: uuid(),
     header: 'Get In touch',
-    items: [
-      {id: uuid(), value: 'About us'},
-      {id: uuid(), value: 'Careers'},
-      {id: uuid(), value: 'Press Releases'},
-      {id: uuid(), value: 'Blog'}
-    ],
+    items: getTransformedArrayWithIDs(['About us', 'Careers', 'Press Releases', 'Blog']),
     links: [{}]
   },
   {
-    id: uuid(),
     header: 'Connections',
-    items: [
-      {id: uuid(), value: 'Facebook'},
-      {id: uuid(), value: 'Twitter'},
-      {id: uuid(), value: 'Instagram'},
-      {id: uuid(), value: 'Youtube'},
-      {id: uuid(), value: 'LinkedIn'}
-    ],
+    items: getTransformedArrayWithIDs(['Facebook', 'Twitter', 'Instagram', 'Youtube', 'LinkedIn']),
     links: [{}]
   },
   {
-    id: uuid(),
     header: 'Earnings',
-    items: [
-      {id: uuid(), value: 'Become an Affiliate'},
-      {id: uuid(), value: 'Advertise your product'},
-      {id: uuid(), value: 'Sell on Market'}
-    ],
+    items: getTransformedArrayWithIDs(['Become an Affiliate', 'Advertise your product', 'Sell on Market']),
     links: [{}]
   },
   {
-    id: uuid(),
     header: 'Account',
-    items: [
-      {id: uuid(), value: 'Your account'},
-      {id: uuid(), value: 'Returns Centre'},
-      {id: uuid(), value: '100% purchase protection'},
-      {id: uuid(), value: 'Chat with us'},
-      {id: uuid(), value: 'Help'}
-    ],
+    items: getTransformedArrayWithIDs(['Your account', 'Returns Centre', '100% purchase protection', 'Chat with us', 'Help']),
     links: [{}]
   }
-];
+]);
 
-export const temporalProductTags = [
-  {id: uuid(), value: 'Beans'},
-  {id: uuid(), value: 'Carrots'},
-  {id: uuid(), value: 'Apples'},
-  {id: uuid(), value: 'Garlic'},
-  {id: uuid(), value: 'Mushrooms'},
-  {id: uuid(), value: 'Tomatoes'},
-  {id: uuid(), value: 'Chilli peppers'},
-  {id: uuid(), value: 'Broccoli'},
-  {id: uuid(), value: 'Watermelons'},
-  {id: uuid(), value: 'Oranges'},
-  {id: uuid(), value: 'Bananas'},
-  {id: uuid(), value: 'Grapes'},
-  {id: uuid(), value: 'Cherries'},
-  {id: uuid(), value: 'Meat'},
-  {id: uuid(), value: 'Seo tag'},
-  {id: uuid(), value: 'Fish'},
-  {id: uuid(), value: 'Fresh food'},
-  {id: uuid(), value: 'Lemons'}
-];
+export const temporalProductTags = getTransformedArrayWithIDs([
+  'Beans',
+  'Carrots',
+  'Apples',
+  'Garlic',
+  'Mushrooms',
+  'Tomatoes',
+  'Chilli peppers',
+  'Broccoli',
+  'Watermelons',
+  'Oranges',
+  'Bananas',
+  'Grapes',
+  'Cherries',
+  'Meat',
+  'Seo tag',
+  'Fish',
+  'Fresh food',
+  'Lemons'
+]);
 
-export const temporalCategories = [
+export const temporalCategories = getTransformedArrayWithIDs([
   {
-    id: uuid(),
     header: 'Electronics',
-    subcategories: [
+    subcategories: getTransformedArrayWithIDs([
       'Laptops',
       'Tablets',
       'Smartphones',
@@ -84,17 +58,26 @@ export const temporalCategories = [
       'Batteries',
       'Cables',
       'Accessories'
-    ]
+    ])
   },
   {
-    id: uuid(),
     header: 'Food',
-    subcategories: ['Pantry', 'Grocery', 'Fruits', 'Vegetables', 'Dairy', 'Meat', 'Frozen Foods', 'Beverages', 'Bakery', 'Health & Wellness']
+    subcategories: getTransformedArrayWithIDs([
+      'Pantry',
+      'Grocery',
+      'Fruits',
+      'Vegetables',
+      'Dairy',
+      'Meat',
+      'Frozen Foods',
+      'Beverages',
+      'Bakery',
+      'Health & Wellness'
+    ])
   },
   {
-    id: uuid(),
     header: 'Clothes',
-    subcategories: [
+    subcategories: getTransformedArrayWithIDs([
       'Shirts',
       'Sweaters',
       'Pants/Jeans',
@@ -104,12 +87,11 @@ export const temporalCategories = [
       'Dresses',
       'Skirts',
       'Accessories (hats, belts, socks etc.)'
-    ]
+    ])
   },
   {
-    id: uuid(),
     header: 'Sports and outdoors',
-    subcategories: [
+    subcategories: getTransformedArrayWithIDs([
       'Exercise & Fitness',
       'Team Sports',
       'Racket Sports',
@@ -119,12 +101,11 @@ export const temporalCategories = [
       'Cycling',
       'Camping & Hiking',
       'Fishing'
-    ]
+    ])
   },
   {
-    id: uuid(),
     header: 'Books',
-    subcategories: [
+    subcategories: getTransformedArrayWithIDs([
       'Fiction',
       'Nonfiction',
       "Children's Books",
@@ -134,6 +115,6 @@ export const temporalCategories = [
       'Calendars & Planners',
       'Coloring Books',
       'Comics & Graphic Novel'
-    ]
+    ])
   }
-];
+]);

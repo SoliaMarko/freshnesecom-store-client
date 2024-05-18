@@ -13,7 +13,7 @@ const AdditionalDescriptionBlock = ({descriptions}: AdditionalDescriptionProps):
       {descriptions?.map((description) => {
         const {
           id,
-          values: {title, content}
+          value: {title, content}
         } = description;
         if (!content) return <></>;
 

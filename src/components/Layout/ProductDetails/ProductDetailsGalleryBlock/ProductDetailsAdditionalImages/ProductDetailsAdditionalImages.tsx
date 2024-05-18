@@ -16,11 +16,11 @@ const ProductDetailsAdditionalImages = ({images, imagesInRow = 2, handleClick}: 
   return (
     <Box>
       {imagesChunks.map((images) => {
-        const {id, values} = images;
+        const {id, value} = images;
 
         return (
           <Fragment key={id}>
-            <ProductDetailsAdditionalImagesRow images={values} handleClick={handleClick} />
+            <ProductDetailsAdditionalImagesRow images={value} handleClick={handleClick} />
           </Fragment>
         );
       })}

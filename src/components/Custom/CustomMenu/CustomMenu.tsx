@@ -5,11 +5,12 @@ import MenuItems from './MenuItems';
 import {WithID} from '@/utils/productsHelpers/getTransformedArrayWithIDs';
 
 interface CustomMenuProps {
-  children: ReactNode;
+  header: string;
   options: WithID<string>[] | WithID<ReactElement>[];
+  children: ReactNode;
 }
 
-const CustomMenu = ({children, options}: CustomMenuProps): ReactElement => {
+const CustomMenu = ({header, options, children}: CustomMenuProps): ReactElement => {
   const [anchorElement, setAnchorElement] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorElement);
 
@@ -24,7 +25,7 @@ const CustomMenu = ({children, options}: CustomMenuProps): ReactElement => {
   return (
     <>
       <Button
-        id={`menu-${children}-button`}
+        id={`menu-${header}-button`}
         variant="outlined"
         disableElevation
         onClick={handleClick}
@@ -34,7 +35,7 @@ const CustomMenu = ({children, options}: CustomMenuProps): ReactElement => {
         {children}
       </Button>
       <Menu
-        id={`${children}-menu`}
+        id={`${header}-menu`}
         elevation={0}
         anchorOrigin={{
           vertical: 'bottom',
@@ -45,7 +46,7 @@ const CustomMenu = ({children, options}: CustomMenuProps): ReactElement => {
           horizontal: 'right'
         }}
         MenuListProps={{
-          'aria-labelledby': `menu-${children}-button`
+          'aria-labelledby': `menu-${header}-button`
         }}
         anchorEl={anchorElement}
         open={open}

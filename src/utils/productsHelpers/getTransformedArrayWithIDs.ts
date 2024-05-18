@@ -2,11 +2,11 @@ import {v4 as uuid} from 'uuid';
 
 export interface WithID<T> {
   id: string;
-  values: T;
+  value: T;
 }
 
 export const getTransformedArrayWithIDs = <ItemsType>(items: ItemsType[]): WithID<ItemsType>[] => {
-  return items.map((item) => ({id: uuid(), values: item}));
+  return items.map((item) => ({id: uuid(), value: item}));
 };
 
 export const getArrayChunks = <ItemsType>(initArray: ItemsType[], chunkSize: number): ItemsType[][] => {

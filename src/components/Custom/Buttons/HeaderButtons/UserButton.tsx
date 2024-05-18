@@ -35,7 +35,7 @@ const UserButton = (): ReactElement => {
   const userPopoverWithIDs = getTransformedArrayWithIDs([userPopover]);
 
   return (
-    <CustomMenu options={userPopoverWithIDs}>
+    <CustomMenu header="user" options={userPopoverWithIDs}>
       <PersonOutlineIcon className="text-3xl text-primary" />
     </CustomMenu>
   );
