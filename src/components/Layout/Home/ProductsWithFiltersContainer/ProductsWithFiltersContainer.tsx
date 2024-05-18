@@ -7,7 +7,7 @@ import {useSelector} from 'react-redux';
 import {IRootState} from '@/types/IRootState.type';
 import {useSearchParams} from 'react-router-dom';
 import {generalAppInfo} from '@/constants/globalConstants/global.constant';
-import {useGetProductsQuery} from '@/store/services/productsApi';
+import {useGetAllProductsQuery} from '@/store/services/productsApi';
 import {setProducts} from '@/store/slices/products.slice';
 import {useAppDispatch} from '@/hooks/apiHooks';
 import {ScrollableElement} from '@/interfaces/global/scrollableElement.interface';
@@ -18,7 +18,7 @@ const ProductsWithFiltersContainer = (): ReactElement => {
   const productListWrapper = useRef<ScrollableElement>(null);
   const productsData = useSelector((state: IRootState) => state.products);
   const [currentPage, setCurrentPage] = useState<number>(Number(searchParams.get('page')) || generalAppInfo.pagination.INITIAL_PAGE);
-  const {data: dataWithMeta} = useGetProductsQuery({
+  const {data: dataWithMeta} = useGetAllProductsQuery({
     page: currentPage,
     itemsPerPage: generalAppInfo.pagination.ITEMS_PER_PAGE
   });

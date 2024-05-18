@@ -6,13 +6,20 @@ import CustomMenu from '@/components/Custom/CustomMenu/CustomMenu';
 const MenusBlock = (): ReactElement => {
   return (
     <Box className="mb-3.5 mt-2 flex justify-between bg-primary-700 px-11 py-3">
-      {temporalCategories.map(
-        (categoryInfo, index): ReactElement => (
-          <Box key={`${index}-${categoryInfo.header}`}>
-            <CustomMenu options={categoryInfo.subcategories}>{categoryInfo.header}</CustomMenu>
+      {temporalCategories.map((categoryInfo) => {
+        const {
+          id,
+          value: {header, subcategories}
+        } = categoryInfo;
+
+        return (
+          <Box key={id}>
+            <CustomMenu header={header} options={subcategories}>
+              {header}
+            </CustomMenu>
           </Box>
-        )
-      )}
+        );
+      })}
     </Box>
   );
 };

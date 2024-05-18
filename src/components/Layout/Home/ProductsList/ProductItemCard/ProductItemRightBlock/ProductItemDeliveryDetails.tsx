@@ -1,9 +1,9 @@
-import {CardProductType} from '@/interfaces/products/cardProductType.interface';
+import {TransformedProductType} from '@/interfaces/products/transformedProductType.interface';
 import {Box, Typography} from '@mui/material';
 import {ReactElement} from 'react';
 
 interface ProductItemDeliveryDetailsProps {
-  productData: CardProductType;
+  productData: TransformedProductType;
 }
 
 const ProductItemDeliveryDetails = ({productData}: ProductItemDeliveryDetailsProps): ReactElement => {

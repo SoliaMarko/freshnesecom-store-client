@@ -8,15 +8,22 @@ export const productsApi = createApi({
   reducerPath: 'productsApi',
   baseQuery: axiosBaseQuery(),
   endpoints: (builder) => ({
-    getProducts: builder.query<GetProductsReturnType, GetProductsModel>({
+    getAllProducts: builder.query<GetProductsReturnType, GetProductsModel>({
       query: ({page = generalAppInfo.pagination.INITIAL_PAGE, itemsPerPage = generalAppInfo.pagination.ITEMS_PER_PAGE}: GetProductsModel) => {
         return {
           url: `/product?page=${page}&itemsPerPage=${itemsPerPage}`,
           method: 'GET'
         };
       }
+    }),
+    // TODO: add types
+    getProductById: builder.query({
+      query: ({id}) => ({
+        url: `/product/${id}`,
+        method: 'GET'
+      })
     })
   })
 });
 
-export const {useGetProductsQuery} = productsApi;
+export const {useGetAllProductsQuery, useGetProductByIdQuery} = productsApi;

@@ -1,10 +1,10 @@
 import {ReactElement} from 'react';
 import {Box, Typography} from '@mui/material';
 import {BasicRating} from '@/components/Custom/CustomRating/CustomRating';
-import {CardProductType} from '@/interfaces/products/cardProductType.interface';
+import {TransformedProductType} from '@/interfaces/products/transformedProductType.interface';
 
 interface ProductItemMainInfoProps {
-  productData: CardProductType;
+  productData: TransformedProductType;
 }
 
 const ProductItemMainInfo = ({productData}: ProductItemMainInfoProps): ReactElement => {

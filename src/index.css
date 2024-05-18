@@ -34,6 +34,8 @@ body {
   @apply mb-4 font-display font-semibold;
 }
 
+/* custom headers */
+
 .customH1 {
   @apply heading text-3xl;
 }
@@ -52,4 +54,30 @@ body {
 
 .customH5 {
   @apply heading text-sm;
+}
+
+/* custom title-content pairs */
+
+.largeTitle {
+  @apply customH1;
+}
+
+.largeContent {
+  @apply customH2;
+}
+
+.mediumTitle {
+  @apply customH2;
+}
+
+.mediumContent {
+  @apply customH3;
+}
+
+.smallTitle {
+  @apply customH3;
+}
+
+.smallContent {
+  @apply customH4;
 }
