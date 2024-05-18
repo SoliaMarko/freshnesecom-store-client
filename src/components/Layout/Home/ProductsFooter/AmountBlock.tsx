@@ -10,7 +10,7 @@ interface AmountBlockProps {
 const AmountBlock = ({value, label}: AmountBlockProps): ReactElement => {
   return (
     <Box className="flex flex-1 flex-row items-center justify-end gap-3">
-      <CustomChip value={value} textColor="secondary" bgColor="secondary-500" paddingX={2} />
+      <CustomChip value={value} classNames="text-secondary bg-secondary-500 px-2" />
       <Typography className="capitalize text-secondary">{label}</Typography>
     </Box>
   );
