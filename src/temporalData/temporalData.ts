@@ -1,49 +1,77 @@
+import {v4 as uuid} from 'uuid';
+
 export const temporalUsefulLinks = [
   {
+    id: uuid(),
     header: 'Get In touch',
-    items: ['About us', 'Careers', 'Press Releases', 'Blog'],
-    links: ['...']
+    items: [
+      {id: uuid(), value: 'About us'},
+      {id: uuid(), value: 'Careers'},
+      {id: uuid(), value: 'Press Releases'},
+      {id: uuid(), value: 'Blog'}
+    ],
+    links: [{}]
   },
   {
+    id: uuid(),
     header: 'Connections',
-    items: ['Facebook', 'Twitter', 'Instagram', 'Youtube', 'LinkedIn'],
-    links: ['...']
+    items: [
+      {id: uuid(), value: 'Facebook'},
+      {id: uuid(), value: 'Twitter'},
+      {id: uuid(), value: 'Instagram'},
+      {id: uuid(), value: 'Youtube'},
+      {id: uuid(), value: 'LinkedIn'}
+    ],
+    links: [{}]
   },
   {
+    id: uuid(),
     header: 'Earnings',
-    items: ['Become an Affiliate', 'Advertise your product', 'Sell on Market'],
-    links: ['...']
+    items: [
+      {id: uuid(), value: 'Become an Affiliate'},
+      {id: uuid(), value: 'Advertise your product'},
+      {id: uuid(), value: 'Sell on Market'}
+    ],
+    links: [{}]
   },
   {
+    id: uuid(),
     header: 'Account',
-    items: ['Your account', 'Returns Centre', '100% purchase protection', 'Chat with us', 'Help'],
-    links: ['...']
+    items: [
+      {id: uuid(), value: 'Your account'},
+      {id: uuid(), value: 'Returns Centre'},
+      {id: uuid(), value: '100% purchase protection'},
+      {id: uuid(), value: 'Chat with us'},
+      {id: uuid(), value: 'Help'}
+    ],
+    links: [{}]
   }
 ];
 
 export const temporalProductTags = [
-  'Beans',
-  'Carrots',
-  'Apples',
-  'Garlic',
-  'Mushrooms',
-  'Tomatoes',
-  'Chilli peppers',
-  'Broccoli',
-  'Watermelons',
-  'Oranges',
-  'Bananas',
-  'Grapes',
-  'Cherries',
-  'Meat',
-  'Seo tag',
-  'Fish',
-  'Fresh food',
-  'Lemons'
+  {id: uuid(), value: 'Beans'},
+  {id: uuid(), value: 'Carrots'},
+  {id: uuid(), value: 'Apples'},
+  {id: uuid(), value: 'Garlic'},
+  {id: uuid(), value: 'Mushrooms'},
+  {id: uuid(), value: 'Tomatoes'},
+  {id: uuid(), value: 'Chilli peppers'},
+  {id: uuid(), value: 'Broccoli'},
+  {id: uuid(), value: 'Watermelons'},
+  {id: uuid(), value: 'Oranges'},
+  {id: uuid(), value: 'Bananas'},
+  {id: uuid(), value: 'Grapes'},
+  {id: uuid(), value: 'Cherries'},
+  {id: uuid(), value: 'Meat'},
+  {id: uuid(), value: 'Seo tag'},
+  {id: uuid(), value: 'Fish'},
+  {id: uuid(), value: 'Fresh food'},
+  {id: uuid(), value: 'Lemons'}
 ];
 
 export const temporalCategories = [
   {
+    id: uuid(),
     header: 'Electronics',
     subcategories: [
       'Laptops',
@@ -59,10 +87,12 @@ export const temporalCategories = [
     ]
   },
   {
+    id: uuid(),
     header: 'Food',
     subcategories: ['Pantry', 'Grocery', 'Fruits', 'Vegetables', 'Dairy', 'Meat', 'Frozen Foods', 'Beverages', 'Bakery', 'Health & Wellness']
   },
   {
+    id: uuid(),
     header: 'Clothes',
     subcategories: [
       'Shirts',
@@ -77,6 +107,7 @@ export const temporalCategories = [
     ]
   },
   {
+    id: uuid(),
     header: 'Sports and outdoors',
     subcategories: [
       'Exercise & Fitness',
@@ -91,6 +122,7 @@ export const temporalCategories = [
     ]
   },
   {
+    id: uuid(),
     header: 'Books',
     subcategories: [
       'Fiction',

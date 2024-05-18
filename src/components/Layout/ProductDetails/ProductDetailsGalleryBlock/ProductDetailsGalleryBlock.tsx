@@ -4,6 +4,7 @@ import {ReactElement, useState} from 'react';
 import ProductDetailsMainImage from './ProductDetailsMainImage/ProductDetailsMainImage';
 import ProductDetailsAdditionalImages from './ProductDetailsAdditionalImages/ProductDetailsAdditionalImages';
 import CustomChip from '@/components/Custom/CustomChips/CustomChip';
+import {getTransformedArrayWithIDs} from '@/utils/productsHelpers/getTransformedArrayWithIDs';
 
 interface ProductDetailsGalleryBlockProps {
   productData: TransformedProductType;
@@ -12,12 +13,14 @@ interface ProductDetailsGalleryBlockProps {
 const ProductDetailsGalleryBlock = ({productData}: ProductDetailsGalleryBlockProps): ReactElement => {
   const {images, discount, freeShipping} = productData;
   const [mainImageIndex, setMainImageIndex] = useState<number>(0);
-  const mainImage = images[mainImageIndex];
-  const additionalImages = [...images];
+  const mainImage = images[mainImageIndex].values;
+  const additionalImages = [...getTransformedArrayWithIDs(images)].map((image) => image.values);
   additionalImages.splice(mainImageIndex, 1);
 
   const handleSetMainImageIndex = (imgURL: string): void => {
-    const imgIndex = images.findIndex((img: string) => img === imgURL);
+    const imgIndex = images.findIndex((image) => {
+      return image.values === imgURL;
+    });
     setMainImageIndex(() => imgIndex);
   };
 

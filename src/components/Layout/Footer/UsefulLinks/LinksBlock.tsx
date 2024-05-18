@@ -1,24 +1,28 @@
 import {ReactElement} from 'react';
 import {Box, Typography} from '@mui/material';
 import LinksList from './LinksList';
-import {useId} from 'react-id-generator';
 
-interface LinksBlockProps {
-  linksData: {header: string; items: string[]; links: string[]}[];
+export interface LinkItemProps {
+  id: string;
+  value: string;
 }
 
-const LinksBlock = ({linksData}: LinksBlockProps): ReactElement => {
+interface LinksBlockProps {
+  linksData: {id: string; header: string; items: LinkItemProps[]; links: {}[]}[];
+}
+
+const LinksBlock = ({linksData: links}: LinksBlockProps): ReactElement => {
   return (
     <>
-      {linksData.map((link, index) => {
-        const [keyID] = useId();
+      {links.map((link) => {
+        const {id, header, items} = link;
 
         return (
-          <Box key={keyID}>
+          <Box key={id}>
             <Typography className="customH3" align="left">
-              {link.header}
+              {header}
             </Typography>
-            <LinksList labels={linksData[index].items} />
+            <LinksList labels={items} />
           </Box>
         );
       })}

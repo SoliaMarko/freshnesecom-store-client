@@ -1,7 +1,6 @@
 import {ReactElement} from 'react';
 import {Chip} from '@mui/material';
 import clsx from 'clsx';
-import {useId} from 'react-id-generator';
 
 interface CustomChipProps {
   value: string | number;
@@ -15,11 +14,8 @@ const CustomChip = ({value, textColor, bgColor, paddingX}: CustomChipProps): Rea
     console.info('Chip clicked');
   };
 
-  const [keyID] = useId();
-
   return (
     <Chip
-      key={keyID}
       label={value}
       variant="outlined"
       className={clsx(

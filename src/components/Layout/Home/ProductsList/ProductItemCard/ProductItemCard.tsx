@@ -13,7 +13,7 @@ interface ProductItemCardProps {
 
 const ProductItemCard = ({productData}: ProductItemCardProps): ReactElement => {
   const {title, images} = productData;
-  const mainImage = images[0];
+  const mainImage = images[0].values;
 
   return (
     <Box className="relative flex w-full flex-row rounded-xl border-2 border-solid border-primary-400 ">
