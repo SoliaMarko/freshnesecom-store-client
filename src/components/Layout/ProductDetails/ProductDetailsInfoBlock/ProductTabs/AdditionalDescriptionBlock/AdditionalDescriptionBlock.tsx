@@ -1,22 +1,29 @@
 import {AdditionalDescription} from '@/interfaces/products/productEntity.interface';
+import {WithID} from '@/utils/productsHelpers/getTransformedArrayWithIDs';
 import {Box, Typography} from '@mui/material';
 import {ReactElement} from 'react';
 
 interface AdditionalDescriptionProps {
-  descriptions: AdditionalDescription[];
+  descriptions: WithID<AdditionalDescription>[];
 }
 
-const AdditionalDescriptionBlock = ({descriptions}: AdditionalDescriptionProps) => {
+const AdditionalDescriptionBlock = ({descriptions}: AdditionalDescriptionProps): ReactElement => {
   return (
     <Box className="flex flex-col gap-8">
-      {descriptions?.map(
-        (description, index): ReactElement => (
-          <Box key={`${index}-${description}`} className="text-left">
-            <Typography className="customH3">{description?.title}</Typography>
-            <Typography className="customH4 font-normal">{description?.content}</Typography>
+      {descriptions?.map((description) => {
+        const {
+          id,
+          value: {title, content}
+        } = description;
+        if (!content) return <></>;
+
+        return (
+          <Box key={id} className="text-left">
+            <Typography className="customH3">{title}</Typography>
+            <Typography className="customH4 font-normal">{content}</Typography>
           </Box>
-        )
-      )}
+        );
+      })}
     </Box>
   );
 };

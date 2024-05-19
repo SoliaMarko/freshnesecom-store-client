@@ -10,11 +10,11 @@ const ProductTags = (): ReactElement => {
         Product tags
       </Typography>
       <Box className="flex flex-wrap justify-start gap-4">
-        {temporalProductTags.map(
-          (product, index): ReactElement => (
-            <CustomChip key={`${index}-${product}`} value={product} index={index} />
-          )
-        )}
+        {temporalProductTags.map((product) => {
+          const {id, value} = product;
+
+          return <CustomChip key={id} value={value} />;
+        })}
       </Box>
     </Box>
   );

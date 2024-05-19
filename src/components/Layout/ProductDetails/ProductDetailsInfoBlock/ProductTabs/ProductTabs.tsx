@@ -9,11 +9,7 @@ interface ProductTabsProps {
 const ProductTabs = ({productData}: ProductTabsProps) => {
   const productTabsData = getProductTabsData(productData);
 
-  return (
-    <>
-      <CustomTabs tabsData={productTabsData} />
-    </>
-  );
+  return <CustomTabs tabsData={productTabsData} />;
 };
 
 export default ProductTabs;

@@ -10,7 +10,7 @@ import {useLogInSuccess} from '@/hooks/useLogInSuccess';
 import {useLogInError} from '@/hooks/useLogInError';
 import {useSignUpError} from '@/hooks/useSignUpError';
 import {useSignUpSuccess} from '@/hooks/useSignUpSuccess';
-import {ToastContext} from '@/App';
+import {ToastContext} from '@/contexts/ToastProvider';
 
 const SignUpForm = (): ReactElement => {
   const {toast, onHandleToast} = useContext(ToastContext);

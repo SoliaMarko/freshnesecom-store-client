@@ -10,7 +10,7 @@ interface PrimaryButtonProps {
 
 const PrimaryButton = ({children, type = 'filled', onClickHandler}: PrimaryButtonProps): ReactElement => {
   const handleClick = (): void => {
-    onClickHandler && onClickHandler();
+    onClickHandler?.();
   };
 
   return (

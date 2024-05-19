@@ -1,6 +1,6 @@
 import {ReactElement, useContext} from 'react';
 import {Alert, Snackbar} from '@mui/material';
-import {ToastContext} from '@/App';
+import {ToastContext} from '@/contexts/ToastProvider';
 import {useToast} from '@/hooks/useToast';
 
 const CustomSnackbar = (): ReactElement | undefined => {
@@ -10,8 +10,6 @@ const CustomSnackbar = (): ReactElement | undefined => {
   const handleClose = (): void => {
     closeToast();
   };
-
-  if (!toast.isOpen) return;
 
   return (
     <Snackbar

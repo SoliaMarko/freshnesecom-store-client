@@ -26,20 +26,22 @@ const CustomForm = <FieldsModel extends FieldValues>({
 
   return (
     <form onSubmit={handleSubmit(onSubmitHandler)} className="flex flex-col gap-5">
-      {fields.map(
-        (field, index): ReactElement => (
+      {fields.map((field) => {
+        const {id, type, label, placeholder} = field;
+
+        return (
           <StyledTextField<FieldsModel>
-            key={`${index}-${field}`}
+            key={id}
             name={field.field}
-            type={field.type}
+            type={type}
             register={register}
             errors={errors}
-            label={field.label}
-            placeholder={field.placeholder ?? ''}
+            label={label}
+            placeholder={placeholder ?? ''}
             required
           />
-        )
-      )}
+        );
+      })}
       <Box className="flex justify-end">
         <PrimaryButton>
           <Typography className="text-lg font-semibold">{submitTitle}</Typography>
