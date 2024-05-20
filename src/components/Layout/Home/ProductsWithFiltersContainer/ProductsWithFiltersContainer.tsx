@@ -10,11 +10,8 @@ import {ScrollableElement} from '@/interfaces/global/scrollableElement.interface
 import {ProductEntity} from '@/interfaces/products/productEntity.interface';
 import Error from '@/pages/Error/Error';
 import {PaginationButtonAction} from '@/enums/global/paginationButtonAction.enum';
-import {ExtendedError} from '@/interfaces/error/extendedError.interface';
 import {useSelector} from 'react-redux';
 import {IRootState} from '@/types/IRootState.type';
-
-export type ActionType = 'switchPage' | 'showMore';
 
 export type NewParams = {
   [key: string]: string | string[];
