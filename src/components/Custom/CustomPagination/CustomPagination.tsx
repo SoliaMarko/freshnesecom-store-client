@@ -3,18 +3,18 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import {Box, PaginationItem, Typography} from '@mui/material';
 import {generalAppInfo} from '@/constants/globalConstants/global.constant';
-import {ActionType} from '@/components/Layout/Home/ProductsWithFiltersContainer/ProductsWithFiltersContainer';
+import {PaginationButtonAction} from '@/enums/global/paginationButtonAction.enum';
 
 interface CustomPaginationProps {
   count: number;
   currentPage?: number;
   disabled?: boolean;
-  handlePageChange: (page: number, action: ActionType) => void;
+  handlePageChange: (page: number, action: PaginationButtonAction) => void;
 }
 
 const CustomPagination = ({count, currentPage = 1, disabled = false, handlePageChange}: CustomPaginationProps): ReactElement => {
   const handleClick = (_event: ChangeEvent<unknown>, page: number): void => {
-    handlePageChange(page - 1, 'switchPage');
+    handlePageChange(page - 1, PaginationButtonAction.SwitchPage);
   };
 
   return (

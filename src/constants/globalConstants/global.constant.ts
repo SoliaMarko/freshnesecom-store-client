@@ -16,6 +16,11 @@ export const generalAppInfo = {
   }
 };
 
+export const products = {
+  MIN_POSSIBLE_PRICE: 0.01,
+  MAX_POSSIBLE_PRICE: 100_000
+};
+
 const routes = {
   common: {
     ROOT: '/',
