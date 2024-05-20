@@ -1,21 +1,24 @@
 import {ReactElement} from 'react';
 import {Box, Slider} from '@mui/material';
 import CustomThumb from './CustomThumb/CustomThumb';
+import clsx from 'clsx';
 
 interface CustomSliderProps {
   range: {min: number; max: number};
-  values: {minPrice: number; maxPrice: number};
+  values: {
+    min: number;
+    max: number;
+  };
   handleMin: (value: number) => void;
   handleMax: (value: number) => void;
+  classNames?: string;
 }
 
-const CustomSlider = ({range, values, handleMin, handleMax}: CustomSliderProps): ReactElement => {
+const CustomSlider = ({range, values, handleMin, handleMax, classNames}: CustomSliderProps): ReactElement => {
   const {min, max} = range;
-  const {minPrice: minSelected, maxPrice: maxSelected} = values;
+  const {min: minSelected, max: maxSelected} = values;
 
   const handleChange = (_event: Event, value: number | number[]): void => {
-    console.log(value);
-
     if (Array.isArray(value)) {
       handleMin(value[0]);
       handleMax(value[1]);
@@ -31,7 +34,7 @@ const CustomSlider = ({range, values, handleMin, handleMax}: CustomSliderProps):
         max={max}
         value={[+minSelected, +maxSelected]}
         valueLabelDisplay="auto"
-        className="h-2 text-secondary"
+        className={clsx('h-2 text-secondary', classNames)}
         onChange={handleChange}
         slots={{
           thumb: CustomThumb

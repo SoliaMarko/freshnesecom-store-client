@@ -5,4 +5,6 @@ export class GetProductsModel {
   public itemsPerPage?: number = generalAppInfo.pagination.ITEMS_PER_PAGE;
   public minPrice?: number;
   public maxPrice?: number;
+  public minRating?: number;
+  public maxRating?: number;
 }

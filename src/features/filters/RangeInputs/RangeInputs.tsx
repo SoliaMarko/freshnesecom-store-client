@@ -4,14 +4,14 @@ import CustomNumberField from '@/components/Custom/Inputs/CustomNumberField/Cust
 
 interface RangeInputsProps {
   range: {min: number; max: number};
-  values: {minPrice: number; maxPrice: number};
+  values: {min: number; max: number};
   handleMin: (value: number) => void;
   handleMax: (value: number) => void;
 }
 
 const RangeInputs = ({range, values, handleMin, handleMax}: RangeInputsProps): ReactElement => {
   const {min, max} = range;
-  const {minPrice: minSelected, maxPrice: maxSelected} = values;
+  const {min: minSelected, max: maxSelected} = values;
 
   const handleMinChange = (event: ChangeEvent<HTMLInputElement>): void => {
     handleMin(+event?.target.value);

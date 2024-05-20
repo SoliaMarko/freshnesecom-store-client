@@ -2,17 +2,13 @@ import {ReactElement, useCallback, useEffect, useState} from 'react';
 import {Box, Typography} from '@mui/material';
 import debounce from 'lodash.debounce';
 import CustomSlider from '@/components/Custom/CustomSlider/CustomSlider';
-import RangeInputs from './RangeInputs/RangeInputs';
+import RangeInputs from '../RangeInputs/RangeInputs';
 import {useGetProductsStatsQuery} from '@/store/services/productsApi';
 import {validateConstraints} from '@/validations/validateConstraints';
 import {setFilters} from '@/store/slices/filters.slice';
 import {useDispatch} from 'react-redux';
 import {NewParams} from '@/components/Layout/Home/ProductsWithFiltersContainer/ProductsWithFiltersContainer';
-
-export interface RangeConstraints {
-  min: number;
-  max: number;
-}
+import {RangeConstraints} from '@/components/Layout/Home/Filters/Filters';
 
 interface PriceConstraints {
   minPrice: number;
@@ -32,12 +28,13 @@ const PriceFilter = ({handleSearchParamsChange}: PriceFilterProps): ReactElement
     minPrice: range.min,
     maxPrice: range.max
   });
+  const {minPrice: min, maxPrice: max} = priceConstraints;
   const dispatch = useDispatch();
 
   const debouncedFilter = useCallback(
     debounce((values) => {
       dispatch(setFilters(values));
-      handleSearchParamsChange({page: 0, ...values});
+      handleSearchParamsChange({...values});
     }, 300),
     []
   );
@@ -65,7 +62,7 @@ const PriceFilter = ({handleSearchParamsChange}: PriceFilterProps): ReactElement
       return;
     }
 
-    setPriceConstraints((prev) => ({...prev, maxPrice: Number(maxPriceConstraint)}));
+    setPriceConstraints((prev) => ({...prev, maxPrice: maxPriceConstraint}));
   }, []);
 
   useEffect(() => {
@@ -90,8 +87,8 @@ const PriceFilter = ({handleSearchParamsChange}: PriceFilterProps): ReactElement
   return (
     <Box className="flex max-w-80 flex-col gap-4 pr-5">
       <Typography className="customH2 m-0 text-left">Price</Typography>
-      <CustomSlider range={range} values={priceConstraints} handleMin={handleMinChange} handleMax={handleMaxChange} />
-      <RangeInputs range={range} values={priceConstraints} handleMin={handleMinChange} handleMax={handleMaxChange} />
+      <CustomSlider range={range} values={{min, max}} handleMin={handleMinChange} handleMax={handleMaxChange} />
+      <RangeInputs range={range} values={{min, max}} handleMin={handleMinChange} handleMax={handleMaxChange} />
     </Box>
   );
 };

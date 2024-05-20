@@ -12,9 +12,7 @@ const ToastProvider = ({children}: ToastProviderProps): ReactElement => {
   const [toast, setToast] = useState<ToastValuesType>(initialToastValues);
 
   const handleToast = useCallback((value: ToastValuesType): void => {
-    setToast(() => {
-      return value;
-    });
+    setToast(value);
   }, []);
 
   const toastValues: ToastParamsType = {

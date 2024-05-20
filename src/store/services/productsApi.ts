@@ -13,10 +13,12 @@ export const productsApi = createApi({
         page = generalAppInfo.pagination.INITIAL_PAGE,
         itemsPerPage = generalAppInfo.pagination.ITEMS_PER_PAGE,
         minPrice,
-        maxPrice
+        maxPrice,
+        minRating,
+        maxRating
       }: GetProductsModel) => {
         return {
-          url: `/product?page=${page}&itemsPerPage=${itemsPerPage}&minPrice=${minPrice}&maxPrice=${maxPrice}`,
+          url: `/product?page=${page}&itemsPerPage=${itemsPerPage}&minPrice=${minPrice}&maxPrice=${maxPrice}&minRating=${minRating}&maxRating=${maxRating}`,
           method: 'GET'
         };
       }
