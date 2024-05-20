@@ -2,17 +2,17 @@ import {ReactElement} from 'react';
 import {Box, Typography} from '@mui/material';
 import PrimaryButton from '../PrimaryButton';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import {ActionType} from '@/components/Layout/Home/ProductsWithFiltersContainer/ProductsWithFiltersContainer';
+import {PaginationButtonAction} from '@/enums/global/paginationButtonAction.enum';
 
 interface ShowMoreButtonProps {
   count: number;
-  handlePageChange: (newPage: number, action: ActionType) => void;
+  handlePageChange: (newPage: number, action: PaginationButtonAction) => void;
   currentPage: number;
 }
 
 const ShowMoreButton = ({count, handlePageChange, currentPage}: ShowMoreButtonProps): ReactElement => {
   const handleClick = (): void => {
-    handlePageChange(currentPage + 1, 'showMore');
+    handlePageChange(currentPage + 1, PaginationButtonAction.ShowMore);
   };
 
   if (currentPage >= count - 1) return <></>;
