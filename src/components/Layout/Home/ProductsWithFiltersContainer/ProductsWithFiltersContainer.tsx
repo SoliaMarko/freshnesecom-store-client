@@ -1,4 +1,4 @@
-import {ReactElement, useEffect, useRef, useState} from 'react';
+import {ReactElement, useCallback, useEffect, useRef, useState} from 'react';
 import {Box} from '@mui/material';
 import Filters from '../Filters/Filters';
 import ProductsList from '../ProductsList/ProductsList';
@@ -10,8 +10,14 @@ import {ScrollableElement} from '@/interfaces/global/scrollableElement.interface
 import {ProductEntity} from '@/interfaces/products/productEntity.interface';
 import Error from '@/pages/Error/Error';
 import {ExtendedError} from '@/interfaces/error/extendedError.interface';
+import {useSelector} from 'react-redux';
+import {IRootState} from '@/types/IRootState.type';
 
 export type ActionType = 'switchPage' | 'showMore';
+
+export type NewParams = {
+  [key: string]: string | string[];
+};
 
 const ProductsWithFiltersContainer = (): ReactElement => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -19,23 +25,30 @@ const ProductsWithFiltersContainer = (): ReactElement => {
   const [currentPage, setCurrentPage] = useState<number>(Number(searchParams.get('page')) || generalAppInfo.pagination.INITIAL_PAGE);
   const [pageAction, setPageAction] = useState<ActionType>('switchPage');
   const [currentPageData, setCurrentPageData] = useState<ProductEntity[]>([]);
+  const filters = useSelector((state: IRootState) => state.filter);
+
   const {
     data: dataWithMeta,
     error,
     isLoading
   } = useGetAllProductsQuery({
-    page: currentPage
+    page: currentPage,
+    ...filters
   });
 
   const scrollToProductListStart = (): void => {
     if (productListWrapper.current) productListWrapper.current.scrollIntoView({behavior: 'instant'});
   };
 
-  const handlePageChange = (newPage: number, action: ActionType): void => {
-    setSearchParams({page: newPage.toString()});
-    setCurrentPage(newPage);
+  const handlePageChange = useCallback((newPage: number, action: ActionType): void => {
+    setSearchParams((prev) => ({...prev, page: newPage.toString()}));
+    setCurrentPage(() => newPage);
     setPageAction(() => action);
-  };
+  }, []);
+
+  const handleSearchParamsChange = useCallback((newParams: NewParams): void => {
+    setSearchParams((prev) => ({...prev, ...newParams}));
+  }, []);
 
   useEffect(() => {
     if (dataWithMeta && pageAction === 'switchPage') {
@@ -62,7 +75,7 @@ const ProductsWithFiltersContainer = (): ReactElement => {
   return (
     <Box>
       <Box className="flex flex-row justify-between gap-10 px-11 pb-11 pt-16" ref={productListWrapper}>
-        <Filters />
+        <Filters handleSearchParamsChange={handleSearchParamsChange} />
         <ProductsList currentPageData={currentPageData} />
       </Box>
       {dataWithMeta && <ProductsFooter productsData={dataWithMeta} handlePageChange={handlePageChange} currentPage={currentPage} />}
