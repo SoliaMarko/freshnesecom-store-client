@@ -1,6 +1,6 @@
 import {ReactElement} from 'react';
 import {MenuItem} from '@mui/material';
-import {WithID} from '@/utils/productsHelpers/getTransformedArrayWithIDs';
+import {WithID} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 
 interface MenuItemsProps {
   items: WithID<string>[] | WithID<ReactElement>[];

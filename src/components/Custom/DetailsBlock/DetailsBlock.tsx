@@ -1,23 +1,22 @@
 import {ReactElement} from 'react';
 import DetailsBlockItem from './DetailsBlockItem/DetailsBlockItem';
-import {useId} from 'react-id-generator';
+import {WithID} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 
 type DetailsBlockProps = {
-  keys: string[] | number[];
+  keys?: WithID<string>[];
   details: unknown;
 };
 
 const DetailsBlock = ({keys = [], details}: DetailsBlockProps): ReactElement | undefined => {
   return (
     <>
-      {keys.map((key) => {
-        const [keyID] = useId();
+      {keys.map(({id, value: key}) => {
         if (!key || !details[key]) return;
 
-        const validTitle = key.toString();
+        const validTitle = `${key}: `;
         const validContent = Array.isArray(details[key]) ? details[key]?.join(', ') : details[key]?.toString();
 
-        return <DetailsBlockItem key={keyID} title={validTitle} content={validContent} />;
+        return <DetailsBlockItem key={id} title={validTitle} content={validContent} />;
       })}
     </>
   );

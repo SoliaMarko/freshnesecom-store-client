@@ -9,7 +9,7 @@ import {userRoutes} from '@/constants/globalConstants/global.constant';
 import LogOutButton from './LogOutButton';
 import LogInButton from './LogInButton';
 import SignUpButton from './SignUpButton';
-import {getTransformedArrayWithIDs} from '@/utils/productsHelpers/getTransformedArrayWithIDs';
+import {getTransformedArrayWithIDs} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 
 const UserButton = (): ReactElement => {
   const user = useSelector(selectUser);

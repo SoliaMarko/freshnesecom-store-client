@@ -3,7 +3,7 @@ import {Box} from '@mui/material';
 import {AdditionalDescription} from '@/interfaces/products/productEntity.interface';
 import TabPanels from './TabPanels/TabPanels';
 import TabsBlock from './TabsBlocks/TabsBlock';
-import {WithID} from '@/utils/productsHelpers/getTransformedArrayWithIDs';
+import {WithID} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 
 export interface TabDataInterface {
   label: string;

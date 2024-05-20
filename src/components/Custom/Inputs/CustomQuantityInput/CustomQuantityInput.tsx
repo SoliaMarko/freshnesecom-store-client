@@ -1,7 +1,7 @@
 import {ReactElement} from 'react';
 import {Divider, InputBase, Paper} from '@mui/material';
 import CustomMenu from '@/components/Custom/CustomMenu/CustomMenu';
-import {WithID} from '@/utils/productsHelpers/getTransformedArrayWithIDs';
+import {WithID} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 
 interface CustomQuantityInputProps {
   options: WithID<string>[] | WithID<ReactElement>[];

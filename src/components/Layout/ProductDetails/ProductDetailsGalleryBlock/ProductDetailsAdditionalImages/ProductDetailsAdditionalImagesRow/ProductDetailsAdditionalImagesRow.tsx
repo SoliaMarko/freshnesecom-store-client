@@ -1,7 +1,7 @@
 import {Box} from '@mui/material';
 import {Fragment, ReactElement} from 'react';
 import ProductDetailsAdditionalImageItem from '../ProductDetailsAdditionalImageItem/ProductDetailsAdditionalImageItem';
-import {WithID} from '@/utils/productsHelpers/getTransformedArrayWithIDs';
+import {WithID} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 
 interface ProductDetailsAdditionalImagesRowProps {
   images: WithID<string>[];

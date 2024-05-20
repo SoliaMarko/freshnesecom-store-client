@@ -1,5 +1,5 @@
 import {AdditionalDescription} from '@/interfaces/products/productEntity.interface';
-import {WithID} from '@/utils/productsHelpers/getTransformedArrayWithIDs';
+import {WithID} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 import {Box, Typography} from '@mui/material';
 import {ReactElement} from 'react';
 

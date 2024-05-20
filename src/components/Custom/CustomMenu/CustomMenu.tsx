@@ -2,7 +2,7 @@ import {ReactElement, ReactNode, useState} from 'react';
 import {Button, Menu} from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import MenuItems from './MenuItems';
-import {WithID} from '@/utils/productsHelpers/getTransformedArrayWithIDs';
+import {WithID} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 
 interface CustomMenuProps {
   header: string;

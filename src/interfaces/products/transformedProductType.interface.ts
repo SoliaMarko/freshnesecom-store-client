@@ -1,4 +1,4 @@
-import {WithID} from '@/utils/productsHelpers/getTransformedArrayWithIDs';
+import {WithID} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 import {AdditionalDescription} from './productEntity.interface';
 
 interface TransformedProducer {
