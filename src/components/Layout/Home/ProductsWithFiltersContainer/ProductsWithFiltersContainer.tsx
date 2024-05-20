@@ -9,15 +9,13 @@ import {useGetAllProductsQuery} from '@/store/services/productsApi';
 import {ScrollableElement} from '@/interfaces/global/scrollableElement.interface';
 import {ProductEntity} from '@/interfaces/products/productEntity.interface';
 import Error from '@/pages/Error/Error';
-import {ExtendedError} from '@/interfaces/error/extendedError.interface';
-
-export type ActionType = 'switchPage' | 'showMore';
+import {PaginationButtonAction} from '@/enums/global/paginationButtonAction.enum';
 
 const ProductsWithFiltersContainer = (): ReactElement => {
   const [searchParams, setSearchParams] = useSearchParams();
   const productListWrapper = useRef<ScrollableElement>(null);
   const [currentPage, setCurrentPage] = useState<number>(Number(searchParams.get('page')) || generalAppInfo.pagination.INITIAL_PAGE);
-  const [pageAction, setPageAction] = useState<ActionType>('switchPage');
+  const [pageAction, setPageAction] = useState<PaginationButtonAction>(PaginationButtonAction.SwitchPage);
   const [currentPageData, setCurrentPageData] = useState<ProductEntity[]>([]);
   const {
     data: dataWithMeta,
@@ -31,28 +29,25 @@ const ProductsWithFiltersContainer = (): ReactElement => {
     if (productListWrapper.current) productListWrapper.current.scrollIntoView({behavior: 'instant'});
   };
 
-  const handlePageChange = (newPage: number, action: ActionType): void => {
+  const handlePageChange = (newPage: number, action: PaginationButtonAction): void => {
     setSearchParams({page: newPage.toString()});
     setCurrentPage(newPage);
     setPageAction(() => action);
   };
 
   useEffect(() => {
-    if (dataWithMeta && pageAction === 'switchPage') {
+    if (dataWithMeta && pageAction === PaginationButtonAction.SwitchPage) {
       setCurrentPageData(() => dataWithMeta.data);
       scrollToProductListStart();
     }
 
-    if (dataWithMeta && pageAction === 'showMore') {
+    if (dataWithMeta && pageAction === PaginationButtonAction.ShowMore) {
       setCurrentPageData((prev) => [...prev, ...dataWithMeta.data]);
     }
   }, [dataWithMeta]);
 
   if (error) {
-    const extendedError = error as ExtendedError;
-    const {status, data: message} = extendedError;
-    const content = `status: ${status} error: ${message}`;
-    return <Error content={content} />;
+    return <Error />;
   }
 
   if (isLoading) {

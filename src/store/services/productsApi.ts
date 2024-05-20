@@ -10,6 +10,7 @@ export const productsApi = createApi({
   endpoints: (builder) => ({
     getAllProducts: builder.query<GetProductsReturnType, GetProductsModel>({
       query: ({page = generalAppInfo.pagination.INITIAL_PAGE, itemsPerPage = generalAppInfo.pagination.ITEMS_PER_PAGE}: GetProductsModel) => {
+        console.log(`/product?page=${page}&itemsPerPage=${itemsPerPage}`);
         return {
           url: `/product?page=${page}&itemsPerPage=${itemsPerPage}`,
           method: 'GET'
