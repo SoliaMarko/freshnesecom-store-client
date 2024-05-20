@@ -9,6 +9,7 @@ import {useGetAllProductsQuery} from '@/store/services/productsApi';
 import {ScrollableElement} from '@/interfaces/global/scrollableElement.interface';
 import {ProductEntity} from '@/interfaces/products/productEntity.interface';
 import Error from '@/pages/Error/Error';
+import {PaginationButtonAction} from '@/enums/global/paginationButtonAction.enum';
 import {ExtendedError} from '@/interfaces/error/extendedError.interface';
 import {useSelector} from 'react-redux';
 import {IRootState} from '@/types/IRootState.type';
@@ -23,7 +24,7 @@ const ProductsWithFiltersContainer = (): ReactElement => {
   const [searchParams, setSearchParams] = useSearchParams();
   const productListWrapper = useRef<ScrollableElement>(null);
   const [currentPage, setCurrentPage] = useState<number>(Number(searchParams.get('page')) || generalAppInfo.pagination.INITIAL_PAGE);
-  const [pageAction, setPageAction] = useState<ActionType>('switchPage');
+  const [pageAction, setPageAction] = useState<PaginationButtonAction>(PaginationButtonAction.SwitchPage);
   const [currentPageData, setCurrentPageData] = useState<ProductEntity[]>([]);
   const filters = useSelector((state: IRootState) => state.filter);
 
@@ -40,7 +41,7 @@ const ProductsWithFiltersContainer = (): ReactElement => {
     if (productListWrapper.current) productListWrapper.current.scrollIntoView({behavior: 'instant'});
   };
 
-  const handlePageChange = useCallback((newPage: number, action: ActionType): void => {
+  const handlePageChange = useCallback((newPage: number, action: PaginationButtonAction): void => {
     setSearchParams((prev) => ({...prev, page: newPage.toString()}));
     setCurrentPage(() => newPage);
     setPageAction(() => action);
@@ -51,21 +52,18 @@ const ProductsWithFiltersContainer = (): ReactElement => {
   }, []);
 
   useEffect(() => {
-    if (dataWithMeta && pageAction === 'switchPage') {
+    if (dataWithMeta && pageAction === PaginationButtonAction.SwitchPage) {
       setCurrentPageData(() => dataWithMeta.data);
       scrollToProductListStart();
     }
 
-    if (dataWithMeta && pageAction === 'showMore') {
+    if (dataWithMeta && pageAction === PaginationButtonAction.ShowMore) {
       setCurrentPageData((prev) => [...prev, ...dataWithMeta.data]);
     }
   }, [dataWithMeta]);
 
   if (error) {
-    const extendedError = error as ExtendedError;
-    const {status, data: message} = extendedError;
-    const content = `status: ${status} error: ${message}`;
-    return <Error content={content} />;
+    return <Error />;
   }
 
   if (isLoading) {
