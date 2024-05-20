@@ -1,4 +1,4 @@
-import {ReactElement} from 'react';
+import {ReactElement, useContext} from 'react';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {SignUpFormSchema} from '@/validations/signUpForm.validation';
@@ -10,19 +10,23 @@ import {useLogInSuccess} from '@/hooks/useLogInSuccess';
 import {useLogInError} from '@/hooks/useLogInError';
 import {useSignUpError} from '@/hooks/useSignUpError';
 import {useSignUpSuccess} from '@/hooks/useSignUpSuccess';
+import {ToastContext} from '@/contexts/ToastProvider';
 
 const SignUpForm = (): ReactElement => {
+  const {toast, onHandleToast} = useContext(ToastContext);
+
   const formMethods = useForm<SignUpFormModel>({defaultValues: new SignUpFormModel(), resolver: yupResolver(SignUpFormSchema)});
   const [registerUser, {isSuccess: isSignupSuccess, isError: isSignupError, error: signupError}] = useRegisterUserMutation();
   const [loginUser, {data: loginData, isSuccess: isLoginSuccess, isError: isLoginError, error: loginError}] = useLoginUserMutation();
 
-  useSignUpSuccess({isSignupSuccess, formMethods});
-  useSignUpError({isSignupError, signupError});
-  useLogInSuccess({isLoginSuccess, loginData});
-  useLogInError({isLoginError, loginError});
+  useSignUpSuccess({isSignupSuccess, formMethods, toast, onHandleToast});
+  useSignUpError({isSignupError, signupError, toast, onHandleToast});
+  useLogInSuccess({isLoginSuccess, loginData, toast, onHandleToast});
+  useLogInError({isLoginError, loginError, toast, onHandleToast});
 
   const onSubmitHandler = async (data: SignUpFormModel): Promise<void> => {
-    await registerUser(data);
+    const registrationResponse = await registerUser(data);
+    if (registrationResponse?.error) return;
     await loginUser({
       email: data.email,
       password: data.password

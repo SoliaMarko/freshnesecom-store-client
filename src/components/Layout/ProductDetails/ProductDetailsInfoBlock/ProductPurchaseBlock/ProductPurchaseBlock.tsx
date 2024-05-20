@@ -16,7 +16,7 @@ const ProductPurchaseBlock = ({productData}: ProductPurchaseBlockProps): ReactEl
 
   return (
     <Box className="mr-9 flex flex-row justify-between rounded-xl border-2 border-solid border-primary-400 p-5">
-      <CustomPriceBlock productData={productData} size="large" />
+      <CustomPriceBlock productData={productData} size="medium" />
       <Box className="flex flex-row gap-8">
         <CustomQuantityInput options={quantityOptionsWithIDs} />
         <ProductAddToCartButton />

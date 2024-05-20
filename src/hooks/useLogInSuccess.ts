@@ -8,16 +8,19 @@ import {LogInData} from '@/interfaces/store/logInData.interface';
 import {LogInFormModel} from '@/models/LogInForm.model';
 import {UseFormReturn} from 'react-hook-form';
 import {AUTH_TOKENS_STORAGE} from '@/constants/storageConstants/localStorage.constant';
+import {UseToastProps, useToast} from './useToast';
+import {responseSuccess} from '@/constants/successConstants/success.constant';
 
-interface UseLogInSuccessParams {
+interface UseLogInSuccessParams extends UseToastProps {
   isLoginSuccess: boolean;
   loginData: LogInData;
   formMethods?: UseFormReturn<LogInFormModel, undefined>;
 }
 
-export const useLogInSuccess = ({isLoginSuccess, loginData, formMethods}: UseLogInSuccessParams) => {
+export const useLogInSuccess = ({isLoginSuccess, loginData, formMethods, toast, onHandleToast}: UseLogInSuccessParams): void => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const {openToastSuccess} = useToast({toast, onHandleToast});
 
   useEffect(() => {
     if (isLoginSuccess) {
@@ -29,7 +32,7 @@ export const useLogInSuccess = ({isLoginSuccess, loginData, formMethods}: UseLog
       dispatch(setUser(loginData.user));
       localStorage.setItem(AUTH_TOKENS_STORAGE, JSON.stringify(userInfo));
       if (formMethods) formMethods.reset(new LogInFormModel());
-      alert('Authorization successful');
+      openToastSuccess(responseSuccess.LOGIN);
       navigate(`/${userRoutes.USER}/${userRoutes.PROFILE}`);
     }
   }, [isLoginSuccess]);

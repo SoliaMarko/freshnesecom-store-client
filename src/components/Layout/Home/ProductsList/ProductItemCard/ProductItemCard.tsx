@@ -16,7 +16,7 @@ const ProductItemCard = ({productData}: ProductItemCardProps): ReactElement => {
   const mainImage = images[0].value;
 
   return (
-    <Box className="relative flex w-full flex-row rounded-xl border-2 border-solid border-primary-400 ">
+    <Box className="relative flex w-full max-w-7xl flex-row rounded-xl border-2 border-solid border-primary-400 ">
       <Box className="relative flex w-1/3">
         <img src={mainImage} alt={`${title}-illustration`} loading="lazy" className="absolute left-0 top-0 h-full w-full rounded-xl object-cover" />
       </Box>
