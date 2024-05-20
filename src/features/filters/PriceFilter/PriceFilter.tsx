@@ -2,13 +2,14 @@ import {ReactElement, useCallback, useEffect, useState} from 'react';
 import {Box, Typography} from '@mui/material';
 import debounce from 'lodash.debounce';
 import CustomSlider from '@/components/Custom/CustomSlider/CustomSlider';
-import RangeInputs from '../RangeInputs/RangeInputs';
+import RangeInputs from '../../../components/Custom/Inputs/RangeInputs/RangeInputs';
 import {useGetProductsStatsQuery} from '@/store/services/productsApi';
 import {validateConstraints} from '@/validations/validateConstraints';
 import {setFilters} from '@/store/slices/filters.slice';
 import {useDispatch} from 'react-redux';
 import {NewParams} from '@/components/Layout/Home/ProductsWithFiltersContainer/ProductsWithFiltersContainer';
 import {RangeConstraints} from '@/components/Layout/Home/Filters/Filters';
+import CustomPriceThumb from './CustomPriceThumb';
 
 interface PriceConstraints {
   minPrice: number;
@@ -66,16 +67,16 @@ const PriceFilter = ({handleSearchParamsChange}: PriceFilterProps): ReactElement
   }, []);
 
   useEffect(() => {
-    if (data) {
-      const {minPrice, maxPrice}: {minPrice: number; maxPrice: number} = data.data;
+    if (!data) return;
 
-      handleMinChange(minPrice);
-      handleMaxChange(maxPrice);
+    const {minPrice, maxPrice}: {minPrice: number; maxPrice: number} = data.data;
 
-      setRange(() => {
-        return {min: minPrice, max: maxPrice};
-      });
-    }
+    handleMinChange(minPrice);
+    handleMaxChange(maxPrice);
+
+    setRange(() => {
+      return {min: minPrice, max: maxPrice};
+    });
   }, [data]);
 
   useEffect(() => {
@@ -87,7 +88,14 @@ const PriceFilter = ({handleSearchParamsChange}: PriceFilterProps): ReactElement
   return (
     <Box className="flex max-w-80 flex-col gap-4 pr-5">
       <Typography className="customH2 m-0 text-left">Price</Typography>
-      <CustomSlider range={range} values={{min, max}} handleMin={handleMinChange} handleMax={handleMaxChange} />
+      <CustomSlider
+        range={range}
+        values={{min, max}}
+        handleMin={handleMinChange}
+        handleMax={handleMaxChange}
+        classNames="text-secondary"
+        thumb={CustomPriceThumb}
+      />
       <RangeInputs range={range} values={{min, max}} handleMin={handleMinChange} handleMax={handleMaxChange} />
     </Box>
   );

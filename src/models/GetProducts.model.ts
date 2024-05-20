@@ -1,4 +1,5 @@
 import {generalAppInfo} from '@/constants/globalConstants/global.constant';
+import {Category} from '@/enums/products/categories.enum';
 
 export class GetProductsModel {
   public page?: number = generalAppInfo.pagination.INITIAL_PAGE;
@@ -7,4 +8,5 @@ export class GetProductsModel {
   public maxPrice?: number;
   public minRating?: number;
   public maxRating?: number;
+  public selectedCategory?: Category;
 }

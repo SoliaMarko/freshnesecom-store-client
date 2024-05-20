@@ -8,7 +8,7 @@ const initialState = {
   minRating: null,
   maxRating: null,
   brands: [],
-  categories: []
+  selectedCategory: null
 };
 
 const filterSlice = createSlice({

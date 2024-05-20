@@ -16,6 +16,7 @@ const ProductsList = ({currentPageData: products}: ProductsListProps): ReactElem
       {transformedData &&
         transformedData.map((productData) => {
           const {id} = productData;
+          console.log('id', id, 'prod data', productData);
 
           return <ProductItemCard key={id} productData={productData} />;
         })}

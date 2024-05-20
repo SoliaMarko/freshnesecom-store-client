@@ -6,6 +6,7 @@ import {Box, Typography} from '@mui/material';
 import debounce from 'lodash.debounce';
 import {ReactElement, useCallback, useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
+import {CustomRatingThumb} from './CustomRatingThumb';
 
 interface RatingConstraints {
   minRating: number;
@@ -50,7 +51,15 @@ const RatingFilter = ({handleSearchParamsChange}: RatingFilterProps): ReactEleme
   return (
     <Box className="flex max-w-80 flex-col gap-4 pr-5">
       <Typography className="customH2 m-0 text-left">Rating</Typography>
-      <CustomSlider range={range} values={{min, max}} handleMin={handleMinChange} handleMax={handleMaxChange} classNames="text-ratingStars" />
+      <CustomSlider
+        range={range}
+        values={{min, max}}
+        handleMin={handleMinChange}
+        handleMax={handleMaxChange}
+        classNames="text-ratingStars"
+        thumb={CustomRatingThumb}
+        displayLabel
+      />
     </Box>
   );
 };
