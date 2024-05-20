@@ -3,7 +3,7 @@ import {RootState} from '../index';
 
 const initialState = {
   search: '',
-  minPrice: 200,
+  minPrice: null,
   maxPrice: null,
   minRating: null,
   maxRating: null,
