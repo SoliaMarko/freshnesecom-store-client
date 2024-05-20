@@ -39,13 +39,15 @@ const ProductsWithFiltersContainer = (): ReactElement => {
   };
 
   const handlePageChange = useCallback((newPage: number, action: PaginationButtonAction): void => {
-    setSearchParams((prev) => ({...prev, page: newPage.toString()}));
-    setCurrentPage(() => newPage);
+    setSearchParams({page: newPage, ...filters});
+    setCurrentPage(newPage);
     setPageAction(() => action);
   }, []);
 
   const handleSearchParamsChange = useCallback((newParams: NewParams): void => {
-    setSearchParams((prev) => ({...prev, ...newParams}));
+    setSearchParams({page: 0, ...filters, ...newParams});
+    setCurrentPage(0);
+    setPageAction(() => PaginationButtonAction.SwitchPage);
   }, []);
 
   useEffect(() => {

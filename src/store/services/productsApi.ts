@@ -15,6 +15,7 @@ export const productsApi = createApi({
         minPrice,
         maxPrice
       }: GetProductsModel) => {
+        console.log(`/product?page=${page}&itemsPerPage=${itemsPerPage}&minPrice=${minPrice}&maxPrice=${maxPrice}`);
         return {
           url: `/product?page=${page}&itemsPerPage=${itemsPerPage}&minPrice=${minPrice}&maxPrice=${maxPrice}`,
           method: 'GET'

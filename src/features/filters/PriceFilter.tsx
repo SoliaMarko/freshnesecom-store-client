@@ -8,6 +8,7 @@ import {validateConstraints} from '@/validations/validateConstraints';
 import {setFilters} from '@/store/slices/filters.slice';
 import {useDispatch} from 'react-redux';
 import {NewParams} from '@/components/Layout/Home/ProductsWithFiltersContainer/ProductsWithFiltersContainer';
+import {products} from '@/constants/globalConstants/global.constant';
 
 export interface RangeConstraints {
   min: number;
@@ -23,7 +24,7 @@ interface PriceFilterProps {
   handleSearchParamsChange: (params: NewParams) => void;
 }
 
-const defaultConstraints = {min: 0, max: 10_000};
+const defaultConstraints = {min: products.MIN_POSSIBLE_PRICE, max: products.MAX_POSSIBLE_PRICE};
 
 const PriceFilter = ({handleSearchParamsChange}: PriceFilterProps): ReactElement => {
   const {data, isLoading} = useGetProductsStatsQuery({});
