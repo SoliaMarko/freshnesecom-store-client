@@ -9,6 +9,7 @@ import {userRoutes} from '@/constants/globalConstants/global.constant';
 import LogOutButton from './LogOutButton';
 import LogInButton from './LogInButton';
 import SignUpButton from './SignUpButton';
+import {getTransformedArrayWithIDs} from '@/utils/productsHelpers/getTransformedArrayWithIDs';
 
 const UserButton = (): ReactElement => {
   const user = useSelector(selectUser);
@@ -31,8 +32,10 @@ const UserButton = (): ReactElement => {
     </Box>
   );
 
+  const userPopoverWithIDs = getTransformedArrayWithIDs([userPopover]);
+
   return (
-    <CustomMenu options={[userPopover]}>
+    <CustomMenu header="user" options={userPopoverWithIDs}>
       <PersonOutlineIcon className="text-3xl text-primary" />
     </CustomMenu>
   );

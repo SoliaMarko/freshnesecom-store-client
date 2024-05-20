@@ -1,53 +1,84 @@
-import {ChangeEvent, ReactElement, useEffect, useRef, useState} from 'react';
+import {ReactElement, useCallback, useEffect, useRef, useState} from 'react';
 import {Box} from '@mui/material';
 import Filters from '../Filters/Filters';
 import ProductsList from '../ProductsList/ProductsList';
 import ProductsFooter from '../ProductsFooter/ProductsFooter';
-import {useSelector} from 'react-redux';
-import {IRootState} from '@/types/IRootState.type';
 import {useSearchParams} from 'react-router-dom';
 import {generalAppInfo} from '@/constants/globalConstants/global.constant';
 import {useGetAllProductsQuery} from '@/store/services/productsApi';
-import {setProducts} from '@/store/slices/products.slice';
-import {useAppDispatch} from '@/hooks/apiHooks';
 import {ScrollableElement} from '@/interfaces/global/scrollableElement.interface';
+import {ProductEntity} from '@/interfaces/products/productEntity.interface';
+import Error from '@/pages/Error/Error';
+import {ExtendedError} from '@/interfaces/error/extendedError.interface';
+import {useSelector} from 'react-redux';
+import {IRootState} from '@/types/IRootState.type';
+
+export type ActionType = 'switchPage' | 'showMore';
+
+export type NewParams = {
+  [key: string]: string | string[];
+};
 
 const ProductsWithFiltersContainer = (): ReactElement => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const dispatch = useAppDispatch();
   const productListWrapper = useRef<ScrollableElement>(null);
-  const productsData = useSelector((state: IRootState) => state.products);
   const [currentPage, setCurrentPage] = useState<number>(Number(searchParams.get('page')) || generalAppInfo.pagination.INITIAL_PAGE);
-  const {data: dataWithMeta} = useGetAllProductsQuery({
+  const [pageAction, setPageAction] = useState<ActionType>('switchPage');
+  const [currentPageData, setCurrentPageData] = useState<ProductEntity[]>([]);
+  const filters = useSelector((state: IRootState) => state.filter);
+
+  const {
+    data: dataWithMeta,
+    error,
+    isLoading
+  } = useGetAllProductsQuery({
     page: currentPage,
-    itemsPerPage: generalAppInfo.pagination.ITEMS_PER_PAGE
+    ...filters
   });
-  const currentPageData = productsData.find((data: {meta: {page: string | number}}) => data.meta.page === currentPage)?.data;
 
   const scrollToProductListStart = (): void => {
     if (productListWrapper.current) productListWrapper.current.scrollIntoView({behavior: 'instant'});
   };
 
-  const handlePageChange = (_event: ChangeEvent<unknown>, newPage: number): void => {
-    const newPageIndex = newPage - 1;
-    setSearchParams({page: newPageIndex.toString()});
-    setCurrentPage(newPageIndex || generalAppInfo.pagination.INITIAL_PAGE);
-    scrollToProductListStart();
-  };
+  const handlePageChange = useCallback((newPage: number, action: ActionType): void => {
+    setSearchParams((prev) => ({...prev, page: newPage.toString()}));
+    setCurrentPage(() => newPage);
+    setPageAction(() => action);
+  }, []);
+
+  const handleSearchParamsChange = useCallback((newParams: NewParams): void => {
+    setSearchParams((prev) => ({...prev, ...newParams}));
+  }, []);
 
   useEffect(() => {
-    if (dataWithMeta) {
-      if (!currentPageData) dispatch(setProducts([dataWithMeta]));
+    if (dataWithMeta && pageAction === 'switchPage') {
+      setCurrentPageData(() => dataWithMeta.data);
+      scrollToProductListStart();
+    }
+
+    if (dataWithMeta && pageAction === 'showMore') {
+      setCurrentPageData((prev) => [...prev, ...dataWithMeta.data]);
     }
   }, [dataWithMeta]);
+
+  if (error) {
+    const extendedError = error as ExtendedError;
+    const {status, data: message} = extendedError;
+    const content = `status: ${status} error: ${message}`;
+    return <Error content={content} />;
+  }
+
+  if (isLoading) {
+    return <Box>Loading...</Box>;
+  }
 
   return (
     <Box>
       <Box className="flex flex-row justify-between gap-10 px-11 pb-11 pt-16" ref={productListWrapper}>
-        <Filters />
-        {currentPageData ? <ProductsList currentPageData={currentPageData} /> : <Box>Loading...</Box>}
+        <Filters handleSearchParamsChange={handleSearchParamsChange} />
+        <ProductsList currentPageData={currentPageData} />
       </Box>
-      {dataWithMeta && <ProductsFooter productsData={dataWithMeta} handlePageChange={handlePageChange} page={currentPage + 1} />}
+      {dataWithMeta && <ProductsFooter productsData={dataWithMeta} handlePageChange={handlePageChange} currentPage={currentPage} />}
     </Box>
   );
 };

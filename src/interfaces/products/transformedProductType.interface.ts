@@ -1,3 +1,4 @@
+import {WithID} from '@/utils/productsHelpers/getTransformedArrayWithIDs';
 import {AdditionalDescription} from './productEntity.interface';
 
 interface TransformedProducer {
@@ -11,14 +12,14 @@ export interface TransformedProductType {
   category: string;
   subCategory: string;
   mainDescription: string;
-  additionalDescriptions?: AdditionalDescription[];
+  additionalDescriptions?: WithID<AdditionalDescription>[];
   countryCode?: string;
   deliveryArea?: string[];
   deliveryFrom?: string;
   discount?: number;
   freeShipping: boolean;
   freshness: string;
-  images: string[];
+  images: WithID<string>[];
   inStockCount: number;
   initialPrice: number;
   priceAfterDiscount?: number;

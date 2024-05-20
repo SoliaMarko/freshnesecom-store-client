@@ -1,4 +1,4 @@
-import {ToastContext} from '@/App';
+import {ToastContext} from '@/contexts/ToastProvider';
 import {commonRoutes} from '@/constants/globalConstants/global.constant';
 import {AUTH_TOKENS_STORAGE} from '@/constants/storageConstants/localStorage.constant';
 import {responseSuccess} from '@/constants/successConstants/success.constant';

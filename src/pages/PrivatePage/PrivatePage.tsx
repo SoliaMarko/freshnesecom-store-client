@@ -1,5 +1,5 @@
 import {ReactNode} from 'react';
-import LoadingToRedirect from '@features/LoadingToRedirect/LoadingToRedirect';
+import LoadingToRedirect from '@/features/redirect/LoadingToRedirect';
 import {selectUser} from '@/store/slices/user.slice';
 import {useAppSelector} from '@/hooks/apiHooks';
 

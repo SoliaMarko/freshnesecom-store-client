@@ -4,22 +4,22 @@ import CustomTabPanel from '../CustomTabPanel/CustomTabPanel';
 import AdditionalDescriptionBlock from '@/components/Layout/ProductDetails/ProductDetailsInfoBlock/ProductTabs/AdditionalDescriptionBlock/AdditionalDescriptionBlock';
 import {AdditionalDescription} from '@/interfaces/products/productEntity.interface';
 import {Typography} from '@mui/material';
-import {useId} from 'react-id-generator';
+import {WithID} from '@/utils/productsHelpers/getTransformedArrayWithIDs';
 
 interface TabPanelsProps {
   value: number;
-  tabsData: TabDataInterface[];
+  tabs: TabDataInterface[];
 }
 
-const TabPanels = ({value, tabsData}: TabPanelsProps): ReactElement => {
+const TabPanels = ({value, tabs}: TabPanelsProps): ReactElement => {
   return (
     <>
-      {tabsData.map((tab: TabDataInterface, index: number): ReactElement => {
-        const [keyID] = useId();
+      {tabs.map((tab: TabDataInterface, index: number) => {
+        const {id} = tab;
 
         return (
-          <CustomTabPanel key={keyID} value={value} index={index}>
-            {tab.label === 'Description' && <AdditionalDescriptionBlock descriptions={tab.content as AdditionalDescription[]} />}
+          <CustomTabPanel key={id} value={value} index={index}>
+            {tab.label === 'Description' && <AdditionalDescriptionBlock descriptions={tab.content as WithID<AdditionalDescription>[]} />}
             <Typography className="customH4 font-normal">{!tab.content && `There is no ${tab.label}.`}</Typography>
           </CustomTabPanel>
         );

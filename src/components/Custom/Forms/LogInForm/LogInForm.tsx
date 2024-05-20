@@ -8,7 +8,7 @@ import CustomForm from '../CustomForm';
 import {useLoginUserMutation} from '@/store/services/authApi';
 import {useLogInSuccess} from '@/hooks/useLogInSuccess';
 import {useLogInError} from '@/hooks/useLogInError';
-import {ToastContext} from '@/App';
+import {ToastContext} from '@/contexts/ToastProvider';
 
 const LogInForm = (): ReactElement => {
   const {toast, onHandleToast} = useContext(ToastContext);

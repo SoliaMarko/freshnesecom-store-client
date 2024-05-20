@@ -9,7 +9,7 @@ interface UseSignUpSuccessParams extends UseToastProps {
   formMethods: UseFormReturn<SignUpFormModel, undefined>;
 }
 
-export const useSignUpSuccess = ({isSignupSuccess, formMethods, toast, onHandleToast}: UseSignUpSuccessParams) => {
+export const useSignUpSuccess = ({isSignupSuccess, formMethods, toast, onHandleToast}: UseSignUpSuccessParams): void => {
   const {openToastSuccess} = useToast({toast, onHandleToast});
 
   useEffect(() => {
