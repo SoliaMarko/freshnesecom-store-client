@@ -43,7 +43,6 @@ export const useToast = ({toast, onHandleToast}: UseToastProps): UseToastReturnV
   };
 
   const openToastError = (message: string) => {
-    console.log('hi from useToast');
     onHandleToast({
       message,
       isOpen: true,

@@ -2,9 +2,9 @@ import {createApi} from '@reduxjs/toolkit/query/react';
 import {SignUpFormModel} from '@/models/SignUpForm.model';
 import {LogInFormModel} from '@/models/LogInForm.model';
 import {axiosBaseQuery} from './axiosBaseQuery';
-import {LogoutUserArgs, MutationReturnType, QueryReturnType} from '@/interfaces/api/queries.interface';
+import {LogoutUserArgs, MutationReturnType} from '@/interfaces/api/queries.interface';
+import {GetProductsModel} from '@/models/GetProducts.model';
 
-// TODO: fix return types
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: axiosBaseQuery(),
@@ -48,7 +48,7 @@ export const authApi = createApi({
       }
     }),
 
-    getUser: builder.query<QueryReturnType, void>({
+    getUser: builder.query<GetProductsModel, void>({
       query: () => {
         return {
           url: '/user',

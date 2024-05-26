@@ -1,10 +1,11 @@
 import {ChangeEvent, ReactElement} from 'react';
 import {Box} from '@mui/material';
 import CustomNumberField from '@/components/Custom/Inputs/CustomNumberField/CustomNumberField';
+import {RangeConstraints} from '../PriceFilter';
 
 interface RangeInputsProps {
-  range: {min: number; max: number};
-  values: {minPrice: number; maxPrice: number};
+  range: RangeConstraints;
+  values: RangeConstraints;
   handleMin: (value: number) => void;
   handleMax: (value: number) => void;
 }

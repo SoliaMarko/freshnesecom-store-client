@@ -4,7 +4,7 @@ const errorMessagesGenerator = {
   }
 };
 
-export const validationError = {
+export const validationAuthError = {
   REQUIRED: 'This field is required',
   MIN_LENGTH_2: errorMessagesGenerator.generateNotEnoughMessage(2),
   MIN_LENGTH_8: errorMessagesGenerator.generateNotEnoughMessage(8),

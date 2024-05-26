@@ -1,7 +1,7 @@
 import {ReactElement} from 'react';
 import {Box} from '@mui/material';
-import PriceFilter from '@/features/filters/PriceFilter';
 import {NewParams} from '../ProductsWithFiltersContainer/ProductsWithFiltersContainer';
+import ProductFiltersForm from '@/components/Custom/Forms/ProductFiltersForm/ProductFiltersForm';
 
 interface FilterProps {
   handleSearchParamsChange: (params: NewParams) => void;
@@ -10,7 +10,7 @@ interface FilterProps {
 const Filters = ({handleSearchParamsChange}: FilterProps): ReactElement => {
   return (
     <Box className="w-1/4">
-      <PriceFilter handleSearchParamsChange={handleSearchParamsChange} />
+      <ProductFiltersForm handleSearchParamsChange={handleSearchParamsChange} />
     </Box>
   );
 };

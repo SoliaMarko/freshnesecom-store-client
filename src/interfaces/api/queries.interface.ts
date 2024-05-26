@@ -1,6 +1,6 @@
-import {REQUEST_METHODS_TYPE} from '@/constants/apiConstnants/requestMehods.constant';
 import {ProductEntity} from '../products/productEntity.interface';
 import {ProductsMetadataType} from '../products/productsMetadataType.interface';
+import {ProductsStatsType} from '../products/productsStatsType.interface';
 
 export interface MutationReturnType {
   url: string;
@@ -11,16 +11,16 @@ export interface MutationReturnType {
   };
 }
 
-export interface QueryReturnType {
-  url: string;
-  method: REQUEST_METHODS_TYPE;
+export interface LogoutUserArgs {
+  email: string;
 }
 
-export interface GetProductsReturnType {
+export interface GetAllProductsReturnType {
   data: ProductEntity[];
   meta: ProductsMetadataType;
 }
 
-export interface LogoutUserArgs {
-  email: string;
+export interface GetProductsStatsReturnType {
+  success: boolean;
+  data: ProductsStatsType;
 }

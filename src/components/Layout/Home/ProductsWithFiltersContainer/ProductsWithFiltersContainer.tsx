@@ -14,15 +14,15 @@ import {useSelector} from 'react-redux';
 import {IRootState} from '@/types/IRootState.type';
 
 export type NewParams = {
-  [key: string]: string | string[];
+  [key: string]: string | string[] | number;
 };
 
 const ProductsWithFiltersContainer = (): ReactElement => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const productListWrapper = useRef<ScrollableElement>(null);
   const [currentPage, setCurrentPage] = useState<number>(Number(searchParams.get('page')) || generalAppInfo.pagination.INITIAL_PAGE);
   const [pageAction, setPageAction] = useState<PaginationButtonAction>(PaginationButtonAction.SwitchPage);
   const [currentPageData, setCurrentPageData] = useState<ProductEntity[]>([]);
+  const productListWrapper = useRef<ScrollableElement>(null);
   const filters = useSelector((state: IRootState) => state.filter);
 
   const {
