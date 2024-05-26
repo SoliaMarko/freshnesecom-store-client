@@ -1,4 +1,4 @@
-import {ReactElement, useCallback, useEffect, useRef, useState} from 'react';
+import {ReactElement, useEffect, useRef, useState} from 'react';
 import {Box} from '@mui/material';
 import Filters from '../Filters/Filters';
 import ProductsList from '../ProductsList/ProductsList';
@@ -38,17 +38,17 @@ const ProductsWithFiltersContainer = (): ReactElement => {
     if (productListWrapper.current) productListWrapper.current.scrollIntoView({behavior: 'instant'});
   };
 
-  const handlePageChange = useCallback((newPage: number, action: PaginationButtonAction): void => {
+  const handlePageChange = (newPage: number, action: PaginationButtonAction): void => {
     setSearchParams({page: newPage, ...filters});
     setCurrentPage(newPage);
     setPageAction(() => action);
-  }, []);
+  };
 
-  const handleSearchParamsChange = useCallback((newParams: NewParams): void => {
+  const handleSearchParamsChange = (newParams: NewParams): void => {
     setSearchParams({page: 0, ...filters, ...newParams});
     setCurrentPage(0);
     setPageAction(() => PaginationButtonAction.SwitchPage);
-  }, []);
+  };
 
   useEffect(() => {
     if (dataWithMeta && pageAction === PaginationButtonAction.SwitchPage) {
