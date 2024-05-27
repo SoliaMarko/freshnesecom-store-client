@@ -5,12 +5,12 @@ import ShowMoreButton from '@/components/Custom/Buttons/ProductFooterButton/Show
 import AmountBlock from './AmountBlock';
 import {ProductEntity} from '@/interfaces/products/productEntity.interface';
 import {ProductsMetadataType} from '@/interfaces/products/productsMetadataType.interface';
-import {ActionType} from '../ProductsWithFiltersContainer/ProductsWithFiltersContainer';
+import {PaginationButtonAction} from '@/enums/global/paginationButtonAction.enum';
 
 interface ProductsFooterProps {
   productsData: {data: ProductEntity[]; meta: ProductsMetadataType};
   currentPage: number;
-  handlePageChange: (page: number, action: ActionType) => void;
+  handlePageChange: (page: number, action: PaginationButtonAction) => void;
 }
 
 const ProductsFooter = ({productsData, currentPage, handlePageChange}: ProductsFooterProps): ReactElement => {

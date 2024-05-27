@@ -1,4 +1,4 @@
-import {ReactElement, useCallback, useEffect, useRef, useState} from 'react';
+import {ReactElement, useEffect, useRef, useState} from 'react';
 import {Box} from '@mui/material';
 import Filters from '../Filters/Filters';
 import ProductsList from '../ProductsList/ProductsList';
@@ -9,22 +9,20 @@ import {useGetAllProductsQuery} from '@/store/services/productsApi';
 import {ScrollableElement} from '@/interfaces/global/scrollableElement.interface';
 import {ProductEntity} from '@/interfaces/products/productEntity.interface';
 import Error from '@/pages/Error/Error';
-import {ExtendedError} from '@/interfaces/error/extendedError.interface';
+import {PaginationButtonAction} from '@/enums/global/paginationButtonAction.enum';
 import {useSelector} from 'react-redux';
 import {IRootState} from '@/types/IRootState.type';
 
-export type ActionType = 'switchPage' | 'showMore';
-
 export type NewParams = {
-  [key: string]: string | string[];
+  [key: string]: string | string[] | number;
 };
 
 const ProductsWithFiltersContainer = (): ReactElement => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const productListWrapper = useRef<ScrollableElement>(null);
   const [currentPage, setCurrentPage] = useState<number>(Number(searchParams.get('page')) || generalAppInfo.pagination.INITIAL_PAGE);
-  const [pageAction, setPageAction] = useState<ActionType>('switchPage');
+  const [pageAction, setPageAction] = useState<PaginationButtonAction>(PaginationButtonAction.SwitchPage);
   const [currentPageData, setCurrentPageData] = useState<ProductEntity[]>([]);
+  const productListWrapper = useRef<ScrollableElement>(null);
   const filters = useSelector((state: IRootState) => state.filter);
 
   const {
@@ -40,32 +38,31 @@ const ProductsWithFiltersContainer = (): ReactElement => {
     if (productListWrapper.current) productListWrapper.current.scrollIntoView({behavior: 'instant'});
   };
 
-  const handlePageChange = useCallback((newPage: number, action: ActionType): void => {
-    setSearchParams((prev) => ({...prev, page: newPage.toString()}));
-    setCurrentPage(() => newPage);
+  const handlePageChange = (newPage: number, action: PaginationButtonAction): void => {
+    setSearchParams({page: newPage, ...filters});
+    setCurrentPage(newPage);
     setPageAction(() => action);
-  }, []);
+  };
 
-  const handleSearchParamsChange = useCallback((newParams: NewParams): void => {
-    setSearchParams((prev) => ({...prev, ...newParams}));
-  }, []);
+  const handleSearchParamsChange = (newParams: NewParams): void => {
+    setSearchParams({page: 0, ...filters, ...newParams});
+    setCurrentPage(0);
+    setPageAction(() => PaginationButtonAction.SwitchPage);
+  };
 
   useEffect(() => {
-    if (dataWithMeta && pageAction === 'switchPage') {
+    if (dataWithMeta && pageAction === PaginationButtonAction.SwitchPage) {
       setCurrentPageData(() => dataWithMeta.data);
       scrollToProductListStart();
     }
 
-    if (dataWithMeta && pageAction === 'showMore') {
+    if (dataWithMeta && pageAction === PaginationButtonAction.ShowMore) {
       setCurrentPageData((prev) => [...prev, ...dataWithMeta.data]);
     }
   }, [dataWithMeta]);
 
   if (error) {
-    const extendedError = error as ExtendedError;
-    const {status, data: message} = extendedError;
-    const content = `status: ${status} error: ${message}`;
-    return <Error content={content} />;
+    return <Error />;
   }
 
   if (isLoading) {

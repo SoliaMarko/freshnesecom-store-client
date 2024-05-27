@@ -1,94 +1,64 @@
-import {ReactElement, useCallback, useEffect, useState} from 'react';
+import {ReactElement, useEffect, useState} from 'react';
 import {Box, Typography} from '@mui/material';
-import debounce from 'lodash.debounce';
 import CustomSlider from '@/components/Custom/CustomSlider/CustomSlider';
 import RangeInputs from '../RangeInputs/RangeInputs';
 import {useGetProductsStatsQuery} from '@/store/services/productsApi';
-import {validateConstraints} from '@/validations/validateConstraints';
-import {setFilters} from '@/store/slices/filters.slice';
-import {useDispatch} from 'react-redux';
-import {NewParams} from '@/components/Layout/Home/ProductsWithFiltersContainer/ProductsWithFiltersContainer';
-import {RangeConstraints} from '@/components/Layout/Home/Filters/Filters';
+import {products} from '@/constants/globalConstants/global.constant';
 
-interface PriceConstraints {
-  minPrice: number;
-  maxPrice: number;
+export interface RangeConstraints {
+  [key: string]: number;
 }
 
 interface PriceFilterProps {
-  handleSearchParamsChange: (params: NewParams) => void;
+  onChange: (price: number[]) => void;
 }
 
-const defaultConstraints = {min: 0, max: 10_000};
+const defaultConstraints = {min: products.MIN_POSSIBLE_PRICE, max: products.MAX_POSSIBLE_PRICE};
 
-const PriceFilter = ({handleSearchParamsChange}: PriceFilterProps): ReactElement => {
-  const {data, isLoading} = useGetProductsStatsQuery({});
+const PriceFilter = ({onChange}: PriceFilterProps): ReactElement => {
+  const {data: stats, isLoading} = useGetProductsStatsQuery();
   const [range, setRange] = useState<RangeConstraints>(defaultConstraints);
-  const [priceConstraints, setPriceConstraints] = useState<PriceConstraints>({
-    minPrice: range.min,
-    maxPrice: range.max
+  const [priceConstraints, setPriceConstraints] = useState<RangeConstraints>({
+    min: range.min,
+    max: range.max
   });
-  const {minPrice: min, maxPrice: max} = priceConstraints;
-  const dispatch = useDispatch();
 
-  const debouncedFilter = useCallback(
-    debounce((values) => {
-      dispatch(setFilters(values));
-      handleSearchParamsChange({...values});
-    }, 300),
-    []
-  );
-
-  const resetMin = (): void => {
-    setPriceConstraints((prev) => ({...prev, minPrice: range.min}));
+  const handleMinChange = (min: number): void => {
+    const updatedConstraints = {...priceConstraints, min};
+    setPriceConstraints(updatedConstraints);
+    onChange(Object.values(updatedConstraints));
   };
 
-  const resetMax = (): void => {
-    setPriceConstraints((prev) => ({...prev, maxPrice: range.max}));
+  const handleMaxChange = (max: number): void => {
+    const updatedConstraints = {...priceConstraints, max};
+    setPriceConstraints(updatedConstraints);
+    onChange(Object.values(updatedConstraints));
   };
 
-  const handleMinChange = useCallback((minPriceConstraint: number): void => {
-    if (!validateConstraints(minPriceConstraint, priceConstraints.maxPrice, range)) {
-      resetMin();
-      return;
-    }
-
-    setPriceConstraints((prev) => ({...prev, minPrice: minPriceConstraint}));
-  }, []);
-
-  const handleMaxChange = useCallback((maxPriceConstraint: number): void => {
-    if (!validateConstraints(priceConstraints.minPrice, maxPriceConstraint, range)) {
-      resetMax();
-      return;
-    }
-
-    setPriceConstraints((prev) => ({...prev, maxPrice: maxPriceConstraint}));
-  }, []);
+  const handleMinMaxChange = (min: number, max: number): void => {
+    const updatedConstraints = {min, max};
+    setPriceConstraints(updatedConstraints);
+    onChange(Object.values(updatedConstraints));
+  };
 
   useEffect(() => {
-    if (data) {
-      const {minPrice, maxPrice}: {minPrice: number; maxPrice: number} = data.data;
-
-      handleMinChange(minPrice);
-      handleMaxChange(maxPrice);
+    if (stats) {
+      const {minPrice, maxPrice} = stats.data;
+      handleMinMaxChange(minPrice, maxPrice);
 
       setRange(() => {
         return {min: minPrice, max: maxPrice};
       });
     }
-  }, [data]);
-
-  useEffect(() => {
-    debouncedFilter(priceConstraints);
-  }, [priceConstraints]);
+  }, [stats]);
 
   if (isLoading) return <Box>Loading...</Box>;
 
   return (
     <Box className="flex max-w-80 flex-col gap-4 pr-5">
       <Typography className="customH2 m-0 text-left">Price</Typography>
-      <CustomSlider range={range} values={{min, max}} handleMin={handleMinChange} handleMax={handleMaxChange} />
-      <RangeInputs range={range} values={{min, max}} handleMin={handleMinChange} handleMax={handleMaxChange} />
+      <CustomSlider range={range} values={priceConstraints} handleMinMax={handleMinMaxChange} />
+      <RangeInputs range={range} values={priceConstraints} handleMin={handleMinChange} handleMax={handleMaxChange} />
     </Box>
   );
 };

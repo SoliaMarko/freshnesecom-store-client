@@ -11,8 +11,8 @@ interface CustomNumberFieldProps {
 const CustomNumberField = ({label, placeholder, value, onChangeHandler}: CustomNumberFieldProps): ReactElement => {
   return (
     <TextField
-      label={label || 'Number'}
-      placeholder={placeholder?.toString() || ''}
+      label={label || ''}
+      placeholder={placeholder?.toString()}
       value={value}
       onChange={onChangeHandler}
       type="number"
