@@ -37,7 +37,7 @@ export default {
           500: '#F4F8EC'
         },
         sandShade: {
-          DEFAULT: '#D0A866',
+          100: '#D0A866',
           200: '#B28A48',
           300: '#ECD2A6',
           400: '#FAEDD8',
@@ -51,14 +51,11 @@ export default {
           500: '#FFF1ED'
         },
         cyanShade: {
-          DEFAULT: '#37D0D6',
+          100: '#37D0D6',
           200: '#19B2B8',
           300: '#7CD0D3',
           400: '#B9E6E8',
           500: '#ECF6F6'
-        },
-        ratingStars: {
-          DEFAULT: '#fdbc15'
         }
       }
     }
