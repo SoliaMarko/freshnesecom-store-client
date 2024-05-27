@@ -4,9 +4,6 @@ import clsx from 'clsx';
 
 interface CustomChipProps {
   value: string | number;
-  // textColor?: string;
-  // bgColor?: string;
-  // paddingX?: number;
   classNames?: string;
 }
 
