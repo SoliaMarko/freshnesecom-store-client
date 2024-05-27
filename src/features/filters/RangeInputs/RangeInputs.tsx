@@ -15,11 +15,11 @@ const RangeInputs = ({range, values, handleMin, handleMax}: RangeInputsProps): R
   const {min: minSelected, max: maxSelected} = values;
 
   const handleMinChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    handleMin(+event?.target.value);
+    handleMin(Number(event?.target.value));
   };
 
   const handleMaxChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    handleMax(+event.target.value);
+    handleMax(Number(event.target.value));
   };
 
   return (

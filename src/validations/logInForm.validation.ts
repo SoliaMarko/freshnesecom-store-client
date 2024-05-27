@@ -1,7 +1,7 @@
 import * as yup from 'yup';
-import {validationAuthError} from '@/constants/errorConstants/errorMessages.constant';
+import {validationError} from '@/constants/errorConstants/errorMessages.constant';
 
 export const LogInFormSchema = yup.object().shape({
-  email: yup.string().required(validationAuthError.REQUIRED).email(),
-  password: yup.string().required(validationAuthError.REQUIRED)
+  email: yup.string().required(validationError.REQUIRED).email(),
+  password: yup.string().required(validationError.REQUIRED)
 });
