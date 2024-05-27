@@ -1,23 +1,39 @@
 import {createApi} from '@reduxjs/toolkit/query/react';
 import {axiosBaseQuery} from './axiosBaseQuery';
 import {generalAppInfo} from '@/constants/globalConstants/global.constant';
-import {GetProductsReturnType} from '@/interfaces/api/queries.interface';
+import {GetAllProductsReturnType, GetProductsStatsReturnType} from '@/interfaces/api/queries.interface';
 import {GetProductsModel} from '@/models/GetProducts.model';
+import {ProductEntity} from '@/interfaces/products/productEntity.interface';
+import {GetProductByIdModel} from '@/models/GetProductById.model';
 
 export const productsApi = createApi({
   reducerPath: 'productsApi',
   baseQuery: axiosBaseQuery(),
   endpoints: (builder) => ({
-    getAllProducts: builder.query<GetProductsReturnType, GetProductsModel>({
-      query: ({page = generalAppInfo.pagination.INITIAL_PAGE, itemsPerPage = generalAppInfo.pagination.ITEMS_PER_PAGE}: GetProductsModel) => {
+    getAllProducts: builder.query<GetAllProductsReturnType, GetProductsModel>({
+      query: ({
+        page = generalAppInfo.pagination.INITIAL_PAGE,
+        itemsPerPage = generalAppInfo.pagination.ITEMS_PER_PAGE,
+        minPrice,
+        maxPrice,
+        minRating,
+        maxRating
+      }) => {
         return {
-          url: `/product?page=${page}&itemsPerPage=${itemsPerPage}`,
+          url: `/product?page=${page}&itemsPerPage=${itemsPerPage}&minPrice=${minPrice}&maxPrice=${maxPrice}&minRating=${minRating}&maxRating=${maxRating}`,
           method: 'GET'
         };
       }
     }),
-    // TODO: add types
-    getProductById: builder.query({
+
+    getProductsStats: builder.query<GetProductsStatsReturnType, void>({
+      query: () => ({
+        url: '/product/stats',
+        method: 'GET'
+      })
+    }),
+
+    getProductById: builder.query<ProductEntity, GetProductByIdModel>({
       query: ({id}) => ({
         url: `/product/${id}`,
         method: 'GET'
@@ -26,4 +42,4 @@ export const productsApi = createApi({
   })
 });
 
-export const {useGetAllProductsQuery, useGetProductByIdQuery} = productsApi;
+export const {useGetAllProductsQuery, useGetProductsStatsQuery, useGetProductByIdQuery} = productsApi;

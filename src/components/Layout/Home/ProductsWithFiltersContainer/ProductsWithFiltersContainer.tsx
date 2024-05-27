@@ -10,19 +10,28 @@ import {ScrollableElement} from '@/interfaces/global/scrollableElement.interface
 import {ProductEntity} from '@/interfaces/products/productEntity.interface';
 import Error from '@/pages/Error/Error';
 import {PaginationButtonAction} from '@/enums/global/paginationButtonAction.enum';
+import {useSelector} from 'react-redux';
+import {IRootState} from '@/types/IRootState.type';
+
+export type NewParams = {
+  [key: string]: string | string[] | number;
+};
 
 const ProductsWithFiltersContainer = (): ReactElement => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const productListWrapper = useRef<ScrollableElement>(null);
   const [currentPage, setCurrentPage] = useState<number>(Number(searchParams.get('page')) || generalAppInfo.pagination.INITIAL_PAGE);
   const [pageAction, setPageAction] = useState<PaginationButtonAction>(PaginationButtonAction.SwitchPage);
   const [currentPageData, setCurrentPageData] = useState<ProductEntity[]>([]);
+  const productListWrapper = useRef<ScrollableElement>(null);
+  const filters = useSelector((state: IRootState) => state.filter);
+
   const {
     data: dataWithMeta,
     error,
     isLoading
   } = useGetAllProductsQuery({
-    page: currentPage
+    page: currentPage,
+    ...filters
   });
 
   const scrollToProductListStart = (): void => {
@@ -30,9 +39,15 @@ const ProductsWithFiltersContainer = (): ReactElement => {
   };
 
   const handlePageChange = (newPage: number, action: PaginationButtonAction): void => {
-    setSearchParams({page: newPage.toString()});
+    setSearchParams({page: newPage, ...filters});
     setCurrentPage(newPage);
     setPageAction(() => action);
+  };
+
+  const handleSearchParamsChange = (newParams: NewParams): void => {
+    setSearchParams({page: 0, ...filters, ...newParams});
+    setCurrentPage(0);
+    setPageAction(() => PaginationButtonAction.SwitchPage);
   };
 
   useEffect(() => {
@@ -57,7 +72,7 @@ const ProductsWithFiltersContainer = (): ReactElement => {
   return (
     <Box>
       <Box className="flex flex-row justify-between gap-10 px-11 pb-11 pt-16" ref={productListWrapper}>
-        <Filters />
+        <Filters handleSearchParamsChange={handleSearchParamsChange} />
         <ProductsList currentPageData={currentPageData} />
       </Box>
       {dataWithMeta && <ProductsFooter productsData={dataWithMeta} handlePageChange={handlePageChange} currentPage={currentPage} />}
