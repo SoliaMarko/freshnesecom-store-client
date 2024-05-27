@@ -12,7 +12,7 @@ interface RangeInputsProps {
 
 const RangeInputs = ({range, values, handleMin, handleMax}: RangeInputsProps): ReactElement => {
   const {min, max} = range;
-  const {minPrice: minSelected, maxPrice: maxSelected} = values;
+  const {min: minSelected, max: maxSelected} = values;
 
   const handleMinChange = (event: ChangeEvent<HTMLInputElement>): void => {
     handleMin(+event?.target.value);
