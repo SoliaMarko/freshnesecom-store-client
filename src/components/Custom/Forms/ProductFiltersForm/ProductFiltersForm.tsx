@@ -7,7 +7,7 @@ import debounce from 'lodash.debounce';
 import {useAppDispatch} from '@/hooks/apiHooks';
 import {setFilters} from '@/store/slices/filters.slice';
 import {NewParams} from '@/components/Layout/Home/ProductsWithFiltersContainer/ProductsWithFiltersContainer';
-import RatingFilter from '@/features/filters/RatingFilter';
+import RatingFilter from '@/features/filters/RatingFilter/RatingFilter';
 import {useSelector} from 'react-redux';
 import {IRootState} from '@/types/IRootState.type';
 
