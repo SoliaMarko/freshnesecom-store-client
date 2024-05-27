@@ -22,7 +22,7 @@ const ProductsWithFiltersContainer = (): ReactElement => {
   const [currentPage, setCurrentPage] = useState<number>(Number(searchParams.get('page')) || generalAppInfo.pagination.INITIAL_PAGE);
   const [pageAction, setPageAction] = useState<PaginationButtonAction>(PaginationButtonAction.SwitchPage);
   const [currentPageData, setCurrentPageData] = useState<ProductEntity[]>([]);
-  const productListWrapper = useRef<ScrollableElement>(null);
+  const productListRef = useRef<ScrollableElement>(null);
   const filters = useSelector((state: IRootState) => state.filter);
 
   const {
@@ -35,7 +35,7 @@ const ProductsWithFiltersContainer = (): ReactElement => {
   });
 
   const scrollToProductListStart = (): void => {
-    if (productListWrapper.current) productListWrapper.current.scrollIntoView({behavior: 'instant'});
+    if (productListRef.current) productListRef.current.scrollIntoView({behavior: 'smooth'});
   };
 
   const handlePageChange = (newPage: number, action: PaginationButtonAction): void => {
@@ -71,7 +71,7 @@ const ProductsWithFiltersContainer = (): ReactElement => {
 
   return (
     <Box>
-      <Box className="flex flex-row justify-between gap-10 px-11 pb-11 pt-16" ref={productListWrapper}>
+      <Box className="flex flex-row justify-between gap-10 px-11 pb-11 pt-16" ref={productListRef}>
         <Filters handleSearchParamsChange={handleSearchParamsChange} />
         <ProductsList currentPageData={currentPageData} />
       </Box>

@@ -7,6 +7,7 @@ import {useAppDispatch} from './hooks/apiHooks';
 import {setUser} from './store/slices/user.slice';
 import {useGetUserQuery} from './store/services/authApi';
 import ToastProvider from './contexts/ToastProvider';
+import BackdropProvider from './contexts/BackdropProvider';
 
 function App(): ReactElement {
   const {data} = useGetUserQuery();
@@ -19,12 +20,14 @@ function App(): ReactElement {
   return (
     <>
       <ToastProvider>
-        <StyledEngineProvider injectFirst>
-          <CssBaseline />
-          <div className="app font-body h-full">
-            <RouterProvider router={router} />
-          </div>
-        </StyledEngineProvider>
+        <BackdropProvider>
+          <StyledEngineProvider injectFirst>
+            <CssBaseline />
+            <div className="app font-body h-full">
+              <RouterProvider router={router} />
+            </div>
+          </StyledEngineProvider>
+        </BackdropProvider>
       </ToastProvider>
     </>
   );

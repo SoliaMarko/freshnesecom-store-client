@@ -11,7 +11,13 @@ interface TabsBlockProps {
 
 const TabsBlock = ({value, onChange, tabsData: tabs}: TabsBlockProps): ReactElement => {
   return (
-    <Tabs value={value} onChange={onChange} TabIndicatorProps={{className: 'bg-primary'}} textColor="inherit">
+    <Tabs
+      value={value}
+      onChange={onChange}
+      TabIndicatorProps={{className: 'bg-primary'}}
+      textColor="inherit"
+      className="flex flex-row justify-between"
+    >
       {tabs.map((tab: TabDataInterface): ReactElement => {
         const {id, label, hasLabelChip, content} = tab;
         const tabContentLength = content?.length;
@@ -22,7 +28,7 @@ const TabsBlock = ({value, onChange, tabsData: tabs}: TabsBlockProps): ReactElem
           </Box>
         );
 
-        return <Tab key={id} label={tabLabel} />;
+        return <Tab key={id} label={tabLabel} className="flex-1" />;
       })}
     </Tabs>
   );

@@ -37,12 +37,12 @@ const CustomForm = <FieldsModel extends FieldValues>({
             register={register}
             errors={errors}
             label={label}
-            placeholder={placeholder ?? ''}
+            placeholder={placeholder}
             required
           />
         );
       })}
-      <Box className="flex justify-end">
+      <Box className="flex justify-center">
         <PrimaryButton>
           <Typography className="text-lg font-semibold">{submitTitle}</Typography>
         </PrimaryButton>

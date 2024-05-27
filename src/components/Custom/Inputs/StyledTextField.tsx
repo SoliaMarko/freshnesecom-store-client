@@ -22,7 +22,7 @@ const StyledTextField = <FieldsModel extends object>({
   errors
 }: StyledTextFieldProps<FieldsModel>): ReactElement => {
   return (
-    <Box className="flex flex-col">
+    <Box className="flex flex-col gap-2">
       <InputLabel id={`${name}Label`} htmlFor={name} className={'text-left font-semibold leading-5 text-primary'} required={required}>
         {label}
       </InputLabel>
@@ -31,11 +31,11 @@ const StyledTextField = <FieldsModel extends object>({
         id={name}
         placeholder={placeholder || ''}
         required={required}
-        className="rounded-xl bg-primary-700"
+        className="rounded-xl bg-primary-700 p-0"
         variant="outlined"
         {...register(name as Path<FieldsModel>)}
       />
-      {errors?.[name]?.message && <Typography className="text-red-600">{errors[name]?.message}</Typography>}
+      {errors?.[name]?.message && <Typography className="text-left text-sm text-red-600">{errors[name]?.message}</Typography>}
     </Box>
   );
 };
