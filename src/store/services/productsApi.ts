@@ -11,16 +11,9 @@ export const productsApi = createApi({
   baseQuery: axiosBaseQuery(),
   endpoints: (builder) => ({
     getAllProducts: builder.query<GetAllProductsReturnType, GetProductsModel>({
-      query: ({
-        page = generalAppInfo.pagination.INITIAL_PAGE,
-        itemsPerPage = generalAppInfo.pagination.ITEMS_PER_PAGE,
-        minPrice,
-        maxPrice,
-        minRating,
-        maxRating
-      }) => {
+      query: ({page = generalAppInfo.pagination.INITIAL_PAGE, itemsPerPage = generalAppInfo.pagination.ITEMS_PER_PAGE, minPrice, maxPrice}) => {
         return {
-          url: `/product?page=${page}&itemsPerPage=${itemsPerPage}&minPrice=${minPrice}&maxPrice=${maxPrice}&minRating=${minRating}&maxRating=${maxRating}`,
+          url: `/product?page=${page}&itemsPerPage=${itemsPerPage}&minPrice=${minPrice}&maxPrice=${maxPrice}`,
           method: 'GET'
         };
       }
