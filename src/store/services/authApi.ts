@@ -3,7 +3,7 @@ import {SignUpFormModel} from '@/models/SignUpForm.model';
 import {LogInFormModel} from '@/models/LogInForm.model';
 import {axiosBaseQuery} from './axiosBaseQuery';
 import {LogoutUserArgs, MutationReturnType} from '@/interfaces/api/queries.interface';
-import {GetProductsModel} from '@/models/GetProducts.model';
+import {GetUserModel} from '@/models/GetUser.model';
 
 export const authApi = createApi({
   reducerPath: 'authApi',
@@ -48,7 +48,7 @@ export const authApi = createApi({
       }
     }),
 
-    getUser: builder.query<GetProductsModel, void>({
+    getUser: builder.query<GetUserModel, void>({
       query: () => {
         return {
           url: '/user',

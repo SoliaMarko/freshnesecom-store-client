@@ -1,4 +1,4 @@
-export class GetProductsModel {
+export class GetUserModel {
   public firstName?: string;
   public lastName?: string;
   public email?: string;
