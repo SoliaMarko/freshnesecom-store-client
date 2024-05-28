@@ -19,24 +19,24 @@ const PriceFilter = ({onChange}: PriceFilterProps): ReactElement => {
   const {data: stats, isLoading} = useGetProductsStatsQuery();
   const [range, setRange] = useState<RangeConstraints>(defaultConstraints);
   const [priceConstraints, setPriceConstraints] = useState<RangeConstraints>({
-    minPrice: range.min,
-    maxPrice: range.max
+    min: range.min,
+    max: range.max
   });
 
-  const handleMinChange = (minPrice: number): void => {
-    const updatedConstraints = {...priceConstraints, minPrice};
+  const handleMinChange = (min: number): void => {
+    const updatedConstraints = {...priceConstraints, min};
     setPriceConstraints(updatedConstraints);
     onChange(Object.values(updatedConstraints));
   };
 
-  const handleMaxChange = (maxPrice: number): void => {
-    const updatedConstraints = {...priceConstraints, maxPrice};
+  const handleMaxChange = (max: number): void => {
+    const updatedConstraints = {...priceConstraints, max};
     setPriceConstraints(updatedConstraints);
     onChange(Object.values(updatedConstraints));
   };
 
-  const handleMinMaxChange = (minPrice: number, maxPrice: number): void => {
-    const updatedConstraints = {minPrice, maxPrice};
+  const handleMinMaxChange = (min: number, max: number): void => {
+    const updatedConstraints = {min, max};
     setPriceConstraints(updatedConstraints);
     onChange(Object.values(updatedConstraints));
   };
