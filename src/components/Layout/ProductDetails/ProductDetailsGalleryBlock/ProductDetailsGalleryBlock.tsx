@@ -4,7 +4,7 @@ import {ReactElement, useState} from 'react';
 import ProductDetailsMainImage from './ProductDetailsMainImage/ProductDetailsMainImage';
 import ProductDetailsAdditionalImages from './ProductDetailsAdditionalImages/ProductDetailsAdditionalImages';
 import CustomChip from '@/components/Custom/CustomChips/CustomChip';
-import {getTransformedArrayWithIDs} from '@/utils/productsHelpers/getTransformedArrayWithIDs';
+import {getTransformedArrayWithIDs} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 
 interface ProductDetailsGalleryBlockProps {
   productData: TransformedProductType;

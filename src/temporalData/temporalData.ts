@@ -1,4 +1,4 @@
-import {getTransformedArrayWithIDs} from '@/utils/productsHelpers/getTransformedArrayWithIDs';
+import {getTransformedArrayWithIDs} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 
 export const temporalUsefulLinks = getTransformedArrayWithIDs([
   {

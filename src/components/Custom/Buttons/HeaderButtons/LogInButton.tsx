@@ -1,12 +1,14 @@
 import {commonRoutes} from '@/constants/globalConstants/global.constant';
-import {Button} from '@mui/material';
+import {Button, Typography} from '@mui/material';
 import {ReactElement} from 'react';
 import {NavLink} from 'react-router-dom';
 
 const LogInButton = (): ReactElement => {
   return (
     <NavLink to={`/${commonRoutes.LOGIN}`}>
-      <Button>Log In</Button>
+      <Button>
+        <Typography sx={{textTransform: 'capitalize'}}>Log In</Typography>
+      </Button>
     </NavLink>
   );
 };

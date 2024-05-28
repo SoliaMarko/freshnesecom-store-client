@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import {defineConfig} from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
@@ -7,6 +7,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+      '@assets': path.resolve(__dirname, './src/assets'),
       '@components': path.resolve(__dirname, './src/components'),
       '@constants': path.resolve(__dirname, './src/constants'),
       '@enums': path.resolve(__dirname, './src/enums'),
@@ -19,11 +20,11 @@ export default defineConfig({
       '@store': path.resolve(__dirname, './src/store'),
       '@types': path.resolve(__dirname, './src/types'),
       '@utils': path.resolve(__dirname, './src/utils'),
-      '@validations': path.resolve(__dirname, './src/validations'),
-    },
+      '@validations': path.resolve(__dirname, './src/validations')
+    }
   },
   server: {
-    open: true,
+    open: true
   },
-  plugins: [react()],
+  plugins: [react()]
 });

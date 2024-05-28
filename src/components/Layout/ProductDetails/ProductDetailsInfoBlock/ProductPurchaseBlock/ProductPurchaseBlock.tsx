@@ -5,7 +5,7 @@ import CustomPriceBlock from '@/components/Custom/CustomPriceBlock/CustomPriceBl
 import {quantityUnitOptions} from '@/constants/productsConstants/quantityUnits.constant';
 import CustomQuantityInput from '@/components/Custom/Inputs/CustomQuantityInput/CustomQuantityInput';
 import ProductAddToCartButton from '@/components/Custom/Buttons/ProductCardButtons/ProductAddToCartButton';
-import {getTransformedArrayWithIDs} from '@/utils/productsHelpers/getTransformedArrayWithIDs';
+import {getTransformedArrayWithIDs} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 
 interface ProductPurchaseBlockProps {
   productData: TransformedProductType;

@@ -1,7 +1,7 @@
 import CustomSlider from '@/components/Custom/CustomSlider/CustomSlider';
 import {Box, Typography} from '@mui/material';
 import {ReactElement, useState} from 'react';
-import {RangeConstraints} from './PriceFilter';
+import {RangeConstraints} from '../PriceFilter/PriceFilter';
 
 interface RatingFilterProps {
   onChange: (price: number[]) => void;

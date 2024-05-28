@@ -4,7 +4,7 @@ import CustomTabPanel from '../CustomTabPanel/CustomTabPanel';
 import AdditionalDescriptionBlock from '@/components/Layout/ProductDetails/ProductDetailsInfoBlock/ProductTabs/AdditionalDescriptionBlock/AdditionalDescriptionBlock';
 import {AdditionalDescription} from '@/interfaces/products/productEntity.interface';
 import {Typography} from '@mui/material';
-import {WithID} from '@/utils/productsHelpers/getTransformedArrayWithIDs';
+import {WithID} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 
 interface TabPanelsProps {
   value: number;

@@ -8,14 +8,15 @@ import {useSelector} from 'react-redux';
 import FavoritesButton from '@/components/Custom/Buttons/HeaderButtons/FavoritesButton';
 import UserButton from '@/components/Custom/Buttons/HeaderButtons/UserButton';
 import BasketButton from '@/components/Custom/Buttons/HeaderButtons/BasketButton';
+import logo from '@assets/logo.svg';
 
 const MainHeader = (): ReactElement => {
   const user = useSelector(selectUser);
 
   return (
-    <Box className="my-2 flex items-center justify-between ">
+    <Box className="my-2 flex items-center justify-between">
       <NavLink to={commonRoutes.ROOT}>
-        <Box className="py-4 text-lg">[LOGO]</Box>
+        <img src={logo} alt="logo" className="py-4" />
       </NavLink>
       <SearchBar />
       <Box className="flex gap-4">

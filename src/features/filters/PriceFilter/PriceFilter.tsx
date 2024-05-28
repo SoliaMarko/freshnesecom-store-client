@@ -1,7 +1,7 @@
 import {ReactElement, useEffect, useState} from 'react';
 import {Box, Typography} from '@mui/material';
 import CustomSlider from '@/components/Custom/CustomSlider/CustomSlider';
-import RangeInputs from './RangeInputs/RangeInputs';
+import RangeInputs from '../RangeInputs/RangeInputs';
 import {useGetProductsStatsQuery} from '@/store/services/productsApi';
 import {products} from '@/constants/globalConstants/global.constant';
 

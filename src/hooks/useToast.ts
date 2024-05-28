@@ -1,4 +1,4 @@
-import {ToastValuesType} from '@/interfaces/features/toastValuesType.interface';
+import {ToastValuesType} from '@/interfaces/contexts/toastValuesType.interface';
 
 export interface UseToastProps {
   toast: ToastValuesType;

@@ -6,7 +6,7 @@ import {useAppDispatch} from '@/hooks/apiHooks';
 import {useToast} from '@/hooks/useToast';
 import {useLogoutUserMutation} from '@/store/services/authApi';
 import {resetUser, selectUser} from '@/store/slices/user.slice';
-import {Button} from '@mui/material';
+import {Button, Typography} from '@mui/material';
 import {ReactElement, useContext} from 'react';
 import {useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
@@ -28,7 +28,11 @@ const LogOutButton = (): ReactElement => {
     navigate(`${commonRoutes.ROOT}`);
   };
 
-  return <Button onClick={handleLogout}>Log Out</Button>;
+  return (
+    <Button onClick={handleLogout}>
+      <Typography sx={{textTransform: 'capitalize', color: '#C7522D'}}>Log Out</Typography>
+    </Button>
+  );
 };
 
 export default LogOutButton;

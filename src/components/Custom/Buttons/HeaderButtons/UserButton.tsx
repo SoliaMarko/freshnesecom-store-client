@@ -9,13 +9,13 @@ import {userRoutes} from '@/constants/globalConstants/global.constant';
 import LogOutButton from './LogOutButton';
 import LogInButton from './LogInButton';
 import SignUpButton from './SignUpButton';
-import {getTransformedArrayWithIDs} from '@/utils/productsHelpers/getTransformedArrayWithIDs';
+import {getTransformedArrayWithIDs} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 
 const UserButton = (): ReactElement => {
   const user = useSelector(selectUser);
 
   const userPopover = (
-    <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
+    <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: 0, margin: 0}}>
       {user.authorized ? (
         <>
           <NavLink to={`/${userRoutes.USER}/${userRoutes.PROFILE}`}>

@@ -1,4 +1,4 @@
-import {ToastParamsType, ToastValuesType} from '@/interfaces/features/toastValuesType.interface';
+import {ToastParamsType, ToastValuesType} from '@/interfaces/contexts/toastValuesType.interface';
 
 export const initialToastValues: ToastValuesType = {
   message: '',

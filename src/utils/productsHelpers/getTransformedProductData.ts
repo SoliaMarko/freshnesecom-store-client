@@ -7,7 +7,7 @@ import {TransformedProductType} from '@/interfaces/products/transformedProductTy
 import {categoryOptions} from '@/constants/productsConstants/categories.constant';
 import {subCategoryOptions} from '@/constants/productsConstants/subCategories.constant';
 import {quantityUnitOptions} from '@/constants/productsConstants/quantityUnits.constant';
-import {getTransformedArrayWithIDs} from './getTransformedArrayWithIDs';
+import {getTransformedArrayWithIDs} from '../arrayFormaters/getTransformedArrayWithIDs';
 
 export const getTransformedProductData = (product: ProductEntity): TransformedProductType => {
   const {

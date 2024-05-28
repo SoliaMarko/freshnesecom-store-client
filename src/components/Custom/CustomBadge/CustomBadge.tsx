@@ -16,8 +16,7 @@ const CustomBadge = ({content, alignY = 'top', alignX = 'right'}: CustomBadgePro
       }}
       overlap="circular"
       badgeContent={content}
-      color="success"
-      className={`absolute ${alignY}-0 ${alignX}-0`}
+      className={`absolute ${alignY}-0 ${alignX}-0 bg-green-500 text-white`}
     ></Badge>
   );
 };

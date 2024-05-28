@@ -17,7 +17,6 @@ const ProductHeader = ({productData}: ProductHeaderProps): ReactElement => {
       </Typography>
       <Box className="flex flex-row items-center justify-start gap-2">
         <BasicRating defaultRatingValue={rating} />
-        <Typography className="text-primary-300">([x] customer review)</Typography>
       </Box>
     </Box>
   );

@@ -8,13 +8,14 @@ interface DetailsBlockItemProps {
   valueColor?: string;
 }
 
-const DetailsBlockItem = ({title = '', content = ''}: DetailsBlockItemProps): ReactElement => {
+const DetailsBlockItem = ({title = '', content = ''}: DetailsBlockItemProps): ReactElement | undefined => {
   const formattedTitle = getFormatedLabel(title);
+  if (!title || !content) return;
 
   return (
     <Box className="flex flex-row justify-start">
       <Typography className=" w-1/3 text-left capitalize text-primary-300">{formattedTitle}</Typography>
-      <Typography className="text-left text-secondary">{content}</Typography>
+      <Typography className="text-left capitalize text-secondary">{content}</Typography>
     </Box>
   );
 };

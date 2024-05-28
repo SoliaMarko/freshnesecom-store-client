@@ -6,12 +6,15 @@ import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import CustomBadge from '@/components/Custom/CustomBadge/CustomBadge';
 
 const BasketButton = (): ReactElement => {
+  // temporal variable
+  const productsInBasket = 0;
+
   return (
     <NavLink to={`/${commonRoutes.CART}`}>
       <Box className="relative">
         <IconButton>
           <ShoppingBasketIcon className="text-3xl text-primary" />
-          <CustomBadge content="4" alignX="left" alignY="bottom" />
+          <CustomBadge content={productsInBasket.toString()} alignX="left" alignY="bottom" />
         </IconButton>
       </Box>
     </NavLink>

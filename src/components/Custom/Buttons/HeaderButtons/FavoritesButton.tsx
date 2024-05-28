@@ -6,12 +6,15 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CustomBadge from '@/components/Custom/CustomBadge/CustomBadge';
 
 const FavoritesButton = (): ReactElement => {
+  // temporal variable
+  const productsInWishes = 0;
+
   return (
     <NavLink to={`/${userRoutes.USER}/${userRoutes.FAVORITE}`}>
       <Box className="relative">
         <IconButton>
           <FavoriteBorderIcon className="text-3xl text-primary" />
-          <CustomBadge content="4" alignX="left" alignY="bottom" />
+          <CustomBadge content={productsInWishes.toString()} alignX="left" alignY="bottom" />
         </IconButton>
       </Box>
     </NavLink>

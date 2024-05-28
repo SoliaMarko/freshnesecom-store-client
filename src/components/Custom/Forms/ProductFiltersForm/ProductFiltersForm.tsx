@@ -1,13 +1,13 @@
 import {Controller, useForm} from 'react-hook-form';
 import {Box} from '@mui/material';
-import PriceFilter from '@/features/filters/PriceFilter';
+import PriceFilter from '@/features/filters/PriceFilter/PriceFilter';
 import {Category} from '@/enums/products/categories.enum';
 import {useEffect} from 'react';
 import debounce from 'lodash.debounce';
 import {useAppDispatch} from '@/hooks/apiHooks';
 import {setFilters} from '@/store/slices/filters.slice';
 import {NewParams} from '@/components/Layout/Home/ProductsWithFiltersContainer/ProductsWithFiltersContainer';
-import RatingFilter from '@/features/filters/RatingFilter';
+import RatingFilter from '@/features/filters/RatingFilter/RatingFilter';
 import {useSelector} from 'react-redux';
 import {IRootState} from '@/types/IRootState.type';
 
