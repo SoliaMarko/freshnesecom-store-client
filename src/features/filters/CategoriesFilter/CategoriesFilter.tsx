@@ -1,6 +1,6 @@
 import {Category} from '@/enums/products/categories.enum';
 import {useGetProductsStatsQuery} from '@/store/services/productsApi';
-import {Box, FormControl, FormLabel, RadioGroup} from '@mui/material';
+import {Box, RadioGroup, Typography} from '@mui/material';
 import {ChangeEvent, ReactElement, useEffect, useState} from 'react';
 import Error from '@/pages/Error/Error';
 import {getTransformedArrayWithIDs} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
@@ -39,8 +39,8 @@ const CategoriesFilter = ({onChange}: CategoriesFilterProps): ReactElement => {
   }
 
   return (
-    <FormControl className="flex max-w-80 flex-col gap-4 pr-5">
-      <FormLabel className="customH2 m-0 text-left text-primary">Categories</FormLabel>
+    <Box className="flex max-w-80 flex-col gap-4 pr-5">
+      <Typography className="customH2 m-0 text-left text-primary">Categories</Typography>
       <RadioGroup
         className="flex max-h-48 flex-col items-stretch gap-1"
         name="category-filter-radio"
@@ -69,7 +69,7 @@ const CategoriesFilter = ({onChange}: CategoriesFilterProps): ReactElement => {
             );
         })}
       </RadioGroup>
-    </FormControl>
+    </Box>
   );
 };
 
