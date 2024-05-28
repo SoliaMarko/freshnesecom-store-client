@@ -14,15 +14,16 @@ interface ProductsQuantityType {
 
 interface CategoriesFilterProps {
   onChange: (category: Category) => void;
+  handleChangeSelectedCategory: (category: Category) => void;
+  selectedCategory: Category;
 }
 
-const CategoriesFilter = ({onChange}: CategoriesFilterProps): ReactElement => {
+const CategoriesFilter = ({onChange, handleChangeSelectedCategory, selectedCategory}: CategoriesFilterProps): ReactElement => {
   const {data, error, isLoading} = useGetProductsStatsQuery();
   const [productsQuantity, setProductsQuantity] = useState<ProductsQuantityType[]>([{category: 1, items: 0}]);
-  const [selectedCategory, setSelectedCategory] = useState<Category>(Category.AllCategories);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setSelectedCategory(Number(event.target.value));
+    handleChangeSelectedCategory(Number(event.target.value));
     onChange(Number(event.target.value));
   };
 
@@ -39,7 +40,7 @@ const CategoriesFilter = ({onChange}: CategoriesFilterProps): ReactElement => {
   }
 
   return (
-    <FormControl className="flex max-w-80 flex-col gap-4 pr-5">
+    <FormControl className="flex max-h-64 max-w-80 flex-col gap-4 pr-5">
       <FormLabel className="customH2 m-0 text-left text-primary">Categories</FormLabel>
       <RadioGroup
         className="flex max-h-48 flex-col items-stretch gap-1"

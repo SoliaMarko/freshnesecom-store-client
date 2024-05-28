@@ -1,6 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {RootState} from '../index';
-import {Category} from '@/enums/products/categories.enum';
 
 const initialState = {
   search: '',
@@ -8,8 +7,8 @@ const initialState = {
   maxPrice: null,
   minRating: null,
   maxRating: null,
-  brands: [],
-  category: Category.AllCategories
+  category: null,
+  brands: []
 };
 
 const filterSlice = createSlice({
