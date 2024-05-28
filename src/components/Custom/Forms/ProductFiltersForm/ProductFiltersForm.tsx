@@ -12,7 +12,7 @@ import {useSelector} from 'react-redux';
 import {IRootState} from '@/types/IRootState.type';
 import CategoriesFilter from '@/features/filters/CategoriesFilter/CategoriesFilter';
 import BrandsFilter from '@/features/filters/BrandsFilter/BrandsFilter';
-import {brandOptions} from '@/constants/productsConstants/brands.constant';
+import {brandOptions} from '@/constants/productsConstants/producer/brands.constant';
 import {ProductInfoOption} from '@/interfaces/products/productsInfoOptions.interface';
 import {Brand} from '@/enums/products/brands.enum';
 
