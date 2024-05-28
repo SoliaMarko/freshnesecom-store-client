@@ -13,10 +13,10 @@ const DetailsBlock = ({keys = [], details}: DetailsBlockProps): ReactElement | u
       {keys.map(({id, value: key}) => {
         if (!key || !details[key]) return;
 
-        const validTitle = `${key}: `;
-        const validContent = Array.isArray(details[key]) ? details[key]?.join(', ') : details[key]?.toString();
+        const title = `${key}: `;
+        const content = Array.isArray(details[key]) ? details[key]?.join(', ') : details[key]?.toString();
 
-        return <DetailsBlockItem key={id} title={validTitle} content={validContent} />;
+        return <DetailsBlockItem key={id} title={title} content={content} />;
       })}
     </>
   );
