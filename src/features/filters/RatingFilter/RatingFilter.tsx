@@ -4,7 +4,7 @@ import {ReactElement, useState} from 'react';
 import {RangeConstraints} from '../PriceFilter/PriceFilter';
 
 interface RatingFilterProps {
-  onChange: (price: number[]) => void;
+  onChange: (rating: number[]) => void;
 }
 
 const defaultConstraints = {min: 0, max: 5};

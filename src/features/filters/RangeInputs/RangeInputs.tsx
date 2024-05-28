@@ -1,7 +1,7 @@
 import {ChangeEvent, ReactElement} from 'react';
 import {Box} from '@mui/material';
 import CustomNumberField from '@/components/Custom/Inputs/CustomNumberField/CustomNumberField';
-import {RangeConstraints} from '../PriceFilter';
+import {RangeConstraints} from '../PriceFilter/PriceFilter';
 
 interface RangeInputsProps {
   range: RangeConstraints;
