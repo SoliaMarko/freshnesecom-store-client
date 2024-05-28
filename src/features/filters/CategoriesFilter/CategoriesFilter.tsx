@@ -14,16 +14,15 @@ interface ProductsQuantityType {
 
 interface CategoriesFilterProps {
   onChange: (category: Category) => void;
-  handleChangeSelectedCategory: (category: Category) => void;
-  selectedCategory: Category;
 }
 
-const CategoriesFilter = ({onChange, handleChangeSelectedCategory, selectedCategory}: CategoriesFilterProps): ReactElement => {
+const CategoriesFilter = ({onChange}: CategoriesFilterProps): ReactElement => {
   const {data, error, isLoading} = useGetProductsStatsQuery();
   const [productsQuantity, setProductsQuantity] = useState<ProductsQuantityType[]>([{category: 1, items: 0}]);
+  const [selectedCategory, setSelectedCategory] = useState<Category>(Category.AllCategories);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    handleChangeSelectedCategory(Number(event.target.value));
+    setSelectedCategory(Number(event.target.value));
     onChange(Number(event.target.value));
   };
 
