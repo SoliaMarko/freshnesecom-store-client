@@ -1,11 +1,11 @@
 import {v4 as uuid} from 'uuid';
 
-export interface WithID<T> {
+export interface ItemWithIDType<T> {
   id: string;
   value: T;
 }
 
-export const getTransformedArrayWithIDs = <ItemsType>(items: ItemsType[]): WithID<ItemsType>[] => {
+export const getTransformedArrayWithIDs = <ItemsType>(items: ItemsType[]): ItemWithIDType<ItemsType>[] => {
   return items.map((item) => ({id: uuid(), value: item}));
 };
 

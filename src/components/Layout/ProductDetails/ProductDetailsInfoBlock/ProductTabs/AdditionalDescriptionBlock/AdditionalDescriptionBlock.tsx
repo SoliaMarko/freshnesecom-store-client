@@ -1,10 +1,10 @@
 import {AdditionalDescription} from '@/interfaces/products/productEntity.interface';
-import {WithID} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
+import {ItemWithIDType} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 import {Box, Typography} from '@mui/material';
 import {ReactElement} from 'react';
 
 interface AdditionalDescriptionProps {
-  descriptions: WithID<AdditionalDescription>[];
+  descriptions: ItemWithIDType<AdditionalDescription>[];
 }
 
 const AdditionalDescriptionBlock = ({descriptions}: AdditionalDescriptionProps): ReactElement => {
