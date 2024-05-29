@@ -1,13 +1,17 @@
 import {ReactElement} from 'react';
 import {Badge} from '@mui/material';
+import clsx from 'clsx';
 
 interface CustomBadgeProps {
-  content: string;
+  content: string | number;
   alignY?: 'top' | 'bottom';
   alignX?: 'left' | 'right';
+  classNames?: string;
 }
 
-const CustomBadge = ({content, alignY = 'top', alignX = 'right'}: CustomBadgeProps): ReactElement => {
+const CustomBadge = ({content, alignY = 'bottom', alignX = 'left', classNames}: CustomBadgeProps): ReactElement => {
+  if (!content) return <></>;
+
   return (
     <Badge
       anchorOrigin={{
@@ -15,8 +19,10 @@ const CustomBadge = ({content, alignY = 'top', alignX = 'right'}: CustomBadgePro
         horizontal: alignX
       }}
       overlap="circular"
-      badgeContent={content}
-      className={`absolute ${alignY}-0 ${alignX}-0 bg-green-500 text-white`}
+      badgeContent={content.toString()}
+      color="secondary"
+      className={clsx('absolute bottom-3 left-3 bg-green-500 text-white', classNames)}
+      sx={{bgcolor: 'red'}}
     ></Badge>
   );
 };

@@ -31,7 +31,7 @@ const CustomSlider = ({range, values, handleMinMax, classNames, thumb, displayLa
         max={max}
         value={[Number(minSelected), Number(maxSelected)]}
         valueLabelDisplay={displayLabel ? 'on' : 'auto'}
-        className={clsx('h-2 text-secondary', classNames)}
+        className={clsx('h-2', classNames)}
         onChange={handleChange}
         slots={{
           thumb: thumb || CustomThumb

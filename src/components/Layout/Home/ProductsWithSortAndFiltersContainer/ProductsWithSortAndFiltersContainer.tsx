@@ -73,7 +73,7 @@ const ProductsWithSortAndFiltersContainer = (): ReactElement => {
   return (
     <Box>
       <SortBlock handleSearchParamsChange={handleSearchParamsChange} />
-      <Box className="flex flex-row justify-between gap-10 px-11 pb-11 pt-16" ref={productListRef}>
+      <Box className="flex flex-row justify-between gap-10 pb-11 pt-16" ref={productListRef}>
         <Filters handleSearchParamsChange={handleSearchParamsChange} />
         <ProductsList currentPageData={currentPageData} />
       </Box>

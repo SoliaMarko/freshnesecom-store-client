@@ -14,7 +14,7 @@ const FavoritesButton = (): ReactElement => {
       <Box className="relative">
         <IconButton>
           <FavoriteBorderIcon className="text-3xl text-primary" />
-          <CustomBadge content={productsInWishes.toString()} alignX="left" alignY="bottom" />
+          <CustomBadge content={productsInWishes} alignX="left" alignY="bottom" />
         </IconButton>
       </Box>
     </NavLink>
