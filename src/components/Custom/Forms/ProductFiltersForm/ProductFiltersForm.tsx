@@ -30,7 +30,7 @@ interface ProductFiltersFormProps {
 const ProductFiltersForm = ({handleSearchParamsChange}: ProductFiltersFormProps) => {
   const {minPrice, maxPrice, minRating, maxRating, category, brands} = useSelector((state: IRootState) => state.filter);
   const [selectedCategory, setSelectedCategory] = useState<Category>(Category.AllCategories);
-  const [selectedBrands, setSelectedBrands] = useState<Brand[] | []>([]);
+  const [selectedBrands, setSelectedBrands] = useState<Brand[]>([]);
   const [currentBrandOptions, setCurrentBrandOptions] = useState<ProductInfoOption[]>(brandOptions);
   const {control, watch, getValues, handleSubmit} = useForm<FormInputs>({
     mode: 'onChange',
