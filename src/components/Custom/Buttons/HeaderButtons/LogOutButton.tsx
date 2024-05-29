@@ -10,6 +10,8 @@ import {Button, Typography} from '@mui/material';
 import {ReactElement, useContext} from 'react';
 import {useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
+import {confirmationQuestions} from '@/constants/confirmationQuestionsConstants/confirmationQuestions.constant';
+import {setConfirmation} from '@/store/slices/confirmation.slice';
 
 const LogOutButton = (): ReactElement => {
   const {toast, onHandleToast} = useContext(ToastContext);
@@ -20,7 +22,6 @@ const LogOutButton = (): ReactElement => {
   const {openToastSuccess} = useToast({toast, onHandleToast});
 
   const handleLogout = async (): Promise<void> => {
-    if (!user.authorized) return;
     await logoutUser({email: user.email});
     openToastSuccess(responseSuccess.LOGOUT);
     dispatch(resetUser());
@@ -28,8 +29,20 @@ const LogOutButton = (): ReactElement => {
     navigate(`${commonRoutes.ROOT}`);
   };
 
+  const handleConfirmLogout = (): void => {
+    if (user.authorized) {
+      dispatch(
+        setConfirmation({
+          confirmInfo: confirmationQuestions.logOut,
+          isOpen: true,
+          onConfirm: {handler: handleLogout}
+        })
+      );
+    }
+  };
+
   return (
-    <Button onClick={handleLogout}>
+    <Button onClick={handleConfirmLogout}>
       <Typography sx={{textTransform: 'capitalize', color: '#C7522D'}}>Log Out</Typography>
     </Button>
   );
