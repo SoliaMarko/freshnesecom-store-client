@@ -5,12 +5,14 @@ import {productsApi} from './services/productsApi';
 import authReducer from './slices/auth.slice';
 import userReducer from './slices/user.slice';
 import filterReducer from './slices/filters.slice';
+import loadingReducer from './slices/loading.slice';
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     user: userReducer,
     filter: filterReducer,
+    loading: loadingReducer,
     [authApi.reducerPath]: authApi.reducer,
     [productsApi.reducerPath]: productsApi.reducer
   },

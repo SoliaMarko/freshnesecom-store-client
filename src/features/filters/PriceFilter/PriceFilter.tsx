@@ -5,6 +5,8 @@ import RangeInputs from '../RangeInputs/RangeInputs';
 import {useGetProductsStatsQuery} from '@/store/services/productsApi';
 import {products} from '@/constants/globalConstants/global.constant';
 import CustomPriceThumb from './CustomPriceThumb';
+import {useAppDispatch} from '@/hooks/apiHooks';
+import {setLoading, resetLoading} from '@/store/slices/loading.slice';
 
 export interface RangeConstraints {
   [key: string]: number;
@@ -23,6 +25,7 @@ const PriceFilter = ({onChange}: PriceFilterProps): ReactElement => {
     min: range.min,
     max: range.max
   });
+  const dispatch = useAppDispatch();
 
   const handleMinChange = (min: number): void => {
     const updatedConstraints = {...priceConstraints, min};
@@ -50,10 +53,14 @@ const PriceFilter = ({onChange}: PriceFilterProps): ReactElement => {
       setRange(() => {
         return {min: minPrice, max: maxPrice};
       });
+
+      dispatch(resetLoading());
     }
   }, [stats]);
 
-  if (isLoading) return <Box>Loading...</Box>;
+  useEffect(() => {
+    if (isLoading) dispatch(setLoading());
+  }, [isLoading]);
 
   return (
     <Box className="flex max-w-80 flex-col gap-4 pr-5">

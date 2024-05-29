@@ -13,6 +13,8 @@ import {PaginationButtonAction} from '@/enums/global/paginationButtonAction.enum
 import {useSelector} from 'react-redux';
 import {IRootState} from '@/types/IRootState.type';
 import SortBlock from '../SortBlock';
+import {useAppDispatch} from '@/hooks/apiHooks';
+import {resetLoading, setLoading} from '@/store/slices/loading.slice';
 
 export type NewParams = {
   [key: string]: string | string[] | number;
@@ -25,6 +27,7 @@ const ProductsWithSortAndFiltersContainer = (): ReactElement => {
   const [currentPageData, setCurrentPageData] = useState<ProductEntity[]>([]);
   const productListRef = useRef<ScrollableElement>(null);
   const filters = useSelector((state: IRootState) => state.filter);
+  const dispatch = useAppDispatch();
 
   const {
     data: dataWithMeta,
@@ -55,10 +58,12 @@ const ProductsWithSortAndFiltersContainer = (): ReactElement => {
     if (dataWithMeta && pageAction === PaginationButtonAction.SwitchPage) {
       setCurrentPageData(() => dataWithMeta.data);
       scrollToProductListStart();
+      dispatch(resetLoading());
     }
 
     if (dataWithMeta && pageAction === PaginationButtonAction.ShowMore) {
       setCurrentPageData((prev) => [...prev, ...dataWithMeta.data]);
+      dispatch(resetLoading());
     }
   }, [dataWithMeta]);
 
@@ -66,11 +71,12 @@ const ProductsWithSortAndFiltersContainer = (): ReactElement => {
     return <Error />;
   }
 
-  if (isLoading) {
-    return <Box>Loading...</Box>;
-  }
+  useEffect(() => {
+    if (isLoading) dispatch(setLoading());
+    console.log('loading');
+  }, [isLoading]);
 
-  return (
+  return dataWithMeta ? (
     <Box>
       <SortBlock handleSearchParamsChange={handleSearchParamsChange} />
       <Box className="flex flex-row justify-between gap-10 pb-11 pt-16" ref={productListRef}>
@@ -79,6 +85,8 @@ const ProductsWithSortAndFiltersContainer = (): ReactElement => {
       </Box>
       {dataWithMeta && <ProductsFooter productsData={dataWithMeta} handlePageChange={handlePageChange} currentPage={currentPage} />}
     </Box>
+  ) : (
+    <></>
   );
 };
 
