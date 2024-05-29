@@ -4,6 +4,7 @@ import CustomSlider from '@/components/Custom/CustomSlider/CustomSlider';
 import RangeInputs from '../RangeInputs/RangeInputs';
 import {useGetProductsStatsQuery} from '@/store/services/productsApi';
 import {products} from '@/constants/globalConstants/global.constant';
+import CustomPriceThumb from './CustomPriceThumb';
 
 export interface RangeConstraints {
   [key: string]: number;
@@ -57,7 +58,7 @@ const PriceFilter = ({onChange}: PriceFilterProps): ReactElement => {
   return (
     <Box className="flex max-w-80 flex-col gap-4 pr-5">
       <Typography className="customH2 m-0 text-left">Price</Typography>
-      <CustomSlider range={range} values={priceConstraints} handleMinMax={handleMinMaxChange} />
+      <CustomSlider range={range} values={priceConstraints} handleMinMax={handleMinMaxChange} classNames="text-secondary" thumb={CustomPriceThumb} />
       <RangeInputs range={range} values={priceConstraints} handleMin={handleMinChange} handleMax={handleMaxChange} />
     </Box>
   );

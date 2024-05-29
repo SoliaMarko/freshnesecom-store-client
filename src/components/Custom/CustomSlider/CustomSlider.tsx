@@ -1,7 +1,7 @@
-import {ReactElement} from 'react';
+import {ElementType, ReactElement} from 'react';
 import {Box, Slider} from '@mui/material';
 import CustomThumb from './CustomThumb/CustomThumb';
-import {RangeConstraints} from '@/features/filters/PriceFilter';
+import {RangeConstraints} from '@/features/filters/PriceFilter/PriceFilter';
 import clsx from 'clsx';
 
 interface CustomSliderProps {
@@ -9,9 +9,11 @@ interface CustomSliderProps {
   values: RangeConstraints;
   handleMinMax: (minValue: number, maxValue: number) => void;
   classNames?: string;
+  thumb?: ElementType<any>;
+  displayLabel?: boolean;
 }
 
-const CustomSlider = ({range, values, handleMinMax, classNames}: CustomSliderProps): ReactElement => {
+const CustomSlider = ({range, values, handleMinMax, classNames, thumb, displayLabel}: CustomSliderProps): ReactElement => {
   const {min, max} = range;
   const {min: minSelected, max: maxSelected} = values;
 
@@ -28,11 +30,11 @@ const CustomSlider = ({range, values, handleMinMax, classNames}: CustomSliderPro
         min={min}
         max={max}
         value={[Number(minSelected), Number(maxSelected)]}
-        valueLabelDisplay="auto"
+        valueLabelDisplay={displayLabel ? 'on' : 'auto'}
         className={clsx('h-2 text-secondary', classNames)}
         onChange={handleChange}
         slots={{
-          thumb: CustomThumb
+          thumb: thumb || CustomThumb
         }}
       />
     </Box>

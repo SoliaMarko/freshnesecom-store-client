@@ -17,10 +17,11 @@ export const productsApi = createApi({
         minPrice,
         maxPrice,
         minRating,
-        maxRating
+        maxRating,
+        category
       }) => {
         return {
-          url: `/product?page=${page}&itemsPerPage=${itemsPerPage}&minPrice=${minPrice}&maxPrice=${maxPrice}&minRating=${minRating}&maxRating=${maxRating}`,
+          url: `/product?page=${page}&itemsPerPage=${itemsPerPage}&minPrice=${minPrice}&maxPrice=${maxPrice}&minRating=${minRating}&maxRating=${maxRating}&category=${category}`,
           method: 'GET'
         };
       }

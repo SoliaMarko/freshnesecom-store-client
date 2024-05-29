@@ -5,6 +5,7 @@ import {AuthState} from '@/interfaces/store/authState.interface';
 const initialState: AuthState = {
   accessToken: null,
   refreshToken: null
+  // redirect
 };
 
 export const authSlice = createSlice({

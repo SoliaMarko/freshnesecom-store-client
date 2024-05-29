@@ -2,9 +2,10 @@ import CustomSlider from '@/components/Custom/CustomSlider/CustomSlider';
 import {Box, Typography} from '@mui/material';
 import {ReactElement, useState} from 'react';
 import {RangeConstraints} from '../PriceFilter/PriceFilter';
+import {CustomRatingThumb} from './CustomRatingThumb';
 
 interface RatingFilterProps {
-  onChange: (price: number[]) => void;
+  onChange: (rating: number[]) => void;
 }
 
 const defaultConstraints = {min: 0, max: 5};
@@ -25,7 +26,14 @@ const RatingFilter = ({onChange}: RatingFilterProps): ReactElement => {
   return (
     <Box className="flex max-w-80 flex-col gap-4 pr-5">
       <Typography className="customH2 m-0 text-left">Rating</Typography>
-      <CustomSlider range={range} values={ratingConstraints} handleMinMax={handleMinMaxChange} classNames="text-primary" />
+      <CustomSlider
+        range={range}
+        values={ratingConstraints}
+        handleMinMax={handleMinMaxChange}
+        classNames="text-ratingStars"
+        thumb={CustomRatingThumb}
+        displayLabel
+      />
     </Box>
   );
 };
