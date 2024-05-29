@@ -4,7 +4,7 @@ import {WithID} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 
 interface MenuItemsProps {
   items: WithID<string>[] | WithID<ReactElement>[];
-  onClick: () => void;
+  onClick: (option: string) => void;
 }
 
 const MenuItems = ({items, onClick}: MenuItemsProps): ReactElement[] => {
@@ -12,7 +12,7 @@ const MenuItems = ({items, onClick}: MenuItemsProps): ReactElement[] => {
     const {id, value} = item;
 
     return (
-      <MenuItem key={id} onClick={onClick} disableRipple>
+      <MenuItem key={id} onClick={() => onClick(value as string)} disableRipple>
         {value}
       </MenuItem>
     );

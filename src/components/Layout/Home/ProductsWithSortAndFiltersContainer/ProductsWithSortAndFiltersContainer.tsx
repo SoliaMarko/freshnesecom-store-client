@@ -12,12 +12,13 @@ import Error from '@/pages/Error/Error';
 import {PaginationButtonAction} from '@/enums/global/paginationButtonAction.enum';
 import {useSelector} from 'react-redux';
 import {IRootState} from '@/types/IRootState.type';
+import SortBlock from '../SortBlock';
 
 export type NewParams = {
   [key: string]: string | string[] | number;
 };
 
-const ProductsWithFiltersContainer = (): ReactElement => {
+const ProductsWithSortAndFiltersContainer = (): ReactElement => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState<number>(Number(searchParams.get('page')) || generalAppInfo.pagination.INITIAL_PAGE);
   const [pageAction, setPageAction] = useState<PaginationButtonAction>(PaginationButtonAction.SwitchPage);
@@ -71,6 +72,7 @@ const ProductsWithFiltersContainer = (): ReactElement => {
 
   return (
     <Box>
+      <SortBlock handleSearchParamsChange={handleSearchParamsChange} />
       <Box className="flex flex-row justify-between gap-10 px-11 pb-11 pt-16" ref={productListRef}>
         <Filters handleSearchParamsChange={handleSearchParamsChange} />
         <ProductsList currentPageData={currentPageData} />
@@ -80,4 +82,4 @@ const ProductsWithFiltersContainer = (): ReactElement => {
   );
 };
 
-export default ProductsWithFiltersContainer;
+export default ProductsWithSortAndFiltersContainer;

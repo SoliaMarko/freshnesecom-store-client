@@ -1,5 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {RootState} from '../index';
+import {SortBy} from '@/enums/sort/sortBy.enum';
+import {Order} from '@/enums/sort/order.enum';
 
 const initialState = {
   search: '',
@@ -8,7 +10,9 @@ const initialState = {
   minRating: null,
   maxRating: null,
   category: null,
-  brands: []
+  brands: [],
+  sortBy: SortBy.Recency,
+  order: Order.DESC
 };
 
 const filterSlice = createSlice({

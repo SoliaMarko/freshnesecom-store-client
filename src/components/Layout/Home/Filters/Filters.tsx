@@ -1,6 +1,6 @@
 import {ReactElement} from 'react';
 import {Box} from '@mui/material';
-import {NewParams} from '../ProductsWithFiltersContainer/ProductsWithFiltersContainer';
+import {NewParams} from '../ProductsWithSortAndFiltersContainer/ProductsWithSortAndFiltersContainer';
 import ProductFiltersForm from '@/components/Custom/Forms/ProductFiltersForm/ProductFiltersForm';
 
 interface FilterProps {

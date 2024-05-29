@@ -13,7 +13,7 @@ import ProductDetailsPage from './pages/ProductDetailsPage/ProductDetailsPage';
 
 const router = createBrowserRouter([
   {
-    errorElement: <Error content="Error Page" />,
+    errorElement: <Error />,
     element: <AppLayout />,
     children: [
       {
