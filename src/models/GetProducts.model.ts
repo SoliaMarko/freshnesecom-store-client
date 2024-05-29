@@ -1,4 +1,5 @@
 import {generalAppInfo} from '@/constants/globalConstants/global.constant';
+import {Brand} from '@/enums/products/brands.enum';
 import {Category} from '@/enums/products/categories.enum';
 
 export class GetProductsModel {
@@ -9,4 +10,5 @@ export class GetProductsModel {
   public minRating?: number;
   public maxRating?: number;
   public category?: Category;
+  public brands?: Brand[];
 }

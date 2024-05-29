@@ -1,3 +1,5 @@
+import {Brand} from '@/enums/products/brands.enum';
+
 export interface AdditionalDescription {
   title?: string;
   content: string;
@@ -5,7 +7,7 @@ export interface AdditionalDescription {
 
 export interface Producer {
   category: number;
-  name: string;
+  name: Brand;
 }
 
 export interface ProductEntity {

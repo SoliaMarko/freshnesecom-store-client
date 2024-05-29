@@ -14,15 +14,16 @@ interface ProductsQuantityType {
 
 interface CategoriesFilterProps {
   onChange: (category: Category) => void;
+  handleChangeSelectedCategory: (category: Category) => void;
+  selectedCategory: Category;
 }
 
-const CategoriesFilter = ({onChange}: CategoriesFilterProps): ReactElement => {
+const CategoriesFilter = ({onChange, handleChangeSelectedCategory, selectedCategory}: CategoriesFilterProps): ReactElement => {
   const {data, error, isLoading} = useGetProductsStatsQuery();
   const [productsQuantity, setProductsQuantity] = useState<ProductsQuantityType[]>([{category: 1, items: 0}]);
-  const [selectedCategory, setSelectedCategory] = useState<Category>(Category.AllCategories);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setSelectedCategory(Number(event.target.value));
+    handleChangeSelectedCategory(Number(event.target.value));
     onChange(Number(event.target.value));
   };
 
@@ -39,7 +40,7 @@ const CategoriesFilter = ({onChange}: CategoriesFilterProps): ReactElement => {
   }
 
   return (
-    <Box className="flex max-w-80 flex-col gap-4 pr-5">
+    <Box className="flex max-h-64 max-w-80 flex-col gap-4 pr-5">
       <Typography className="customH2 m-0 text-left text-primary">Categories</Typography>
       <RadioGroup
         className="flex max-h-48 flex-col items-stretch gap-1"
@@ -60,7 +61,6 @@ const CategoriesFilter = ({onChange}: CategoriesFilterProps): ReactElement => {
             value: {value, label}
           } = categoryInfo;
           const quantity = productsQuantity?.find(({category}) => category === value)?.items;
-
           if (quantity)
             return (
               <CategoryRadioButton key={id} quantityInCurrentCategory={quantity} currentCategory={value} selectedCategory={selectedCategory}>

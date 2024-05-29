@@ -1,13 +1,14 @@
 import {getCalculatedPriceAfterDiscount} from './getCalculatedPriceAfterDiscount';
 import {getLabelByValue} from '../enumTransformators/getLabelByValue';
 import {freshnessOptions} from '@/constants/productsConstants/freshness.constant';
-import {producerCategoryOptions} from '@/constants/productsConstants/producerCategories.constant';
+import {producerCategoryOptions} from '@/constants/productsConstants/producer/producerCategories.constant';
 import {ProductEntity} from '@/interfaces/products/productEntity.interface';
 import {TransformedProductType} from '@/interfaces/products/transformedProductType.interface';
 import {categoryOptions} from '@/constants/productsConstants/categories.constant';
 import {subCategoryOptions} from '@/constants/productsConstants/subCategories.constant';
 import {quantityUnitOptions} from '@/constants/productsConstants/quantityUnits.constant';
 import {getTransformedArrayWithIDs} from '../arrayFormaters/getTransformedArrayWithIDs';
+import {brandOptions} from '@/constants/productsConstants/producer/brands.constant';
 
 export const getTransformedProductData = (product: ProductEntity): TransformedProductType => {
   const {
@@ -28,7 +29,7 @@ export const getTransformedProductData = (product: ProductEntity): TransformedPr
   const freshnessLabel = getLabelByValue(freshnessOptions, freshness);
   const calculatedPriceAfterDiscount = discount ? getCalculatedPriceAfterDiscount(initialPrice, discount) : initialPrice;
   const producerCategoryLabel = producer ? getLabelByValue(producerCategoryOptions, producer.category) : '';
-  const producerCategoryName = producer ? producer.name : '';
+  const producerCategoryName = producer ? getLabelByValue(brandOptions, producer.name) : '';
   const producerLabeled = {category: producerCategoryLabel, name: producerCategoryName};
   const quantityUnitsLabeled = quantityUnits.map((unit) => getLabelByValue(quantityUnitOptions, unit));
   const additionalDescriptionsWithIDs = getTransformedArrayWithIDs(additionalDescriptions);
