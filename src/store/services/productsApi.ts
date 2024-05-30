@@ -1,6 +1,5 @@
 import {createApi} from '@reduxjs/toolkit/query/react';
 import {axiosBaseQuery} from './axiosBaseQuery';
-import {generalAppInfo} from '@/constants/globalConstants/global.constant';
 import {GetAllProductsReturnType, GetProductsStatsReturnType} from '@/interfaces/api/queries.interface';
 import {GetProductsModel} from '@/models/GetProducts.model';
 import {ProductEntity} from '@/interfaces/products/productEntity.interface';
@@ -11,20 +10,12 @@ export const productsApi = createApi({
   baseQuery: axiosBaseQuery(),
   endpoints: (builder) => ({
     getAllProducts: builder.query<GetAllProductsReturnType, GetProductsModel>({
-      query: ({
-        page = generalAppInfo.pagination.INITIAL_PAGE,
-        itemsPerPage = generalAppInfo.pagination.ITEMS_PER_PAGE,
-        minPrice,
-        maxPrice,
-        minRating,
-        maxRating,
-        category,
-        brands,
-        sortBy,
-        order
-      }) => {
+      query: (queryParams: {[key: string]: string}) => {
+        const url = Object.keys(queryParams)
+          .reduce((acc, key) => acc + `${key}=${queryParams[key] as string}&`, '/product?')
+          .slice(0, -1);
         return {
-          url: `/product?page=${page}&itemsPerPage=${itemsPerPage}&minPrice=${minPrice}&maxPrice=${maxPrice}&minRating=${minRating}&maxRating=${maxRating}&category=${category}&brands=${brands}&sortBy=${sortBy}&order=${order}`,
+          url,
           method: 'GET'
         };
       }
