@@ -35,6 +35,7 @@ const ProductsWithSortAndFiltersContainer = (): ReactElement => {
     isLoading
   } = useGetAllProductsQuery({
     page: currentPage,
+    itemsPerPage: generalAppInfo.pagination.ITEMS_PER_PAGE,
     ...filters
   });
 
