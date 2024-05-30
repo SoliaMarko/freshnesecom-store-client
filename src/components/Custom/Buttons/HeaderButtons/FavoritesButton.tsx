@@ -10,7 +10,7 @@ const FavoritesButton = (): ReactElement => {
   const productsInWishes = 0;
 
   return (
-    <NavLink to={`/${userRoutes.USER}/${userRoutes.FAVORITE}`}>
+    <NavLink to={`/${userRoutes.USER}/${userRoutes.FAVORITES}`}>
       <Box className="relative">
         <IconButton>
           <FavoriteBorderIcon className="text-3xl text-primary" />

@@ -24,17 +24,18 @@ export const products = {
 const routes = {
   common: {
     ROOT: '/',
+
     LOGIN: 'login',
     SIGNUP: 'signup',
     CART: 'cart'
   },
   user: {
     USER: 'user',
-    FAVORITE: 'favorite',
-    PROFILE: 'profile'
+    FAVORITES: 'favorites',
+    SETTINGS: 'settings'
   },
   product: {
-    PRODUCT: 'product',
+    PRODUCTS: 'products',
     ID: ':id'
   }
 };

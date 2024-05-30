@@ -1,7 +1,8 @@
+import {initialBackdropValues} from '@/constants/contextsConstants/backdropConstants/backdrop.constant';
 import {BackdropParamsType} from '@/interfaces/contexts/backdropValuesType.interface';
 import {ReactElement, ReactNode, createContext, useState} from 'react';
 
-export const BackdropContext = createContext({isOpen: false, openBackdrop: (): void => {}, closeBackdrop: (): void => {}});
+export const BackdropContext = createContext(initialBackdropValues);
 
 interface BackdropProviderProps {
   children: ReactNode;

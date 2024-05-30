@@ -1,5 +1,5 @@
 import {ToastContext} from '@/contexts/ToastProvider';
-import {commonRoutes} from '@/constants/globalConstants/global.constant';
+import {productRoutes} from '@/constants/globalConstants/global.constant';
 import {AUTH_TOKENS_STORAGE} from '@/constants/storageConstants/localStorage.constant';
 import {responseSuccess} from '@/constants/successConstants/success.constant';
 import {useAppDispatch} from '@/hooks/apiHooks';
@@ -26,7 +26,7 @@ const LogOutButton = (): ReactElement => {
     openToastSuccess(responseSuccess.LOGOUT);
     dispatch(resetUser());
     localStorage.removeItem(AUTH_TOKENS_STORAGE);
-    navigate(`${commonRoutes.ROOT}`);
+    navigate(`/${productRoutes.PRODUCTS}`);
   };
 
   const handleConfirmLogout = (): void => {

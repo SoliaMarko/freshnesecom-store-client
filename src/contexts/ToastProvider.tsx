@@ -1,5 +1,5 @@
 import {ReactElement, ReactNode, createContext, useCallback, useState} from 'react';
-import {initialToastArguments, initialToastValues} from '@/constants/toastsConstants/toasts.constant';
+import {initialToastArguments, initialToastValues} from '@/constants/contextsConstants/toastsConstants/toasts.constant';
 import {ToastParamsType, ToastValuesType} from '@/interfaces/contexts/toastValuesType.interface';
 
 export const ToastContext = createContext(initialToastArguments);
