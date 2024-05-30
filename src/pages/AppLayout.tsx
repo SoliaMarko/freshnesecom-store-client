@@ -9,7 +9,7 @@ const AppLayout = (): ReactElement => {
     <>
       <CustomSnackbar />
       <Header />
-      <main className="my-3">
+      <main className="mx-11 my-3">
         <Outlet />
       </main>
       <Footer />

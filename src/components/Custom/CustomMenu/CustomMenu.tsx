@@ -5,21 +5,27 @@ import MenuItems from './MenuItems';
 import {WithID} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 
 interface CustomMenuProps {
-  header: string;
-  options: WithID<string>[] | WithID<ReactElement>[];
   children: ReactNode;
+  header?: string;
+  options: WithID<string>[] | WithID<ReactElement>[];
+  handleSelectOption?: (option: string) => void;
 }
 
-const CustomMenu = ({header, options, children}: CustomMenuProps): ReactElement => {
+const CustomMenu = ({children, header, options, handleSelectOption}: CustomMenuProps): ReactElement => {
   const [anchorElement, setAnchorElement] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorElement);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
+  const handleOpen = (event: React.MouseEvent<HTMLButtonElement>): void => {
     setAnchorElement(event.currentTarget);
   };
 
   const handleClose = (): void => {
     setAnchorElement(null);
+  };
+
+  const handleSelect = (option: string): void => {
+    if (handleSelectOption) handleSelectOption(option);
+    handleClose();
   };
 
   return (
@@ -28,7 +34,7 @@ const CustomMenu = ({header, options, children}: CustomMenuProps): ReactElement 
         id={`menu-${header}-button`}
         variant="outlined"
         disableElevation
-        onClick={handleClick}
+        onClick={handleOpen}
         endIcon={<KeyboardArrowDownIcon className="text-secondary" />}
         className="border-none text-base font-semibold capitalize text-primary hover:bg-primary-500"
       >
@@ -52,7 +58,7 @@ const CustomMenu = ({header, options, children}: CustomMenuProps): ReactElement 
         open={open}
         onClose={handleClose}
       >
-        <MenuItems items={options} onClick={handleClose} />
+        <MenuItems items={options} onClick={handleSelect} />
       </Menu>
     </>
   );

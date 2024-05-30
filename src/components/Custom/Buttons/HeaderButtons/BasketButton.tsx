@@ -14,7 +14,7 @@ const BasketButton = (): ReactElement => {
       <Box className="relative">
         <IconButton>
           <ShoppingBasketIcon className="text-3xl text-primary" />
-          <CustomBadge content={productsInBasket.toString()} alignX="left" alignY="bottom" />
+          <CustomBadge content={productsInBasket} alignX="left" alignY="bottom" />
         </IconButton>
       </Box>
     </NavLink>
