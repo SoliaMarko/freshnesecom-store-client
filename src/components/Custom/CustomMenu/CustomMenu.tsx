@@ -2,12 +2,12 @@ import {ReactElement, ReactNode, useState} from 'react';
 import {Button, Menu} from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import MenuItems from './MenuItems';
-import {WithID} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
+import {ItemWithIDType} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 
 interface CustomMenuProps {
   children: ReactNode;
   header?: string;
-  options: WithID<string>[] | WithID<ReactElement>[];
+  options: ItemWithIDType<string>[] | ItemWithIDType<ReactElement>[];
   handleSelectOption?: (option: string) => void;
 }
 

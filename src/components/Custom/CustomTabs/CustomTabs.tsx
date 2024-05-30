@@ -3,13 +3,13 @@ import {Box} from '@mui/material';
 import {AdditionalDescription} from '@/interfaces/products/productEntity.interface';
 import TabPanels from './TabPanels/TabPanels';
 import TabsBlock from './TabsBlocks/TabsBlock';
-import {WithID} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
+import {ItemWithIDType} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 
 export interface TabDataInterface {
   label: string;
   id: string;
   hasLabelChip: boolean;
-  content?: WithID<AdditionalDescription>[];
+  content?: ItemWithIDType<AdditionalDescription>[];
 }
 
 export interface CustomTabProps {

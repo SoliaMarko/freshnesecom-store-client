@@ -1,9 +1,9 @@
 import {ReactElement} from 'react';
 import DetailsBlockItem from './DetailsBlockItem/DetailsBlockItem';
-import {WithID} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
+import {ItemWithIDType} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 
 type DetailsBlockProps = {
-  keys?: WithID<string>[];
+  keys?: ItemWithIDType<string>[];
   details: unknown;
 };
 

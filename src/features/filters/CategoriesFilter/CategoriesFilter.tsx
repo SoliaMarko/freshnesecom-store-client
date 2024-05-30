@@ -6,6 +6,8 @@ import Error from '@/pages/Error/Error';
 import {getTransformedArrayWithIDs} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 import {categoryOptions} from '@/constants/productsConstants/categories.constant';
 import CategoryRadioButton from './CategoryRadioButton/CategoryRadioButton';
+import {useAppDispatch} from '@/hooks/apiHooks';
+import {setLoading, resetLoading} from '@/store/slices/loading.slice';
 
 interface ProductsQuantityType {
   category: Category;
@@ -21,6 +23,7 @@ interface CategoriesFilterProps {
 const CategoriesFilter = ({onChange, handleChangeSelectedCategory, selectedCategory}: CategoriesFilterProps): ReactElement => {
   const {data, error, isLoading} = useGetProductsStatsQuery();
   const [productsQuantity, setProductsQuantity] = useState<ProductsQuantityType[]>([{category: 1, items: 0}]);
+  const dispatch = useAppDispatch();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     handleChangeSelectedCategory(Number(event.target.value));
@@ -28,12 +31,16 @@ const CategoriesFilter = ({onChange, handleChangeSelectedCategory, selectedCateg
   };
 
   useEffect(() => {
-    if (!data) return;
-    const {quantityByCategory} = data.data;
-    setProductsQuantity(() => quantityByCategory);
+    if (data) {
+      const {quantityByCategory} = data.data;
+      setProductsQuantity(() => quantityByCategory);
+      dispatch(resetLoading());
+    }
   }, [data]);
 
-  if (isLoading) return <Box>Loading...</Box>;
+  useEffect(() => {
+    if (isLoading) dispatch(setLoading());
+  }, [isLoading]);
 
   if (error) {
     return <Error />;
