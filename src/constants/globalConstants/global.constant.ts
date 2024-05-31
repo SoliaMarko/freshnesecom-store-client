@@ -13,7 +13,8 @@ export const generalAppInfo = {
   pagination: {
     INITIAL_PAGE: 0,
     ITEMS_PER_PAGE: 10
-  }
+  },
+  MAX_RELATED_PRODUCTS_IN_CAROUSEL_COUNT: 12
 };
 
 export const products = {

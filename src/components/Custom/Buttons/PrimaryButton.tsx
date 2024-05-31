@@ -6,9 +6,10 @@ interface PrimaryButtonProps {
   children: ReactNode;
   type?: 'filled' | 'outlined';
   onClickHandler?: () => void;
+  classNames?: string;
 }
 
-const PrimaryButton = ({children, type = 'filled', onClickHandler}: PrimaryButtonProps): ReactElement => {
+const PrimaryButton = ({children, type = 'filled', onClickHandler, classNames}: PrimaryButtonProps): ReactElement => {
   const handleClick = (): void => {
     onClickHandler?.();
   };
@@ -16,9 +17,9 @@ const PrimaryButton = ({children, type = 'filled', onClickHandler}: PrimaryButto
   return (
     <Button
       type="submit"
-      className={clsx('rounded-xl border-2 border-solid border-secondary-200 px-5 py-3 capitalize', {
+      className={clsx('rounded-xl border-2 border-solid border-secondary-200 px-5 py-3 capitalize', classNames, {
         'bg-secondary text-white': type === 'filled',
-        'bg-white text-secondary': type !== 'filled'
+        'bg-white text-secondary': type === 'outlined'
       })}
       onClick={handleClick}
     >

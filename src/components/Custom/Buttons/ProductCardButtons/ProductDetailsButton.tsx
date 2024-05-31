@@ -7,14 +7,16 @@ import {productRoutes} from '@/constants/globalConstants/global.constant';
 
 interface ProductDetailsButtonProps {
   id: string;
+  title?: string;
+  classNames?: string;
 }
 
-const ProductDetailsButton = ({id}: ProductDetailsButtonProps): ReactElement => {
+const ProductDetailsButton = ({id, title = 'Product Details', classNames}: ProductDetailsButtonProps): ReactElement => {
   return (
-    <NavLink to={`/${productRoutes.PRODUCTS}/${id}`}>
-      <PrimaryButton>
+    <NavLink to={`/${productRoutes.PRODUCTS}/${id}`} reloadDocument>
+      <PrimaryButton classNames={classNames}>
         <Box className="flex flex-row items-center justify-between">
-          <Typography className="text-lg font-semibold">Product Details</Typography>
+          <Typography className="text-lg font-semibold">{title}</Typography>
           <KeyboardArrowRightIcon />
         </Box>
       </PrimaryButton>

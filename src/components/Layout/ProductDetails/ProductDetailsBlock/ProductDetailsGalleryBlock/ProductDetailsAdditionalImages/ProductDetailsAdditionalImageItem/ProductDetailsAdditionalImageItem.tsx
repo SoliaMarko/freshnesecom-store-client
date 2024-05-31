@@ -1,5 +1,4 @@
 import {ReactElement} from 'react';
-import {Box} from '@mui/material';
 
 interface ProductDetailsAdditionalImageItemProps {
   imageURL: string;
@@ -12,11 +11,7 @@ const ProductDetailsAdditionalImageItem = ({imageURL, handleClick}: ProductDetai
     handleClick(imageURL);
   };
 
-  return (
-    <Box className="flex-1">
-      <img src={imageURL} className="aspect-4/3 w-full cursor-pointer rounded-2xl object-cover" onClick={handleImageClick} />
-    </Box>
-  );
+  return <img src={imageURL} className="aspect-4/3 w-full cursor-pointer rounded-2xl object-cover" onClick={handleImageClick} />;
 };
 
 export default ProductDetailsAdditionalImageItem;

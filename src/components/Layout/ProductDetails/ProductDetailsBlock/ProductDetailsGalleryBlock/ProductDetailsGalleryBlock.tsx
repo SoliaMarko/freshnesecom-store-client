@@ -2,9 +2,9 @@ import {TransformedProductType} from '@/interfaces/products/transformedProductTy
 import {Box} from '@mui/material';
 import {ReactElement, useState} from 'react';
 import ProductDetailsMainImage from './ProductDetailsMainImage/ProductDetailsMainImage';
-import ProductDetailsAdditionalImages from './ProductDetailsAdditionalImages/ProductDetailsAdditionalImages';
 import CustomChip from '@/components/Custom/CustomChips/CustomChip';
 import {getTransformedArrayWithIDs} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
+import ProductDetailsImagesCarousel from './ProductDetailsAdditionalImages/ProductDetailsImagesCarousel';
 
 interface ProductDetailsGalleryBlockProps {
   productData: TransformedProductType;
@@ -14,13 +14,10 @@ const ProductDetailsGalleryBlock = ({productData}: ProductDetailsGalleryBlockPro
   const {images, discount, freeShipping} = productData;
   const [mainImageIndex, setMainImageIndex] = useState<number>(0);
   const mainImage = images[mainImageIndex].value;
-  const additionalImages = [...getTransformedArrayWithIDs(images)].map((image) => image.value);
-  additionalImages.splice(mainImageIndex, 1);
+  const allImages = [...getTransformedArrayWithIDs(images)].map((image) => image.value);
 
   const handleSetMainImageIndex = (imgURL: string): void => {
-    const imgIndex = images.findIndex((image) => {
-      return image.value === imgURL;
-    });
+    const imgIndex = images.findIndex((image) => image.value === imgURL);
     setMainImageIndex(() => imgIndex);
   };
 
@@ -34,7 +31,7 @@ const ProductDetailsGalleryBlock = ({productData}: ProductDetailsGalleryBlockPro
         <ProductDetailsMainImage imageURL={mainImage} />
       </Box>
 
-      <ProductDetailsAdditionalImages images={additionalImages} handleClick={handleSetMainImageIndex} />
+      <ProductDetailsImagesCarousel images={allImages} handleClick={handleSetMainImageIndex} />
     </Box>
   );
 };
