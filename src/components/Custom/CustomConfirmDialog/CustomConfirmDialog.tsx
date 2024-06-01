@@ -26,7 +26,7 @@ const CustomConfirmDialog = (): ReactElement => {
     dispatch(resetConfirmation());
   };
 
-  return isOpen ? (
+  return (
     <Dialog open={isOpen} onClose={handleCancel} aria-labelledby={`alert-dialog-${title}`} aria-describedby={`alert-dialog-${content}`}>
       <DialogTitle id={`${type}-dialog-${title}`}>{title}</DialogTitle>
       <DialogContent>
@@ -36,15 +36,13 @@ const CustomConfirmDialog = (): ReactElement => {
       </DialogContent>
       <DialogActions>
         <Button onClick={handleCancel}>
-          <Typography sx={{textTransform: 'capitalize', color: 'green'}}>{options.cancel}</Typography>
+          <Typography sx={{textTransform: 'capitalize', color: 'green'}}>{options?.cancel}</Typography>
         </Button>
         <Button onClick={handleConfirmCancel} autoFocus>
-          <Typography sx={{textTransform: 'capitalize'}}>{options.confirm}</Typography>
+          <Typography sx={{textTransform: 'capitalize'}}>{options?.confirm}</Typography>
         </Button>
       </DialogActions>
     </Dialog>
-  ) : (
-    <></>
   );
 };
 
