@@ -43,7 +43,7 @@ const LogOutButton = (): ReactElement => {
 
   return (
     <Button onClick={handleConfirmLogout}>
-      <Typography sx={{textTransform: 'capitalize', color: '#C7522D'}}>Log Out</Typography>
+      <Typography sx={{color: '#C7522D'}}>Log Out</Typography>
     </Button>
   );
 };
