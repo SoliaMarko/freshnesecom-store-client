@@ -10,9 +10,9 @@ export const productsApi = createApi({
   baseQuery: axiosBaseQuery(),
   endpoints: (builder) => ({
     getAllProducts: builder.query<GetAllProductsReturnType, GetProductsModel>({
-      query: (queryParams: {[key: string]: string}) => {
+      query: (queryParams: GetProductsModel) => {
         const url = Object.keys(queryParams)
-          .reduce((acc, key) => acc + `${key}=${queryParams[key] as string}&`, '/product?')
+          .reduce((acc, key) => acc + `${key}=${queryParams[key]}&`, '/product?')
           .slice(0, -1);
         return {
           url,

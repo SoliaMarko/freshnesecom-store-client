@@ -28,7 +28,7 @@ const filterSlice = createSlice({
   }
 });
 
-export const selectUser = (state: RootState) => state.filter;
+export const selectFilter = (state: RootState) => state.filter;
 
 export const {setFilters, resetFilters} = filterSlice.actions;
 

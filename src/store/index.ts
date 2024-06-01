@@ -6,6 +6,7 @@ import authReducer from './slices/auth.slice';
 import userReducer from './slices/user.slice';
 import filterReducer from './slices/filters.slice';
 import loadingReducer from './slices/loading.slice';
+import confirmationReducer from './slices/confirmation.slice';
 
 export const store = configureStore({
   reducer: {
@@ -13,10 +14,14 @@ export const store = configureStore({
     user: userReducer,
     filter: filterReducer,
     loading: loadingReducer,
+    confirmation: confirmationReducer,
     [authApi.reducerPath]: authApi.reducer,
     [productsApi.reducerPath]: productsApi.reducer
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(authApi.middleware, productsApi.middleware)
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false
+    }).concat(authApi.middleware, productsApi.middleware)
 });
 
 setupListeners(store.dispatch);
