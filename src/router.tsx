@@ -1,59 +1,87 @@
 import {createBrowserRouter} from 'react-router-dom';
 import AppLayout from './pages/AppLayout';
-import Main from './pages/Home/Home';
+import Home from './pages/Home/Home';
 import Error from './pages/Error/Error';
 import {commonRoutes, productRoutes, userRoutes} from './constants/globalConstants/global.constant';
 import LogIn from './pages/LogIn/LogIn';
 import SignUp from './pages/SignUp/SignUp';
 import Cart from './pages/Cart/Cart';
-import UserProfile from './pages/UserProfile/UserProfile';
-import Favorites from './pages/Favorites/Favorites';
 import PrivateRoute from './pages/PrivatePage/PrivatePage';
-import ProductDetailsPage from './pages/ProductDetailsPage/ProductDetailsPage';
+import ProductDetailsPage from './pages/Products/ProductDetailsPage/ProductDetailsPage';
+import AllProducts from './pages/Products/AllProducts/AllProducts';
+import UserProfile from './pages/User/UserProfile/UserProfile';
+import Favorites from './pages/User/Favorites/Favorites';
+import {ReactNode} from 'react';
 
-const router = createBrowserRouter([
+export interface ExtendedRouteChildrenType {
+  path: string;
+  element: ReactNode;
+  breadcrumb?: string;
+}
+
+export interface ExtendedRouteObjectType {
+  errorElement: ReactNode;
+  element: ReactNode;
+  children: ExtendedRouteChildrenType[];
+}
+
+const routes: ExtendedRouteObjectType[] = [
   {
     errorElement: <Error />,
     element: <AppLayout />,
     children: [
       {
         path: commonRoutes.ROOT,
-        element: <Main />
+        element: <Home />,
+        breadcrumb: 'Home'
+      },
+      {
+        path: `/${productRoutes.PRODUCTS}`,
+        element: <AllProducts />,
+        breadcrumb: 'Home'
+      },
+      {
+        path: `/${productRoutes.PRODUCTS}/${productRoutes.ID}`,
+        element: <ProductDetailsPage />,
+        breadcrumb: 'Details'
       },
       {
         path: `/${commonRoutes.LOGIN}`,
-        element: <LogIn />
+        element: <LogIn />,
+        breadcrumb: 'LogIn'
       },
       {
         path: `/${commonRoutes.SIGNUP}`,
-        element: <SignUp />
+        element: <SignUp />,
+        breadcrumb: 'SignUp'
       },
       {
         path: `/${commonRoutes.CART}`,
-        element: <Cart />
+        element: <Cart />,
+        breadcrumb: 'Cart'
       },
       {
-        path: `/${userRoutes.USER}/${userRoutes.PROFILE}`,
+        path: `/${userRoutes.USER}`,
         element: (
           <PrivateRoute>
             <UserProfile />
           </PrivateRoute>
-        )
+        ),
+        breadcrumb: 'Profile'
       },
       {
-        path: `/${userRoutes.USER}/${userRoutes.FAVORITE}`,
+        path: `/${userRoutes.USER}/${userRoutes.FAVORITES}`,
         element: (
           <PrivateRoute>
             <Favorites />
           </PrivateRoute>
-        )
-      },
-      {
-        path: `/${productRoutes.PRODUCT}/${productRoutes.ID}`,
-        element: <ProductDetailsPage />
+        ),
+        breadcrumb: 'Favorites'
       }
     ]
   }
-]);
+];
+
+const router = createBrowserRouter(routes as ExtendedRouteObjectType[]);
 
 export default router;

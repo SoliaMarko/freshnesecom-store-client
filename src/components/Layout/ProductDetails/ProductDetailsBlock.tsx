@@ -1,5 +1,5 @@
 import {Box} from '@mui/material';
-import {ReactElement, useEffect, useMemo} from 'react';
+import {ReactElement, useContext, useEffect, useMemo} from 'react';
 import {useParams} from 'react-router-dom';
 import {useGetProductByIdQuery} from '@/store/services/productsApi';
 import {getTransformedProductData} from '@/utils/productsHelpers/getTransformedProductData';
@@ -7,9 +7,11 @@ import ProductDetailsGalleryBlock from './ProductDetailsGalleryBlock/ProductDeta
 import ProductDetailsInfoBlock from './ProductDetailsInfoBlock/ProductDetailsInfoBlock';
 import {resetLoading, setLoading} from '@/store/slices/loading.slice';
 import {useAppDispatch} from '@/hooks/apiHooks';
+import {BreadcrumbsContext} from '@/contexts/BreadcrumbsProvider';
 
 const ProductDetailsBlock = (): ReactElement => {
   const productID = useParams();
+  const {onAddBreadcrumb} = useContext(BreadcrumbsContext);
   const {data: productData, isLoading} = useGetProductByIdQuery(productID);
   const transformedData = useMemo(() => {
     return productData && getTransformedProductData(productData);
@@ -17,7 +19,11 @@ const ProductDetailsBlock = (): ReactElement => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (productData) dispatch(resetLoading());
+    if (productData) {
+      dispatch(resetLoading());
+      const {_id, title} = productData;
+      onAddBreadcrumb({link: `/products/${_id}`, name: title});
+    }
   }, [productData]);
 
   useEffect(() => {

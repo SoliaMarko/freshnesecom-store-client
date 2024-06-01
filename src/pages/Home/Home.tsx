@@ -1,18 +1,17 @@
 import {ReactElement} from 'react';
 import {Box, Typography} from '@mui/material';
-import BreadcrumbsBlock from '@/components/Layout/Home/BreadcrumbsBlock/BreadcrumbsBlock';
-import ProductsWithSortAndFiltersContainer from '@/components/Layout/Home/ProductsWithSortAndFiltersContainer/ProductsWithSortAndFiltersContainer';
+import StyledNavLink from '@/components/Custom/Links/StyledNavLink';
+import {productRoutes} from '@/constants/globalConstants/global.constant';
 
 const Home = (): ReactElement => {
   return (
-    <Box>
-      <BreadcrumbsBlock />
-      <Typography className="customH1" align="left">
-        All Products
+    <Box className="my-48 flex flex-col gap-12">
+      <Typography className="customH1" align="center">
+        Welcome to Freshnesecom!
       </Typography>
-      <Box>
-        <ProductsWithSortAndFiltersContainer />
-      </Box>
+      <StyledNavLink to={`/${productRoutes.PRODUCTS}`} size="2xl">
+        Start shopping now
+      </StyledNavLink>
     </Box>
   );
 };

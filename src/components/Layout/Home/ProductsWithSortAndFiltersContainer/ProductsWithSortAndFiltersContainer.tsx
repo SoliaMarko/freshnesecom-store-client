@@ -12,7 +12,7 @@ import Error from '@/pages/Error/Error';
 import {PaginationButtonAction} from '@/enums/global/paginationButtonAction.enum';
 import {useSelector} from 'react-redux';
 import {IRootState} from '@/types/IRootState.type';
-import SortBlock from '../SortBlock';
+import SortBlock from '../SortBlock/SortBlock';
 import {useAppDispatch} from '@/hooks/apiHooks';
 import {resetLoading, setLoading} from '@/store/slices/loading.slice';
 
@@ -74,7 +74,6 @@ const ProductsWithSortAndFiltersContainer = (): ReactElement => {
 
   useEffect(() => {
     if (isLoading) dispatch(setLoading());
-    console.log('loading');
   }, [isLoading]);
 
   return dataWithMeta ? (

@@ -5,8 +5,15 @@ import Footer from '@/components/Layout/Footer/Footer';
 import CustomSnackbar from '@/components/Custom/CustomSnackbar/CustomSnackbar';
 import CustomSpinner from '@/components/Custom/CustomSpinner/CustomSpinner';
 import CustomConfirmDialog from '@/components/Custom/CustomConfirmDialog/CustomConfirmDialog';
+import BreadcrumbsBlock from '@/components/Custom/BreadcrumbsBlock/BreadcrumbsBlock';
+import {useBreadcrumbs} from '@/hooks/useBreadcrumbs';
+import router from '@/router';
+import {getTransformedArrayWithIDs} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 
 const AppLayout = (): ReactElement => {
+  const breadcrumbs = useBreadcrumbs({router});
+  const breadcrumbsWithIDs = getTransformedArrayWithIDs(breadcrumbs);
+
   return (
     <>
       <CustomConfirmDialog />
@@ -14,6 +21,7 @@ const AppLayout = (): ReactElement => {
       <CustomSnackbar />
       <Header />
       <main className="mx-11 my-3">
+        <BreadcrumbsBlock breadcrumbs={breadcrumbsWithIDs} />
         <Outlet />
       </main>
       <Footer />

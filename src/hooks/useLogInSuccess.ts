@@ -33,7 +33,7 @@ export const useLogInSuccess = ({isLoginSuccess, loginData, formMethods, toast, 
       localStorage.setItem(AUTH_TOKENS_STORAGE, JSON.stringify(userInfo));
       if (formMethods) formMethods.reset(new LogInFormModel());
       openToastSuccess(responseSuccess.LOGIN);
-      navigate(`/${userRoutes.USER}/${userRoutes.PROFILE}`);
+      navigate(`/${userRoutes.USER}`);
     }
   }, [isLoginSuccess]);
 };

@@ -22,7 +22,7 @@ interface CategoriesFilterProps {
 
 const CategoriesFilter = ({onChange, handleChangeSelectedCategory, selectedCategory}: CategoriesFilterProps): ReactElement => {
   const {data, error, isLoading} = useGetProductsStatsQuery();
-  const [productsQuantity, setProductsQuantity] = useState<ProductsQuantityType[]>([{category: 1, items: 0}]);
+  const [productsQuantity, setProductsQuantity] = useState<ProductsQuantityType[]>([{category: Category.Books, items: 0}]);
   const dispatch = useAppDispatch();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {

@@ -11,7 +11,7 @@ interface ProductDetailsButtonProps {
 
 const ProductDetailsButton = ({id}: ProductDetailsButtonProps): ReactElement => {
   return (
-    <NavLink to={`/${productRoutes.PRODUCT}/${id}`}>
+    <NavLink to={`/${productRoutes.PRODUCTS}/${id}`}>
       <PrimaryButton>
         <Box className="flex flex-row items-center justify-between">
           <Typography className="text-lg font-semibold">Product Details</Typography>

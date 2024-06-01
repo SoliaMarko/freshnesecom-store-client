@@ -5,7 +5,7 @@ import {NavLink} from 'react-router-dom';
 
 const ProfileButton = (): ReactElement => {
   return (
-    <NavLink to={`/${userRoutes.USER}/${userRoutes.PROFILE}`}>
+    <NavLink to={`/${userRoutes.USER}`}>
       <Button>
         <Typography>Profile</Typography>
       </Button>
