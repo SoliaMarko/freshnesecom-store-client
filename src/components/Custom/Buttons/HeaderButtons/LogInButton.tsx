@@ -7,7 +7,7 @@ const LogInButton = (): ReactElement => {
   return (
     <NavLink to={`/${commonRoutes.LOGIN}`}>
       <Button>
-        <Typography sx={{textTransform: 'capitalize'}}>Log In</Typography>
+        <Typography>Log In</Typography>
       </Button>
     </NavLink>
   );

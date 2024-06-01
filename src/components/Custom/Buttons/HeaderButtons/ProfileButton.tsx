@@ -7,7 +7,7 @@ const ProfileButton = (): ReactElement => {
   return (
     <NavLink to={`/${userRoutes.USER}`}>
       <Button>
-        <Typography sx={{textTransform: 'capitalize'}}>Profile</Typography>
+        <Typography>Profile</Typography>
       </Button>
     </NavLink>
   );
