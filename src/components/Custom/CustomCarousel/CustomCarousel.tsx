@@ -37,11 +37,11 @@ const CustomCarousel = ({cards, cardsPerPage = 4, selectOnClick, arrowsClassName
   return cardsWithIDs ? (
     <Box className="flex flex-row items-center justify-between">
       {scrollable && (
-        <IconButton onClick={handleGoToPrevious} className="mr-3" disabled={firstCardIndex === 0}>
+        <IconButton onClick={handleGoToPrevious} className="m-0 sm:mr-3" disabled={firstCardIndex === 0}>
           <NavigateBeforeIcon className={arrowsClassNames} />
         </IconButton>
       )}
-      <Box className="flex flex-row flex-wrap items-stretch gap-8">
+      <Box className="flex flex-row flex-wrap items-stretch gap-4 overflow-hidden md:gap-8">
         {cardsWithIDs.map(({value: card}, index) => {
           const displayType = index >= firstCardIndex && index <= lastCardIndex ? 'block' : 'hidden';
           const selectedClassNames =
@@ -53,13 +53,15 @@ const CustomCarousel = ({cards, cardsPerPage = 4, selectOnClick, arrowsClassName
               in={index >= firstCardIndex && index <= lastCardIndex}
               onClick={() => handleSelectedItemIndex(index)}
             >
-              <Card className={clsx('flex-1 bg-transparent shadow-xl', displayType, selectedClassNames)}>{card}</Card>
+              <Card className={clsx('flex-1 border-2 border-solid border-primary-600 bg-transparent shadow-xl', displayType, selectedClassNames)}>
+                {card}
+              </Card>
             </Slide>
           );
         })}
       </Box>
       {scrollable && (
-        <IconButton onClick={handleGoToNext} className="ml-2" disabled={lastCardIndex === cards.length - 1}>
+        <IconButton onClick={handleGoToNext} className="m-0 sm:ml-3" disabled={lastCardIndex === cards.length - 1}>
           <NavigateNextIcon className={arrowsClassNames} />
         </IconButton>
       )}

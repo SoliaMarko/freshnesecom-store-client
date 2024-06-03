@@ -60,6 +60,9 @@ export default {
         ratingStars: {
           DEFAULT: '#fdbc15'
         }
+      },
+      screens: {
+        md: '910px'
       }
     }
   },

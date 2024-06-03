@@ -1,4 +1,3 @@
-import {Box} from '@mui/material';
 import {ReactElement} from 'react';
 
 interface ProductDetailsMainImageProps {
@@ -6,11 +5,7 @@ interface ProductDetailsMainImageProps {
 }
 
 const ProductDetailsMainImage = ({imageURL}: ProductDetailsMainImageProps): ReactElement => {
-  return (
-    <Box>
-      <img src={imageURL} className="aspect-4/3 w-full rounded-2xl object-cover" />
-    </Box>
-  );
+  return <img src={imageURL} className="aspect-4/3 w-full rounded-2xl object-cover shadow-xl" />;
 };
 
 export default ProductDetailsMainImage;

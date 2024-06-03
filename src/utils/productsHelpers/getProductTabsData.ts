@@ -6,8 +6,8 @@ export const getProductTabsData = (productData: TransformedProductType): TabData
   const {additionalDescriptions} = productData;
 
   return [
-    {id: uuid(), label: 'Description', hasLabelChip: false, content: additionalDescriptions},
-    {id: uuid(), label: 'Reviews', hasLabelChip: true},
-    {id: uuid(), label: 'Questions', hasLabelChip: true}
+    {id: uuid(), header: 'Description', hasHeaderChip: false, content: additionalDescriptions},
+    {id: uuid(), header: 'Reviews', hasHeaderChip: true},
+    {id: uuid(), header: 'Questions', hasHeaderChip: true}
   ];
 };

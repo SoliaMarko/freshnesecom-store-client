@@ -25,7 +25,6 @@ const CustomSlider = ({range, values, handleMinMax, classNames, thumb, displayLa
 
   return (
     <Box>
-      <Box className="my-3" />
       <Slider
         min={min}
         max={max}

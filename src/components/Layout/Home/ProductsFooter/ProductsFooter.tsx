@@ -18,10 +18,14 @@ const ProductsFooter = ({productsData, currentPage, handlePageChange}: ProductsF
   const {pagesCount} = productsMetadata;
 
   return (
-    <Box className="flex flex-row justify-between px-11 py-4">
-      <CustomPagination count={pagesCount} currentPage={currentPage} handlePageChange={handlePageChange} />
-      <ShowMoreButton count={pagesCount} currentPage={currentPage} handlePageChange={handlePageChange} />
-      <AmountBlock value={productsMetadata.itemsCount} label="products" />
+    <Box className="px:2 flex flex-col items-center justify-between gap-8 py-4 md:flex-row md:px-2">
+      <Box className="flex flex-row items-center justify-between md:hidden">
+        <ShowMoreButton count={pagesCount} currentPage={currentPage} handlePageChange={handlePageChange} classNames="order-1 md:order-2" />
+        <AmountBlock value={productsMetadata.itemsCount} label="products" classNames="order-3" />
+      </Box>
+      <ShowMoreButton count={pagesCount} currentPage={currentPage} handlePageChange={handlePageChange} classNames="hidden md:block md:order-2" />
+      <AmountBlock value={productsMetadata.itemsCount} label="products" classNames="hidden md:flex md:order-3" />
+      <CustomPagination count={pagesCount} currentPage={currentPage} handlePageChange={handlePageChange} classNames="order-2 md:order-1" />
     </Box>
   );
 };

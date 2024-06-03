@@ -17,7 +17,7 @@ const PrimaryButton = ({children, type = 'filled', onClickHandler, classNames}: 
   return (
     <Button
       type="submit"
-      className={clsx('rounded-xl border-2 border-solid border-secondary-200 px-5 py-3 capitalize', classNames, {
+      className={clsx('rounded-xl border-2 border-solid border-secondary-200 px-1 py-1 capitalize md:px-5 md:py-3', classNames, {
         'bg-secondary text-white': type === 'filled',
         'bg-white text-secondary': type === 'outlined'
       })}

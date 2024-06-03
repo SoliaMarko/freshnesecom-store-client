@@ -9,11 +9,7 @@ interface ProductMainDescriptionProps {
 const ProductMainDescription = ({productData}: ProductMainDescriptionProps): ReactElement => {
   const {mainDescription} = productData;
 
-  return (
-    <Typography className="customH3 font-normal" align="left">
-      {mainDescription}
-    </Typography>
-  );
+  return <Typography className="customH4 sm:customH3 text-left font-normal">{mainDescription}</Typography>;
 };
 
 export default ProductMainDescription;

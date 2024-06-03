@@ -19,8 +19,8 @@ const TabPanels = ({value, tabs}: TabPanelsProps): ReactElement => {
 
         return (
           <CustomTabPanel key={id} value={value} index={index}>
-            {tab.label === 'Description' && <AdditionalDescriptionBlock descriptions={tab.content as ItemWithIDType<AdditionalDescription>[]} />}
-            <Typography className="customH4 font-normal">{!tab.content && `There is no ${tab.label}.`}</Typography>
+            {tab.header === 'Description' && <AdditionalDescriptionBlock descriptions={tab.content as ItemWithIDType<AdditionalDescription>[]} />}
+            <Typography className="customH4 max-h-96 overflow-y-auto font-normal">{!tab.content && `There is no ${tab.header}.`}</Typography>
           </CustomTabPanel>
         );
       })}

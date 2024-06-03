@@ -13,9 +13,11 @@ body {
   min-height: 100vh;
 }
 
+/* main scroller */
+
 ::-webkit-scrollbar {
-  width: 1rem;
-  height: 1rem;
+  width: 0.8rem;
+  height: 0.8rem;
 }
 
 ::-webkit-scrollbar-track {
@@ -24,11 +26,26 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background-color: #46760a;
+  border-radius: 40px;
+  border: 2px solid #ebebeb;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: #325507;
 }
+
+.app *::-webkit-scrollbar {
+  width: 0.4rem;
+  height: 0.4rem;
+  border: 40px;
+}
+
+.app *::-webkit-scrollbar-thumb {
+  border-radius: 40px;
+  border: 1px solid #ebebeb;
+}
+
+/* heading */
 
 .heading {
   @apply mb-4 font-display font-semibold;

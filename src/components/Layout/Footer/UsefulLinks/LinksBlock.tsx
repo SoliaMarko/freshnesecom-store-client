@@ -15,11 +15,12 @@ export interface LinksProps {
 
 interface LinksBlockProps {
   linksData: {id: string; value: LinksProps}[];
+  classNames?: string;
 }
 
-const LinksBlock = ({linksData: links}: LinksBlockProps): ReactElement => {
+const LinksBlock = ({linksData: links, classNames}: LinksBlockProps): ReactElement => {
   return (
-    <>
+    <Box className={classNames}>
       {links.map((link) => {
         const {
           id,
@@ -28,14 +29,12 @@ const LinksBlock = ({linksData: links}: LinksBlockProps): ReactElement => {
 
         return (
           <Box key={id}>
-            <Typography className="customH3" align="left">
-              {header}
-            </Typography>
+            <Typography className="customH3 text-left">{header}</Typography>
             <LinksList labels={items} />
           </Box>
         );
       })}
-    </>
+    </Box>
   );
 };
 

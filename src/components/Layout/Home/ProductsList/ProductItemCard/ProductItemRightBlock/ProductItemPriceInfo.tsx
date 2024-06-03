@@ -7,7 +7,13 @@ interface ProductItemPriceInfoProps {
 }
 
 const ProductItemPriceInfo = ({productData}: ProductItemPriceInfoProps): ReactElement => {
-  return <CustomPriceBlock productData={productData} />;
+  return (
+    <CustomPriceBlock
+      productData={productData}
+      titleClassNames="font-semibold text-lg sm:text-2xl sm:mb-1"
+      contentClassNames="font-semibold text-base sm:text-xl"
+    />
+  );
 };
 
 export default ProductItemPriceInfo;

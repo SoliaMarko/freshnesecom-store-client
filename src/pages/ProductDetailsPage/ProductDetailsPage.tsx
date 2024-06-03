@@ -32,7 +32,7 @@ const ProductDetailsPage = (): ReactElement => {
   }, [isLoading]);
 
   return transformedData ? (
-    <Box className="flex flex-col">
+    <Box className="flex w-full flex-col">
       <ProductDetailsBlock productData={transformedData} />
       <RelatedProductsCarousel category={productData?.category as Category} currentProductID={productData?._id as string} />
     </Box>

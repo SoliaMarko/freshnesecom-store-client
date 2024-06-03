@@ -10,7 +10,7 @@ interface CustomTabPanelProps {
 const CustomTabPanel = ({children, index, value}: CustomTabPanelProps): ReactElement => {
   return (
     <Box role="tabpanel" hidden={value !== index}>
-      {value === index && <Box className="p-6">{children}</Box>}
+      {value === index && <Box className="p-3 sm:p-6">{children}</Box>}
     </Box>
   );
 };

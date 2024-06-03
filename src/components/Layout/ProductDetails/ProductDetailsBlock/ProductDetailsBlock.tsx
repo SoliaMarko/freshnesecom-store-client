@@ -11,7 +11,7 @@ interface ProductDetailsBlockProps {
 const ProductDetailsBlock = ({productData}: ProductDetailsBlockProps): ReactElement => {
   return (
     <Box className="flex flex-row justify-center">
-      <Box className="flex max-w-7xl flex-row justify-between gap-12">
+      <Box className="flex max-w-7xl flex-col justify-between gap-6 md:flex-row md:gap-12">
         <ProductDetailsGalleryBlock productData={productData} />
         <ProductDetailsInfoBlock productData={productData} />
       </Box>

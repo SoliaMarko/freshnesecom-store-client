@@ -15,7 +15,6 @@ interface UseBreadcrumbsParams {
 export const useBreadcrumbs = ({router}: UseBreadcrumbsParams): UseBreadcrumbsReturnValues[] => {
   const {breadcrumbNameMap} = useContext(BreadcrumbsContext);
   const location = useLocation();
-  console.log(location.pathname);
   const pathnames = ['', ...location.pathname.split('/').filter((pathname) => pathname)];
   const currentRoutes: string[] = [];
 

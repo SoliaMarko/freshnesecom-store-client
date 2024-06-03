@@ -20,7 +20,9 @@ const BrandCheckboxItem = ({children, currentBrand, selectedBrands, onChange}: B
       control={<Checkbox checked={selectedBrands?.includes(currentBrand)} value={currentBrand} onChange={onChange} className="text-secondary" />}
       label={
         <Box className="flex min-w-80 flex-row justify-between rounded-lg px-2 py-1 capitalize text-primary">
-          <Typography className={clsx('customH3 m-0 font-normal hover:font-semibold hover:text-secondary', selectedClasses)}>{children}</Typography>
+          <Typography className={clsx('customH3 m-0 truncate font-normal hover:font-semibold hover:text-secondary', selectedClasses)}>
+            {children}
+          </Typography>
         </Box>
       }
     />

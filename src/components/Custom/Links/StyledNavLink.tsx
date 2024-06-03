@@ -5,12 +5,12 @@ import clsx from 'clsx';
 interface StyledNavLinkProps {
   children: ReactNode;
   to: string;
-  size?: string;
+  classNames?: string;
 }
 
-const StyledNavLink = ({children, to, size = 'medium'}: StyledNavLinkProps): ReactElement => {
+const StyledNavLink = ({children, to, classNames = 'text-medium'}: StyledNavLinkProps): ReactElement => {
   return (
-    <NavLink to={to} className={clsx('text-secondary no-underline hover:text-red-500 hover:underline', `text-${size}`)}>
+    <NavLink to={to} className={clsx('text-secondary no-underline hover:text-red-500 hover:underline', classNames)}>
       {children}
     </NavLink>
   );

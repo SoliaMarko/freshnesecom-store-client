@@ -16,8 +16,8 @@ const ProductDetailsButton = ({id, title = 'Product Details', classNames}: Produ
     <NavLink to={`/${productRoutes.PRODUCTS}/${id}`} reloadDocument>
       <PrimaryButton classNames={classNames}>
         <Box className="flex flex-row items-center justify-between">
-          <Typography className="text-lg font-semibold">{title}</Typography>
-          <KeyboardArrowRightIcon />
+          <Typography className="text-base font-semibold sm:text-lg">{title}</Typography>
+          <KeyboardArrowRightIcon className="text-xl md:text-2xl" />
         </Box>
       </PrimaryButton>
     </NavLink>

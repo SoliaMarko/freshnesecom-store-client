@@ -5,7 +5,7 @@ import Copyright from './Copyright/Copyright';
 
 const Footer = (): ReactElement => {
   return (
-    <footer className="mx-12 mb-16 mt-12">
+    <footer className="mx-2 mb-8 mt-6 sm:mx-6 sm:mb-16 sm:mt-12 md:mx-12">
       <UsefulLinks />
       <ProductTags />
       <Copyright />

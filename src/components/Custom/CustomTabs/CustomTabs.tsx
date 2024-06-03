@@ -6,9 +6,9 @@ import TabsBlock from './TabsBlocks/TabsBlock';
 import {ItemWithIDType} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 
 export interface TabDataInterface {
-  label: string;
+  header: string;
   id: string;
-  hasLabelChip: boolean;
+  hasHeaderChip: boolean;
   content?: ItemWithIDType<AdditionalDescription>[];
 }
 
@@ -24,12 +24,12 @@ const CustomTabs = ({tabsData}: CustomTabProps): ReactElement => {
   };
 
   return (
-    <Box className="w-full">
+    <>
       <Box className="border-0 border-solid border-b-primary-600">
         <TabsBlock value={value} onChange={handleChange} tabsData={tabsData} />
       </Box>
       <TabPanels tabs={tabsData} value={value} />
-    </Box>
+    </>
   );
 };
 

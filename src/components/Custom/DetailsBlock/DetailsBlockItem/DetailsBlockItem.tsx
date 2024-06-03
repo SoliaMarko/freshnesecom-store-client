@@ -13,7 +13,7 @@ const DetailsBlockItem = ({title = '', content = ''}: DetailsBlockItemProps): Re
   if (!title || !content) return;
 
   return (
-    <Box className="flex flex-row justify-start">
+    <Box className="flex flex-row items-center justify-start gap-2 sm:gap-0">
       <Typography className=" w-1/3 text-left capitalize text-primary-300">{formattedTitle}</Typography>
       <Typography className="text-left capitalize text-secondary">{content}</Typography>
     </Box>

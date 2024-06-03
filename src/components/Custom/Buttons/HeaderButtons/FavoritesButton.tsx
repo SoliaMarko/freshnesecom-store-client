@@ -13,7 +13,7 @@ const FavoritesButton = (): ReactElement => {
     <NavLink to={`/${userRoutes.USER}/${userRoutes.FAVORITES}`}>
       <Box className="relative">
         <IconButton>
-          <FavoriteBorderIcon className="text-3xl text-primary" />
+          <FavoriteBorderIcon className="text-2xl text-primary sm:text-3xl" />
           <CustomBadge content={productsInWishes} alignX="left" alignY="bottom" />
         </IconButton>
       </Box>

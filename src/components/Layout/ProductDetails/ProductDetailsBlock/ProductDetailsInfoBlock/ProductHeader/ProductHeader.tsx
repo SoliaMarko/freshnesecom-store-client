@@ -12,9 +12,7 @@ const ProductHeader = ({productData}: ProductHeaderProps): ReactElement => {
 
   return (
     <Box className="flex flex-col">
-      <Typography className="customH1 mb-0" align="left">
-        {title}
-      </Typography>
+      <Typography className="customH2 sm:customH1 mb-0 text-left">{title}</Typography>
       <Box className="flex flex-row items-center justify-start gap-2">
         <BasicRating defaultRatingValue={rating} />
       </Box>
