@@ -15,7 +15,7 @@ interface CustomCarouselProps {
 
 const CustomCarousel = ({cards, cardsPerPage = 4, selectOnClick, arrowsClassNames = 'text-5xl'}: CustomCarouselProps): ReactElement => {
   const [firstCardIndex, setFirstCardIndex] = useState<number>(0);
-  const [slideDirection, setSlideDirection] = useState<'right' | 'left'>('left');
+  const [slideDirection, setSlideDirection] = useState<Direction>(Direction.left);
   const [selectedItemIndex, setSelectedItemIndex] = useState<number>(0);
   const cardsWithIDs = getTransformedArrayWithIDs(cards);
   const lastCardIndex = firstCardIndex + cardsPerPage - 1;
