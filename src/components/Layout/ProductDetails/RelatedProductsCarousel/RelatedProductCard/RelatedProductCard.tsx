@@ -16,7 +16,7 @@ const RelatedProductCard = ({productData}: RelatedProductCardProps): ReactElemen
   return (
     <Box className="flex flex-col gap-4 p-2">
       <Box className="relative">
-        {discount ? <CustomChip value={`-${discount}%`} classNames="text-secondary bg-secondary-500 absolute top-3 left-3" /> : <></>}
+        {!!discount && <CustomChip value={`-${discount}%`} classNames="text-secondary bg-secondary-500 absolute top-3 left-3" />}
         <img src={mainImage} alt={`${title}-illustration`} loading="lazy" className="left-0 top-0 aspect-4/3 w-full rounded-xl object-cover" />
       </Box>
       <Box className="flex flex-col items-start gap-1">

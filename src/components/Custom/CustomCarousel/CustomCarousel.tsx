@@ -4,6 +4,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import {Box, Card, Slide, IconButton} from '@mui/material';
 import {getTransformedArrayWithIDs} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 import clsx from 'clsx';
+import {Direction} from '@/enums/global/direction.enum';
 
 interface CustomCarouselProps {
   cards: ReactNode[];
@@ -21,12 +22,12 @@ const CustomCarousel = ({cards, cardsPerPage = 4, selectOnClick, arrowsClassName
   const scrollable = cards.length > cardsPerPage;
 
   const handleGoToPrevious = () => {
-    setSlideDirection('right');
+    setSlideDirection(Direction.right);
     setFirstCardIndex((current) => current - 1);
   };
 
   const handleGoToNext = () => {
-    setSlideDirection('left');
+    setSlideDirection(Direction.left);
     setFirstCardIndex((current) => current + 1);
   };
 
