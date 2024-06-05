@@ -24,7 +24,7 @@ const BrandsFilter = ({onChange, options, handleAddSelectedBrand, handleRemoveSe
   }, [selectedBrands]);
 
   return (
-    <Box className="flex max-h-64 max-w-80 flex-col gap-4">
+    <Box className="flex max-h-64 max-w-36 flex-col gap-4 pr-5 md:max-w-40 lg:max-w-56 xl:max-w-64 2xl:max-w-80">
       <Typography className="customH2 m-0 text-left text-primary">Brands</Typography>
       <Box className="overflow-y-auto overflow-x-hidden">
         {getTransformedArrayWithIDs(options).map((categoryInfo) => {

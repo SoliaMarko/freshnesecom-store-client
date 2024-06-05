@@ -91,7 +91,7 @@ const ProductFiltersForm = ({handleSearchParamsChange}: ProductFiltersFormProps)
 
   return (
     <form>
-      <Box className="flex flex-col gap-12">
+      <Box className="flex flex-col items-center gap-6 md:gap-8 lg:gap-12">
         <Controller
           control={control}
           name="category"

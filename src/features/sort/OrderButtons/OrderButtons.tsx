@@ -11,15 +11,15 @@ interface OrderButtonsProps {
 }
 
 const OrderButtons = ({handleOrderToggle, selectedOrder}: OrderButtonsProps): ReactElement => {
-  const selectedClasses = 'bg-sandShade-400 text-sandShade-200';
+  const selectedClasses = 'border-sandShade-200 border-solid border-2 text-sandShade-200';
 
   return (
-    <Box>
+    <Box className="flex flex-row gap-1 sm:gap-2">
       <OrderButton value={Order.ASC} classNames={selectedOrder === Order.ASC ? selectedClasses : ''} handleOrderToggle={handleOrderToggle}>
-        <ArrowUpwardIcon className="h-8 w-8 px-0" />
+        <ArrowUpwardIcon className="h-6 w-6 sm:h-8 sm:w-8" />
       </OrderButton>
       <OrderButton value={Order.DESC} classNames={selectedOrder === Order.DESC ? selectedClasses : ''} handleOrderToggle={handleOrderToggle}>
-        <ArrowDownwardIcon className="h-8 w-8 px-0" />
+        <ArrowDownwardIcon className="h-6 w-6 sm:h-8 sm:w-8" />
       </OrderButton>
     </Box>
   );

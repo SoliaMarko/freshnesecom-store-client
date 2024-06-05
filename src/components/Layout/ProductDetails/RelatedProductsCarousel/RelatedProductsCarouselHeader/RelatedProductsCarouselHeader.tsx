@@ -4,9 +4,9 @@ import {ReactElement} from 'react';
 
 const RelatedProductsCarouselHeader = (): ReactElement => {
   return (
-    <Box className="my-2 flex flex-row items-center justify-between">
+    <Box className="my-2 flex flex-row items-center justify-between px-2">
       <Box>
-        <Typography className="customH2 m-0">You will maybe love</Typography>
+        <Typography className="m-0 text-lg font-semibold sm:text-2xl">You will maybe love</Typography>
       </Box>
       <MoreProductsButton />
     </Box>

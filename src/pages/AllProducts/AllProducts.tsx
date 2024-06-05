@@ -5,9 +5,7 @@ import ProductsWithSortAndFiltersContainer from '@/components/Layout/Home/Produc
 const AllProducts = (): ReactElement => {
   return (
     <Box>
-      <Typography className="customH1 py-2" align="left">
-        All Products
-      </Typography>
+      <Typography className="customH1 py-2 text-left">All Products</Typography>
       <Box>
         <ProductsWithSortAndFiltersContainer />
       </Box>

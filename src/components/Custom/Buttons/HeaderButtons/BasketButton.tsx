@@ -13,7 +13,7 @@ const BasketButton = (): ReactElement => {
     <NavLink to={`/${commonRoutes.CART}`}>
       <Box className="relative">
         <IconButton>
-          <ShoppingBasketIcon className="text-3xl text-primary" />
+          <ShoppingBasketIcon className="text-2xl text-primary sm:text-3xl" />
           <CustomBadge content={productsInBasket} alignX="left" alignY="bottom" />
         </IconButton>
       </Box>

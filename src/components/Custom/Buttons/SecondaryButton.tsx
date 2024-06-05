@@ -1,12 +1,14 @@
 import {Button} from '@mui/material';
+import clsx from 'clsx';
 import {ReactElement, ReactNode} from 'react';
 
 interface SecondaryButtonProps {
   children: ReactNode;
   onClickHandler?: () => void;
+  classNames?: string;
 }
 
-const SecondaryButton = ({children, onClickHandler}: SecondaryButtonProps): ReactElement => {
+const SecondaryButton = ({children, onClickHandler, classNames}: SecondaryButtonProps): ReactElement => {
   const handleClick = (): void => {
     onClickHandler && onClickHandler();
   };
@@ -14,7 +16,10 @@ const SecondaryButton = ({children, onClickHandler}: SecondaryButtonProps): Reac
   return (
     <Button
       type="submit"
-      className="flex min-w-56 flex-row items-center justify-between rounded-xl bg-primary-600 px-6 py-1.5 capitalize text-primary"
+      className={clsx(
+        'flex min-w-40 flex-row items-center justify-between rounded-xl bg-primary-600 px-3 py-1 capitalize text-primary sm:min-w-56 sm:px-6 sm:py-1.5',
+        classNames
+      )}
       onClick={handleClick}
     >
       {children}

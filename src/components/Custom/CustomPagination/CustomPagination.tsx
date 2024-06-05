@@ -4,21 +4,23 @@ import Stack from '@mui/material/Stack';
 import {Box, PaginationItem, Typography} from '@mui/material';
 import {generalAppInfo} from '@/constants/globalConstants/global.constant';
 import {PaginationButtonAction} from '@/enums/global/paginationButtonAction.enum';
+import clsx from 'clsx';
 
 interface CustomPaginationProps {
   count: number;
   currentPage?: number;
   disabled?: boolean;
   handlePageChange: (page: number, action: PaginationButtonAction) => void;
+  classNames?: string;
 }
 
-const CustomPagination = ({count, currentPage = 1, disabled = false, handlePageChange}: CustomPaginationProps): ReactElement => {
+const CustomPagination = ({count, currentPage = 1, disabled = false, handlePageChange, classNames}: CustomPaginationProps): ReactElement => {
   const handleClick = (_event: ChangeEvent<unknown>, page: number): void => {
     handlePageChange(page - 1, PaginationButtonAction.SwitchPage);
   };
 
   return (
-    <Box className="flex flex-1 flex-row items-center">
+    <Box className={clsx('flex flex-1 flex-row items-center', classNames)}>
       <Typography className="text-primary-300">Page</Typography>
       <Stack spacing={2}>
         <Pagination

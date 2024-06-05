@@ -3,27 +3,21 @@ import {NavLink} from 'react-router-dom';
 import {Box} from '@mui/material';
 import SearchBar from './SearchBar/SearchBar';
 import {commonRoutes} from '@/constants/globalConstants/global.constant';
-import {selectUser} from '@/store/slices/user.slice';
-import {useSelector} from 'react-redux';
-import FavoritesButton from '@/components/Custom/Buttons/HeaderButtons/FavoritesButton';
-import UserButton from '@/components/Custom/Buttons/HeaderButtons/UserButton';
-import BasketButton from '@/components/Custom/Buttons/HeaderButtons/BasketButton';
 import logo from '@assets/logo.svg';
+import HeaderMenus from './HeaderMenus/HeaderMenus';
 
 const MainHeader = (): ReactElement => {
-  const user = useSelector(selectUser);
-
   return (
-    <Box className="my-2 flex items-center justify-between">
-      <NavLink to={commonRoutes.ROOT}>
-        <img src={logo} alt="logo" className="py-4" />
-      </NavLink>
-      <SearchBar />
-      <Box className="flex gap-4">
-        <UserButton />
-        {user.authorized && <FavoritesButton />}
-        <BasketButton />
+    <Box className="my-2 flex flex-col items-center justify-between gap-3 md:flex-row">
+      <Box className="flex w-full flex-row items-center justify-between md:w-auto">
+        <NavLink to={commonRoutes.ROOT} className="order-1 md:order-1">
+          <img src={logo} alt="logo" className="w-36 py-4 sm:w-full" />
+        </NavLink>
+        <HeaderMenus classNames="order-2 md:hidden" />
       </Box>
+
+      <SearchBar classNames="order-3 md:order-2" />
+      <HeaderMenus classNames="hidden md:order-3 md:flex" />
     </Box>
   );
 };

@@ -12,7 +12,7 @@ import {getTransformedArrayWithIDs} from '@/utils/arrayFormaters/getTransformedA
 
 const AppLayout = (): ReactElement => {
   const breadcrumbs = useBreadcrumbs({router});
-  const breadcrumbsWithIDs = getTransformedArrayWithIDs(breadcrumbs);
+  const breadcrumbsWithIDs = breadcrumbs.length > 1 && getTransformedArrayWithIDs(breadcrumbs);
 
   return (
     <>
@@ -20,8 +20,8 @@ const AppLayout = (): ReactElement => {
       <CustomSpinner />
       <CustomSnackbar />
       <Header />
-      <main className="mx-11 my-3">
-        <BreadcrumbsBlock breadcrumbs={breadcrumbsWithIDs} />
+      {breadcrumbsWithIDs && <BreadcrumbsBlock breadcrumbs={breadcrumbsWithIDs} />}
+      <main className="relative my-3">
         <Outlet />
       </main>
       <Footer />

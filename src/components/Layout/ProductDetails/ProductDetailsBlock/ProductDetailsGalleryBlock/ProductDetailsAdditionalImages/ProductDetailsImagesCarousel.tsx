@@ -16,7 +16,7 @@ const ProductDetailsImagesCarousel = ({images, handleClick}: ProductDetailsImage
     <ProductDetailsAdditionalImageItem key={index} imageURL={value.value} handleClick={handleClick} />
   ));
 
-  return <CustomCarousel cards={additionalImagesComponents} cardsPerPage={2} arrowsClassNames="text-2l" selectOnClick />;
+  return <CustomCarousel cards={additionalImagesComponents} cardsPerPage={2} arrowsClassNames="text-2xl" selectOnClick />;
 };
 
 export default ProductDetailsImagesCarousel;

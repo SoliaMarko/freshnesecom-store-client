@@ -1,5 +1,5 @@
 import {Order} from '@/enums/sort/order.enum';
-import {Button} from '@mui/material';
+import {IconButton} from '@mui/material';
 import clsx from 'clsx';
 import {ReactElement, ReactNode} from 'react';
 
@@ -16,9 +16,9 @@ const OrderButton = ({children, value, handleOrderToggle, classNames}: OrderButt
   };
 
   return (
-    <Button className={clsx('px-0 text-primary-300', classNames)} onClick={handleClick}>
+    <IconButton className={clsx('p-0 text-primary-300', classNames)} onClick={handleClick}>
       {children}
-    </Button>
+    </IconButton>
   );
 };
 

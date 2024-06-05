@@ -15,9 +15,13 @@ const ProductPurchaseBlock = ({productData}: ProductPurchaseBlockProps): ReactEl
   const quantityOptionsWithIDs = getTransformedArrayWithIDs(quantityUnitOptions.map((option): string => option.label));
 
   return (
-    <Box className="mr-9 flex flex-row justify-between rounded-xl border-2 border-solid border-primary-400 p-5">
-      <CustomPriceBlock productData={productData} size="medium" />
-      <Box className="flex flex-row gap-8">
+    <Box className="my-4 flex flex-row items-center justify-between rounded-xl border-2 border-solid border-primary-400 px-3 py-2 sm:p-5 md:mr-9">
+      <CustomPriceBlock
+        productData={productData}
+        titleClassNames="font-semibold text-lg sm:text-2xl sm:mb-1"
+        contentClassNames="font-semibold text-base sm:text-xl"
+      />
+      <Box className="flex flex-row gap-4 sm:gap-8">
         <CustomQuantityInput options={quantityOptionsWithIDs} />
         <ProductAddToCartButton />
       </Box>

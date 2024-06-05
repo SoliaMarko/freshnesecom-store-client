@@ -9,7 +9,7 @@ interface AdditionalDescriptionProps {
 
 const AdditionalDescriptionBlock = ({descriptions}: AdditionalDescriptionProps): ReactElement => {
   return (
-    <Box className="flex flex-col gap-8">
+    <Box className="flex max-h-96 flex-col gap-4 overflow-y-auto">
       {descriptions?.map((description) => {
         const {
           id,
@@ -19,7 +19,7 @@ const AdditionalDescriptionBlock = ({descriptions}: AdditionalDescriptionProps):
 
         return (
           <Box key={id} className="text-left">
-            <Typography className="customH3">{title}</Typography>
+            <Typography className="customH3 m-0 mb-1">{title}</Typography>
             <Typography className="customH4 font-normal">{content}</Typography>
           </Box>
         );

@@ -1,18 +1,20 @@
 import {TransformedProductType} from '@/interfaces/products/transformedProductType.interface';
 import {Box, Typography} from '@mui/material';
+import clsx from 'clsx';
 import {ReactElement} from 'react';
 
 interface ProductItemDeliveryDetailsProps {
   productData: TransformedProductType;
+  classNames?: string;
 }
 
-const ProductItemDeliveryDetails = ({productData}: ProductItemDeliveryDetailsProps): ReactElement => {
+const ProductItemDeliveryDetails = ({productData, classNames}: ProductItemDeliveryDetailsProps): ReactElement => {
   const {freeShipping} = productData;
 
   return (
-    <Box className="flex flex-col items-start justify-center">
-      <Typography className="customH3 m-0 font-semibold text-primary-300">{freeShipping && 'Free Shipping'}</Typography>
-      <Typography className="customH3 m-0 font-normal text-primary-300">Delivery from [X] day(s)</Typography>
+    <Box className={clsx('flex flex-col items-start justify-center', classNames)}>
+      <Typography className="m-0 text-left text-base font-semibold text-primary-300 sm:text-lg">{freeShipping && 'Free Shipping'}</Typography>
+      <Typography className="m-0 text-left text-base font-normal text-primary-300 sm:text-lg">Delivery from [X] day(s)</Typography>
     </Box>
   );
 };

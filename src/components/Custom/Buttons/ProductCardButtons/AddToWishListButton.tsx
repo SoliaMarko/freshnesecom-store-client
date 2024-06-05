@@ -1,20 +1,20 @@
-import {ReactElement, useState} from 'react';
+import {ReactElement} from 'react';
 import {Typography} from '@mui/material';
 import SecondaryButton from '@/components/Custom/Buttons/SecondaryButton';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-const AddToWishListButton = (): ReactElement => {
-  const [isFavorite, setIsFavorite] = useState<boolean>(true);
+interface AddToWishListButtonProps {
+  isFavorite: boolean;
+  handleClickFavorite: () => void;
+  classNames?: string;
+}
 
-  const handleIsFavorite = (): void => {
-    setIsFavorite((current) => !current);
-  };
-
+const AddToWishListButton = ({isFavorite, handleClickFavorite, classNames}: AddToWishListButtonProps): ReactElement => {
   return (
-    <SecondaryButton onClickHandler={handleIsFavorite}>
-      {isFavorite ? <FavoriteIcon className="text-tangerineShade" /> : <FavoriteBorderIcon />}
-      <Typography className="text-lg font-semibold">{isFavorite ? 'Remove Wish' : 'Add To Wishlist'}</Typography>
+    <SecondaryButton onClickHandler={handleClickFavorite} classNames={classNames}>
+      {isFavorite ? <FavoriteIcon className="text-red-500" /> : <FavoriteBorderIcon />}
+      <Typography className="text-sm font-semibold sm:text-lg">{isFavorite ? 'Remove Wish' : 'Add To Wishlist'}</Typography>
     </SecondaryButton>
   );
 };

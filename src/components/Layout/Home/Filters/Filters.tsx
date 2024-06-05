@@ -9,7 +9,7 @@ interface FilterProps {
 
 const Filters = ({handleSearchParamsChange}: FilterProps): ReactElement => {
   return (
-    <Box className="w-1/4">
+    <Box className="sticky top-6 hidden h-full max-h-lvh w-1/4 overflow-y-auto xl:block">
       <ProductFiltersForm handleSearchParamsChange={handleSearchParamsChange} />
     </Box>
   );

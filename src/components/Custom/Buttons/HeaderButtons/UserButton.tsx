@@ -33,7 +33,7 @@ const UserButton = (): ReactElement => {
 
   return (
     <CustomMenu header="user" options={userPopoverWithIDs}>
-      <PersonOutlineIcon className="text-3xl text-primary" />
+      <PersonOutlineIcon className="text-2xl text-primary sm:text-3xl" />
     </CustomMenu>
   );
 };

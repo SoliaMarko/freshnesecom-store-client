@@ -8,7 +8,7 @@ const ProductAddToCartButton = (): ReactElement => {
     <PrimaryButton>
       <Box className="flex flex-row items-center justify-between gap-3">
         <ShoppingCartIcon />
-        <Typography className="text-lg font-semibold">Add to cart</Typography>
+        <Typography className="hidden text-sm font-semibold sm:block md:text-lg">Add to cart</Typography>
       </Box>
     </PrimaryButton>
   );

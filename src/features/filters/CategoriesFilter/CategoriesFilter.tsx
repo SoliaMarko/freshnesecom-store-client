@@ -47,14 +47,9 @@ const CategoriesFilter = ({onChange, handleChangeSelectedCategory, selectedCateg
   }
 
   return (
-    <Box className="flex max-h-64 max-w-80 flex-col gap-4 pr-5">
+    <Box className="flex max-w-36 flex-col gap-4 md:max-w-40 lg:max-w-56 xl:max-w-64 2xl:max-w-80">
       <Typography className="customH2 m-0 text-left text-primary">Categories</Typography>
-      <RadioGroup
-        className="flex max-h-48 flex-col items-stretch gap-1"
-        name="category-filter-radio"
-        value={selectedCategory}
-        onChange={handleChange}
-      >
+      <RadioGroup className="flex max-h-48 flex-col gap-1" name="category-filter-radio" value={selectedCategory} onChange={handleChange}>
         <CategoryRadioButton
           quantityInCurrentCategory={productsQuantity.reduce((acc, cur) => acc + cur.items, 0)}
           currentCategory={Category.AllCategories}

@@ -1,14 +1,10 @@
-import CustomTabs from '@/components/Custom/CustomTabs/CustomTabs';
-import {TransformedProductType} from '@/interfaces/products/transformedProductType.interface';
-import {getProductTabsData} from '@/utils/productsHelpers/getProductTabsData';
+import CustomTabs, {TabDataInterface} from '@/components/Custom/CustomTabs/CustomTabs';
 
 interface ProductTabsProps {
-  productData: TransformedProductType;
+  productTabsData: TabDataInterface[];
 }
 
-const ProductTabs = ({productData}: ProductTabsProps) => {
-  const productTabsData = getProductTabsData(productData);
-
+const ProductTabs = ({productTabsData}: ProductTabsProps) => {
   return <CustomTabs tabsData={productTabsData} />;
 };
 

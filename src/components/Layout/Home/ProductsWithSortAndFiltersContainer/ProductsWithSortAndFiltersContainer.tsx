@@ -15,6 +15,7 @@ import {IRootState} from '@/types/IRootState.type';
 import SortBlock from '../SortBlock/SortBlock';
 import {useAppDispatch} from '@/hooks/apiHooks';
 import {resetLoading, setLoading} from '@/store/slices/loading.slice';
+import FilterButton from '@/components/Custom/Buttons/FilterButtons/FilterButton';
 
 export type NewParams = {
   [key: string]: string | string[] | number;
@@ -78,12 +79,15 @@ const ProductsWithSortAndFiltersContainer = (): ReactElement => {
 
   return dataWithMeta ? (
     <Box>
-      <SortBlock handleSearchParamsChange={handleSearchParamsChange} />
-      <Box className="flex flex-row justify-between gap-10 pb-11 pt-16" ref={productListRef}>
+      <Box className="flex flex-row justify-start gap-2 sm:gap-4">
+        <FilterButton classNames="xl:hidden" handleSearchParamsChange={handleSearchParamsChange} />
+        <SortBlock handleSearchParamsChange={handleSearchParamsChange} />
+      </Box>
+      <Box className="relative flex flex-row justify-between gap-4 pb-6 pt-8 lg:gap-10 lg:pb-11 lg:pt-16 2xl:pt-12" ref={productListRef}>
         <Filters handleSearchParamsChange={handleSearchParamsChange} />
         <ProductsList currentPageData={currentPageData} />
       </Box>
-      {dataWithMeta && <ProductsFooter productsData={dataWithMeta} handlePageChange={handlePageChange} currentPage={currentPage} />}
+      <ProductsFooter productsData={dataWithMeta} handlePageChange={handlePageChange} currentPage={currentPage} />
     </Box>
   ) : (
     <></>

@@ -36,7 +36,7 @@ const CustomMenu = ({children, header, options, handleSelectOption}: CustomMenuP
         disableElevation
         onClick={handleOpen}
         endIcon={<KeyboardArrowDownIcon className="text-secondary" />}
-        className="border-none text-base font-semibold capitalize text-primary hover:bg-primary-500"
+        className="border-none text-sm font-semibold capitalize text-primary hover:bg-primary-500 sm:text-base"
       >
         {children}
       </Button>
