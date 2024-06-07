@@ -14,7 +14,6 @@ import {ToastContext} from '@/contexts/ToastProvider';
 
 const SignUpForm = (): ReactElement => {
   const {toast, onHandleToast} = useContext(ToastContext);
-
   const formMethods = useForm<SignUpFormModel>({defaultValues: new SignUpFormModel(), resolver: yupResolver(SignUpFormSchema)});
   const [registerUser, {isSuccess: isSignupSuccess, isError: isSignupError, error: signupError}] = useRegisterUserMutation();
   const [loginUser, {data: loginData, isSuccess: isLoginSuccess, isError: isLoginError, error: loginError}] = useLoginUserMutation();

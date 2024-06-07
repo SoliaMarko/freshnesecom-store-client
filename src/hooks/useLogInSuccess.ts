@@ -13,7 +13,7 @@ import {responseSuccess} from '@/constants/successConstants/success.constant';
 
 interface UseLogInSuccessParams extends UseToastProps {
   isLoginSuccess: boolean;
-  loginData: LogInData;
+  loginData?: LogInData;
   formMethods?: UseFormReturn<LogInFormModel, undefined>;
 }
 
@@ -25,11 +25,11 @@ export const useLogInSuccess = ({isLoginSuccess, loginData, formMethods, toast, 
   useEffect(() => {
     if (isLoginSuccess) {
       const userInfo = {
-        accessToken: loginData.accessToken,
-        refreshToken: loginData.refreshToken
+        accessToken: loginData?.accessToken || '',
+        refreshToken: loginData?.refreshToken || ''
       };
       dispatch(setAuthTokens(userInfo));
-      dispatch(setUser(loginData.user));
+      dispatch(setUser(loginData?.user));
       localStorage.setItem(AUTH_TOKENS_STORAGE, JSON.stringify(userInfo));
       if (formMethods) formMethods.reset(new LogInFormModel());
       openToastSuccess(responseSuccess.LOGIN);

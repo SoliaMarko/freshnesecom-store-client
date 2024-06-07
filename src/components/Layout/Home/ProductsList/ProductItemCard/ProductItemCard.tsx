@@ -9,6 +9,11 @@ import {TransformedProductType} from '@/interfaces/products/transformedProductTy
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ProductDetailsButton from '@/components/Custom/Buttons/ProductCardButtons/ProductDetailsButton';
+import {useAddToWishistMutation, useRemoveFromWishistMutation} from '@/store/services/userApi';
+import {useSelector} from 'react-redux';
+import {IRootState} from '@/types/IRootState.type';
+import {useNavigate} from 'react-router-dom';
+import {commonRoutes} from '@/constants/globalConstants/global.constant';
 
 interface ProductItemCardProps {
   productData: TransformedProductType;
@@ -17,8 +22,12 @@ interface ProductItemCardProps {
 const ProductItemCard = ({productData}: ProductItemCardProps): ReactElement => {
   const {id, title, images} = productData;
   const mainImage = images[0].value;
-  const [isFavorite, setIsFavorite] = useState<boolean>(true);
+  const {authorized, wishlist} = useSelector((state: IRootState) => state.user);
+  const [isFavorite, setIsFavorite] = useState<boolean>(wishlist?.includes(id) || false);
   const [isLikeDisplayed, setIsLikeDisplayed] = useState<boolean>(false);
+  const [addToWishlist] = useAddToWishistMutation();
+  const [removeFromWishlist] = useRemoveFromWishistMutation();
+  const navigate = useNavigate();
 
   const handleLikeDisplay = (): void => {
     setIsLikeDisplayed(true);
@@ -26,6 +35,13 @@ const ProductItemCard = ({productData}: ProductItemCardProps): ReactElement => {
   };
 
   const handleIsFavorite = (): void => {
+    if (!authorized) {
+      navigate(`/${commonRoutes.LOGIN}`);
+      return;
+    }
+
+    if (isFavorite) removeFromWishlist({productID: id});
+    else addToWishlist({productID: id});
     setIsFavorite((current) => !current);
     handleLikeDisplay();
   };
