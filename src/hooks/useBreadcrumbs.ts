@@ -1,15 +1,21 @@
 import {useContext} from 'react';
 import {useLocation} from 'react-router-dom';
 import {BreadcrumbsContext} from '@/contexts/BreadcrumbsProvider';
-import {ExtendedRouteChildrenType} from '@/router';
+import {RouteObject} from 'react-router-dom';
+
+type RouteConfig = RouteObject;
+
+type RouterConfig = {
+  routes: RouteConfig[];
+};
 
 export interface UseBreadcrumbsReturnValues {
   name: string;
-  href: string;
+  href?: string;
 }
 
 interface UseBreadcrumbsParams {
-  router: unknown;
+  router: RouterConfig;
 }
 
 export const useBreadcrumbs = ({router}: UseBreadcrumbsParams): UseBreadcrumbsReturnValues[] => {
@@ -21,7 +27,7 @@ export const useBreadcrumbs = ({router}: UseBreadcrumbsParams): UseBreadcrumbsRe
   return pathnames.map((pathname) => {
     currentRoutes.push(pathname);
     const currentPath = currentRoutes.join('/') || '/';
-    const route = router.routes[0].children.find((route: ExtendedRouteChildrenType) => route.path.startsWith(currentPath));
+    const route = router?.routes[0]?.children?.find((route) => route?.path?.startsWith(currentPath));
 
     return {
       name: breadcrumbNameMap[currentPath],

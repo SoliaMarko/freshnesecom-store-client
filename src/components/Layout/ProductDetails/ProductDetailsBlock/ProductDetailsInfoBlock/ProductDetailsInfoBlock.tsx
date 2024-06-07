@@ -51,6 +51,7 @@ const ProductDetailsInfoBlock = ({productData}: ProductDetailsInfoBlockProps): R
         <ProductAdditionalDetails productData={productData} />
         <ProductPurchaseBlock productData={productData} />
         <AddToWishListButton isFavorite={isFavorite} handleClickFavorite={handleIsFavorite} classNames="max-w-44" />
+        <AddToWishListButton isFavorite={isFavorite} handleClickFavorite={handleIsFavorite} classNames="max-w-44" />
       </Box>
       <ProductTabs productTabsData={productTabsData} />
     </Box>

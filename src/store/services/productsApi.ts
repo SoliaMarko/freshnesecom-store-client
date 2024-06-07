@@ -12,7 +12,7 @@ export const productsApi = createApi({
     getAllProducts: builder.query<GetAllProductsReturnType, GetProductsModel>({
       query: (queryParams: GetProductsModel) => {
         const url = Object.keys(queryParams)
-          .reduce((acc, key) => acc + `${key}=${queryParams[key]}&`, '/product?')
+          .reduce((acc, key) => acc + `${key}=${queryParams[key as keyof GetProductsModel]}&`, '/product?')
           .slice(0, -1);
         return {
           url,
