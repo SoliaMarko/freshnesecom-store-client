@@ -18,7 +18,7 @@ const SortWidget = ({handleToggleSortBy, selectedSortBy, handleToggleOrder, sele
   const sortOptions = getTransformedArrayWithIDs(getKeysFromEnum(SortBy));
 
   const handleSelectSort = (option: string): void => {
-    handleToggleSortBy(SortBy[option]);
+    handleToggleSortBy(SortBy[option as keyof typeof SortBy]);
   };
 
   return (
