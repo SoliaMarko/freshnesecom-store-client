@@ -42,6 +42,7 @@ const ProductItemCard = ({productData}: ProductItemCardProps): ReactElement => {
 
     if (isFavorite) removeFromWishlist({productID: id});
     else addToWishlist({productID: id});
+
     setIsFavorite((current) => !current);
     handleLikeDisplay();
   };

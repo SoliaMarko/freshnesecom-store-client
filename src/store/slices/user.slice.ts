@@ -14,14 +14,19 @@ export const userSlice = createSlice({
         ...action.payload
       };
     },
+
     resetUser: () => {
       return initialState;
+    },
+
+    updateWishlist(state, action) {
+      state.wishlist = action.payload;
     }
   }
 });
 
 export const selectUser = (state: RootState) => state.user;
 
-export const {setUser, resetUser} = userSlice.actions;
+export const {setUser, resetUser, updateWishlist} = userSlice.actions;
 
 export default userSlice.reducer;
