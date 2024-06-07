@@ -23,7 +23,7 @@ const ProductItemCard = ({productData}: ProductItemCardProps): ReactElement => {
   const {id, title, images} = productData;
   const mainImage = images[0].value;
   const {authorized, wishlist} = useSelector((state: IRootState) => state.user);
-  const [isFavorite, setIsFavorite] = useState<boolean>(wishlist?.includes(id) || false);
+  const [isFavorite, setIsFavorite] = useState<boolean>(wishlist?.includes(id));
   const [isLikeDisplayed, setIsLikeDisplayed] = useState<boolean>(false);
   const [addToWishlist] = useAddToWishistMutation();
   const [removeFromWishlist] = useRemoveFromWishistMutation();
