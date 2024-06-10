@@ -15,10 +15,7 @@ export const userApi = createApi({
         return {
           url: '/user/wishlist',
           method: 'PATCH',
-          data: JSON.stringify({action: WishlistAction.add, productID}),
-          headers: {
-            'Content-Type': 'application/json; charset=UTF-8'
-          }
+          data: JSON.stringify({action: WishlistAction.add, productID})
         };
       }
     }),
@@ -30,10 +27,7 @@ export const userApi = createApi({
         return {
           url: '/user/wishlist',
           method: 'PATCH',
-          data: JSON.stringify({action: WishlistAction.remove, productID}),
-          headers: {
-            'Content-Type': 'application/json; charset=UTF-8'
-          }
+          data: JSON.stringify({action: WishlistAction.remove, productID})
         };
       }
     })
