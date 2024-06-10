@@ -15,10 +15,7 @@ export const authApi = createApi({
         return {
           url: '/auth/signup',
           method: 'POST',
-          data: JSON.stringify(body),
-          headers: {
-            'Content-Type': 'application/json; charset=UTF-8'
-          }
+          data: JSON.stringify(body)
         };
       }
     }),
@@ -28,10 +25,7 @@ export const authApi = createApi({
         return {
           url: '/auth/login',
           method: 'POST',
-          data: JSON.stringify(body),
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8'
-          }
+          data: JSON.stringify(body)
         };
       }
     }),
@@ -41,10 +35,7 @@ export const authApi = createApi({
         return {
           url: '/auth/logout',
           method: 'POST',
-          data: JSON.stringify(body),
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8'
-          }
+          data: JSON.stringify(body)
         };
       }
     }),
