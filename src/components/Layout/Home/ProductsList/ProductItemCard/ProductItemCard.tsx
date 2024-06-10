@@ -1,4 +1,4 @@
-import {ReactElement, useState} from 'react';
+import {ReactElement} from 'react';
 import {Box} from '@mui/material';
 import ProductItemMainInfo from './ProductItemLeftBlock/ProductItemMainInfo';
 import ProductItemPriceInfo from './ProductItemRightBlock/ProductItemPriceInfo';
@@ -9,11 +9,7 @@ import {TransformedProductType} from '@/interfaces/products/transformedProductTy
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ProductDetailsButton from '@/components/Custom/Buttons/ProductCardButtons/ProductDetailsButton';
-import {useAddToWishistMutation, useRemoveFromWishistMutation} from '@/store/services/userApi';
-import {useSelector} from 'react-redux';
-import {IRootState} from '@/types/IRootState.type';
-import {useNavigate} from 'react-router-dom';
-import {commonRoutes} from '@/constants/globalConstants/global.constant';
+import {useToggleFavorite} from '@/hooks/useToggleFavorite';
 
 interface ProductItemCardProps {
   productData: TransformedProductType;
@@ -22,30 +18,7 @@ interface ProductItemCardProps {
 const ProductItemCard = ({productData}: ProductItemCardProps): ReactElement => {
   const {id, title, images} = productData;
   const mainImage = images[0].value;
-  const {authorized, wishlist} = useSelector((state: IRootState) => state.user);
-  const [isFavorite, setIsFavorite] = useState<boolean>(wishlist?.includes(id));
-  const [isLikeDisplayed, setIsLikeDisplayed] = useState<boolean>(false);
-  const [addToWishlist] = useAddToWishistMutation();
-  const [removeFromWishlist] = useRemoveFromWishistMutation();
-  const navigate = useNavigate();
-
-  const handleLikeDisplay = (): void => {
-    setIsLikeDisplayed(true);
-    setTimeout(() => setIsLikeDisplayed(false), 600);
-  };
-
-  const handleIsFavorite = (): void => {
-    if (!authorized) {
-      navigate(`/${commonRoutes.LOGIN}`);
-      return;
-    }
-
-    if (isFavorite) removeFromWishlist({productID: id});
-    else addToWishlist({productID: id});
-
-    setIsFavorite((current) => !current);
-    handleLikeDisplay();
-  };
+  const {isFavorite, isLikeDisplayed, handleIsFavorite} = useToggleFavorite({productID: id, isHandledLikeDisplay: true});
 
   const handleDoubleClick = (): void => {
     handleIsFavorite();
