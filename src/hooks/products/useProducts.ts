@@ -9,6 +9,9 @@ import {useAppDispatch} from '@/hooks/api/apiHooks';
 import {resetLoading, setLoading} from '@/store/slices/loading.slice';
 import {ScrollableElement} from '@/interfaces/global/scrollableElement.interface';
 import {GetProductsModel} from '@/models/products/GetProducts.model';
+import {ExtendedError} from '@/interfaces/error/extendedError.interface';
+import {SerializedError} from '@reduxjs/toolkit';
+import {DataWithMetaType} from '@/interfaces/products/dataWithMetaType.interface';
 
 export type NewParams = {
   [key: string]: string | string[] | number;
@@ -20,7 +23,16 @@ interface UseProductsParams {
   scrollTo: RefObject<ScrollableElement>;
 }
 
-export const useProducts = ({getProducts, scrollTo}: UseProductsParams) => {
+interface UseProductsReturnValues {
+  data: {currentPageData: ProductEntity[]; dataWithMeta: DataWithMetaType; currentPage: number};
+  handlers: {
+    handleSearchParamsChange: (newParams: NewParams) => void;
+    handlePageChange: (newPage: number, action: PaginationButtonAction) => void;
+  };
+  error: ExtendedError | SerializedError;
+}
+
+export const useProducts = ({getProducts, scrollTo}: UseProductsParams): UseProductsReturnValues => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState<number>(Number(searchParams.get('page')) || generalAppInfo.pagination.INITIAL_PAGE);
   const [pageAction, setPageAction] = useState<PaginationButtonAction>(PaginationButtonAction.SwitchPage);
