@@ -6,5 +6,6 @@ export interface LogInData extends AuthState {
     firstName: string;
     lastName: string;
     phoneNumber: string;
+    wishlist: string[];
   };
 }

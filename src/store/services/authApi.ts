@@ -4,6 +4,7 @@ import {LogInFormModel} from '@/models/LogInForm.model';
 import {axiosBaseQuery} from './axiosBaseQuery';
 import {LogoutUserArgs, MutationReturnType} from '@/interfaces/api/queries.interface';
 import {GetUserModel} from '@/models/GetUser.model';
+import {LogInData} from '@/interfaces/store/logInData.interface';
 
 export const authApi = createApi({
   reducerPath: 'authApi',
@@ -14,23 +15,17 @@ export const authApi = createApi({
         return {
           url: '/auth/signup',
           method: 'POST',
-          data: JSON.stringify(body),
-          headers: {
-            'Content-Type': 'application/json; charset=UTF-8'
-          }
+          data: JSON.stringify(body)
         };
       }
     }),
 
-    loginUser: builder.mutation<MutationReturnType, LogInFormModel>({
+    loginUser: builder.mutation<LogInData, LogInFormModel>({
       query: (body: LogInFormModel) => {
         return {
           url: '/auth/login',
           method: 'POST',
-          data: JSON.stringify(body),
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8'
-          }
+          data: JSON.stringify(body)
         };
       }
     }),
@@ -40,10 +35,7 @@ export const authApi = createApi({
         return {
           url: '/auth/logout',
           method: 'POST',
-          data: JSON.stringify(body),
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8'
-          }
+          data: JSON.stringify(body)
         };
       }
     }),

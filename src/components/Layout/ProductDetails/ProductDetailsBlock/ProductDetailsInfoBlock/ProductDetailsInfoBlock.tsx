@@ -1,4 +1,4 @@
-import {ReactElement} from 'react';
+import {ReactElement, useState} from 'react';
 import {Box} from '@mui/material';
 import ProductHeader from './ProductHeader/ProductHeader';
 import ProductMainDescription from './ProductMainDescription/ProductMainDescription';
@@ -15,6 +15,11 @@ interface ProductDetailsInfoBlockProps {
 
 const ProductDetailsInfoBlock = ({productData}: ProductDetailsInfoBlockProps): ReactElement => {
   const productTabsData = getProductTabsData(productData);
+  const [isFavorite, _setIsFavorite] = useState<boolean>(false);
+
+  const handleIsFavorite = (): void => {
+    console.info('favorite button clicked');
+  };
 
   return (
     <Box className="flex flex-1 flex-col gap-8">
@@ -23,7 +28,7 @@ const ProductDetailsInfoBlock = ({productData}: ProductDetailsInfoBlockProps): R
         <ProductMainDescription productData={productData} />
         <ProductAdditionalDetails productData={productData} />
         <ProductPurchaseBlock productData={productData} />
-        <AddToWishListButton classNames="max-w-44" />
+        <AddToWishListButton isFavorite={isFavorite} handleClickFavorite={handleIsFavorite} classNames="max-w-44" />
       </Box>
       <ProductTabs productTabsData={productTabsData} />
     </Box>
