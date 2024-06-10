@@ -1,9 +1,9 @@
 import {createApi} from '@reduxjs/toolkit/query/react';
 import {axiosBaseQuery} from './axiosBaseQuery';
 import {GetAllProductsReturnType, GetProductsStatsReturnType} from '@/interfaces/api/queries.interface';
-import {GetProductsModel} from '@/models/GetProducts.model';
+import {GetProductsModel} from '@/models/products/GetProducts.model';
 import {ProductEntity} from '@/interfaces/products/productEntity.interface';
-import {GetProductByIdModel} from '@/models/GetProductById.model';
+import {GetProductByIdModel} from '@/models/products/GetProductById.model';
 
 export const productsApi = createApi({
   reducerPath: 'productsApi',
@@ -14,6 +14,7 @@ export const productsApi = createApi({
         const url = Object.keys(queryParams)
           .reduce((acc, key) => acc + `${key}=${queryParams[key as keyof GetProductsModel]}&`, '/product?')
           .slice(0, -1);
+
         return {
           url,
           method: 'GET'

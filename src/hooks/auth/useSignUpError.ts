@@ -1,7 +1,7 @@
 import {ExtendedError} from '@/interfaces/error/extendedError.interface';
 import {SerializedError} from '@reduxjs/toolkit';
 import {useEffect} from 'react';
-import {UseToastProps, useToast} from './useToast';
+import {UseToastProps, useToast} from '../global/useToast';
 
 type ErrorType = ExtendedError | SerializedError;
 

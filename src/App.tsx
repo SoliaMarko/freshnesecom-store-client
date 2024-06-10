@@ -2,7 +2,7 @@ import {ReactElement, useEffect} from 'react';
 import {RouterProvider} from 'react-router-dom';
 import {CssBaseline, StyledEngineProvider, ThemeProvider} from '@mui/material';
 import router from './router';
-import {useAppDispatch} from './hooks/apiHooks';
+import {useAppDispatch} from './hooks/api/apiHooks';
 import {setUser} from './store/slices/user.slice';
 import {useGetUserQuery} from './store/services/authApi';
 import ToastProvider from './contexts/ToastProvider';

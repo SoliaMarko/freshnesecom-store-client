@@ -1,14 +1,14 @@
 import {useEffect} from 'react';
-import {useAppDispatch} from '@/hooks/apiHooks';
+import {useAppDispatch} from '../api/apiHooks';
 import {setAuthTokens} from '@/store/slices/auth.slice';
 import {setUser} from '@/store/slices/user.slice';
 import {userRoutes} from '@/constants/globalConstants/global.constant';
 import {useNavigate} from 'react-router-dom';
 import {LogInData} from '@/interfaces/store/logInData.interface';
-import {LogInFormModel} from '@/models/LogInForm.model';
+import {LogInFormModel} from '@/models/auth/LogInForm.model';
 import {UseFormReturn} from 'react-hook-form';
 import {AUTH_TOKENS_STORAGE} from '@/constants/storageConstants/localStorage.constant';
-import {UseToastProps, useToast} from './useToast';
+import {UseToastProps, useToast} from '../global/useToast';
 import {responseSuccess} from '@/constants/successConstants/success.constant';
 
 interface UseLogInSuccessParams extends UseToastProps {

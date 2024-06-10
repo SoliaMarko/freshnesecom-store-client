@@ -2,12 +2,12 @@ import {ReactElement, useContext} from 'react';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {LogInFormSchema} from '@/validations/logInForm.validation';
-import {LogInFormModel} from '@/models/LogInForm.model';
+import {LogInFormModel} from '@/models/auth/LogInForm.model';
 import {logInFields} from '@/constants/formConstants/logInFields.constant';
 import CustomForm from '../CustomForm';
 import {useLoginUserMutation} from '@/store/services/authApi';
-import {useLogInSuccess} from '@/hooks/useLogInSuccess';
-import {useLogInError} from '@/hooks/useLogInError';
+import {useLogInSuccess} from '@/hooks/auth/useLogInSuccess';
+import {useLogInError} from '@/hooks/auth/useLogInError';
 import {ToastContext} from '@/contexts/ToastProvider';
 
 const LogInForm = (): ReactElement => {

@@ -4,7 +4,7 @@ import RelatedProductsCarouselHeader from './RelatedProductsCarouselHeader/Relat
 import CustomCarousel from '@/components/Custom/CustomCarousel/CustomCarousel';
 import RelatedProductCard from './RelatedProductCard/RelatedProductCard';
 import {Category} from '@/enums/products/categories.enum';
-import {useAppDispatch} from '@/hooks/apiHooks';
+import {useAppDispatch} from '@/hooks/api/apiHooks';
 import {useGetAllProductsQuery} from '@/store/services/productsApi';
 import {generalAppInfo} from '@/constants/globalConstants/global.constant';
 import Error from '@/pages/Error/Error';

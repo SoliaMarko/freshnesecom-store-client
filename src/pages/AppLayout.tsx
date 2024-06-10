@@ -6,7 +6,7 @@ import CustomSnackbar from '@/components/Custom/CustomSnackbar/CustomSnackbar';
 import CustomSpinner from '@/components/Custom/CustomSpinner/CustomSpinner';
 import CustomConfirmDialog from '@/components/Custom/CustomConfirmDialog/CustomConfirmDialog';
 import BreadcrumbsBlock from '@/components/Custom/BreadcrumbsBlock/BreadcrumbsBlock';
-import {useBreadcrumbs} from '@/hooks/useBreadcrumbs';
+import {useBreadcrumbs} from '@/hooks/global/useBreadcrumbs';
 import router from '@/router';
 import {getTransformedArrayWithIDs} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 

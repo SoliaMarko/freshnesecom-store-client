@@ -4,7 +4,7 @@ import {useParams} from 'react-router-dom';
 import {useGetProductByIdQuery} from '@/store/services/productsApi';
 import {getTransformedProductData} from '@/utils/productsHelpers/getTransformedProductData';
 import {resetLoading, setLoading} from '@/store/slices/loading.slice';
-import {useAppDispatch} from '@/hooks/apiHooks';
+import {useAppDispatch} from '@/hooks/api/apiHooks';
 import {BreadcrumbsContext} from '@/contexts/BreadcrumbsProvider';
 import ProductDetailsBlock from '@/components/Layout/ProductDetails/ProductDetailsBlock/ProductDetailsBlock';
 import RelatedProductsCarousel from '@/components/Layout/ProductDetails/RelatedProductsCarousel/RelatedProductsCarousel';

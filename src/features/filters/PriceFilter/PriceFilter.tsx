@@ -5,7 +5,7 @@ import RangeInputs from '../RangeInputs/RangeInputs';
 import {useGetProductsStatsQuery} from '@/store/services/productsApi';
 import {products} from '@/constants/globalConstants/global.constant';
 import CustomPriceThumb from './CustomPriceThumb';
-import {useAppDispatch} from '@/hooks/apiHooks';
+import {useAppDispatch} from '@/hooks/api/apiHooks';
 import {setLoading, resetLoading} from '@/store/slices/loading.slice';
 
 export interface RangeConstraints {

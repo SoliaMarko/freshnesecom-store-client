@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 import {UseFormReturn} from 'react-hook-form';
-import {SignUpFormModel} from '@/models/SignUpForm.model';
-import {UseToastProps, useToast} from './useToast';
+import {SignUpFormModel} from '@/models/auth/SignUpForm.model';
+import {UseToastProps, useToast} from '../global/useToast';
 import {responseSuccess} from '@/constants/successConstants/success.constant';
 
 interface UseSignUpSuccessParams extends UseToastProps {
