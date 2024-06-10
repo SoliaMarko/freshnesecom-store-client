@@ -1,6 +1,5 @@
 import {createApi} from '@reduxjs/toolkit/query/react';
 import {axiosBaseQuery} from './axiosBaseQuery';
-import {WishlistAction} from '@/enums/user/wishlistActions.enum';
 import {UpdateWishlistResponseType} from '@/interfaces/user/wishlist/updateWishlistResponseType.interface';
 import {UpdateWishlistArgsType} from '@/interfaces/user/wishlist/updateWishlistArgsType.interface';
 import {GetAllProductsReturnType} from '@/interfaces/api/queries.interface';
@@ -15,9 +14,9 @@ export const userApi = createApi({
         const {productID} = data;
 
         return {
-          url: '/user/wishlist',
+          url: '/user/wishlist/add',
           method: 'PATCH',
-          data: JSON.stringify({action: WishlistAction.add, productIDs: [productID]})
+          data: JSON.stringify({productIDs: [productID]})
         };
       }
     }),
@@ -27,9 +26,9 @@ export const userApi = createApi({
         const {productID} = data;
 
         return {
-          url: '/user/wishlist',
+          url: '/user/wishlist/remove',
           method: 'PATCH',
-          data: JSON.stringify({action: WishlistAction.remove, productIDs: [productID]})
+          data: JSON.stringify({productIDs: [productID]})
         };
       }
     }),
