@@ -15,7 +15,7 @@ export const userApi = createApi({
         return {
           url: '/user/wishlist',
           method: 'PATCH',
-          data: JSON.stringify({action: WishlistAction.add, productID})
+          data: JSON.stringify({action: WishlistAction.add, productIDs: [productID]})
         };
       }
     }),
@@ -27,7 +27,7 @@ export const userApi = createApi({
         return {
           url: '/user/wishlist',
           method: 'PATCH',
-          data: JSON.stringify({action: WishlistAction.remove, productID})
+          data: JSON.stringify({action: WishlistAction.remove, productIDs: [productID]})
         };
       }
     })

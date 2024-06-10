@@ -1,4 +1,4 @@
-import {ReactElement, useState} from 'react';
+import {ReactElement} from 'react';
 import {Box} from '@mui/material';
 import ProductHeader from './ProductHeader/ProductHeader';
 import ProductMainDescription from './ProductMainDescription/ProductMainDescription';
@@ -8,18 +8,16 @@ import ProductPurchaseBlock from './ProductPurchaseBlock/ProductPurchaseBlock';
 import AddToWishListButton from '@/components/Custom/Buttons/ProductCardButtons/AddToWishListButton';
 import ProductTabs from './ProductTabs/ProductTabs';
 import {getProductTabsData} from '@/utils/productsHelpers/getProductTabsData';
+import {useToggleFavorite} from '@/hooks/useToggleFavorite';
 
 interface ProductDetailsInfoBlockProps {
   productData: TransformedProductType;
 }
 
 const ProductDetailsInfoBlock = ({productData}: ProductDetailsInfoBlockProps): ReactElement => {
+  const {id} = productData;
   const productTabsData = getProductTabsData(productData);
-  const [isFavorite, _setIsFavorite] = useState<boolean>(false);
-
-  const handleIsFavorite = (): void => {
-    console.info('favorite button clicked');
-  };
+  const {isFavorite, handleIsFavorite} = useToggleFavorite({productID: id});
 
   return (
     <Box className="flex flex-1 flex-col gap-8">
