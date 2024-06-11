@@ -4,6 +4,7 @@ import {authApi} from './services/authApi';
 import {productsApi} from './services/productsApi';
 import authReducer from './slices/auth.slice';
 import userReducer from './slices/user.slice';
+import wishlistReducer from './slices/wishlist.slice';
 import filterReducer from './slices/filters.slice';
 import loadingReducer from './slices/loading.slice';
 import confirmationReducer from './slices/confirmation.slice';
@@ -13,6 +14,7 @@ export const store = configureStore({
   reducer: {
     auth: authReducer,
     user: userReducer,
+    wishlist: wishlistReducer,
     filter: filterReducer,
     loading: loadingReducer,
     confirmation: confirmationReducer,

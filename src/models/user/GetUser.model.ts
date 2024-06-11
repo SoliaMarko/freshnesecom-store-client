@@ -3,4 +3,5 @@ export class GetUserModel {
   public lastName?: string;
   public email?: string;
   public phoneNumber?: string;
+  public wishlist?: string[];
 }

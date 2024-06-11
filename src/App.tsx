@@ -9,13 +9,18 @@ import ToastProvider from './contexts/ToastProvider';
 import BackdropProvider from './contexts/BackdropProvider';
 import BreadcrumbsProvider from './contexts/BreadcrumbsProvider';
 import theme from './style/muiTheme';
+import {setWishlist} from './store/slices/wishlist.slice';
 
 function App(): ReactElement {
   const {data} = useGetUserQuery();
   const dispatch = useAppDispatch();
-
+  
   useEffect(() => {
-    if (data) dispatch(setUser(data));
+    if (data) {
+      const {wishlist, ...userData} = data;
+      dispatch(setUser(userData));
+      dispatch(setWishlist(wishlist));
+    }
   }, [data]);
 
   return (

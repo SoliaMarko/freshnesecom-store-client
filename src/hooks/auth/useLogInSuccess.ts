@@ -10,6 +10,7 @@ import {UseFormReturn} from 'react-hook-form';
 import {AUTH_TOKENS_STORAGE} from '@/constants/storageConstants/localStorage.constant';
 import {UseToastProps, useToast} from '../global/useToast';
 import {responseSuccess} from '@/constants/successConstants/success.constant';
+import {setWishlist} from '@/store/slices/wishlist.slice';
 
 interface UseLogInSuccessParams extends UseToastProps {
   isLoginSuccess: boolean;
@@ -22,15 +23,20 @@ export const useLogInSuccess = ({isLoginSuccess, loginData, formMethods, toast, 
   const navigate = useNavigate();
   const {openToastSuccess} = useToast({toast, onHandleToast});
 
+  const updateUserStore = (): void => {
+    const userInfo = {
+      accessToken: loginData?.accessToken || '',
+      refreshToken: loginData?.refreshToken || ''
+    };
+    dispatch(setAuthTokens(userInfo));
+    dispatch(setUser(loginData?.user));
+    dispatch(setWishlist(loginData?.user.wishlist));
+    localStorage.setItem(AUTH_TOKENS_STORAGE, JSON.stringify(userInfo));
+  };
+
   useEffect(() => {
     if (isLoginSuccess) {
-      const userInfo = {
-        accessToken: loginData?.accessToken || '',
-        refreshToken: loginData?.refreshToken || ''
-      };
-      dispatch(setAuthTokens(userInfo));
-      dispatch(setUser(loginData?.user));
-      localStorage.setItem(AUTH_TOKENS_STORAGE, JSON.stringify(userInfo));
+      updateUserStore();
       if (formMethods) formMethods.reset(new LogInFormModel());
       openToastSuccess(responseSuccess.LOGIN);
       navigate(`/${userRoutes.USER}`);

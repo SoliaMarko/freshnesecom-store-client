@@ -42,7 +42,7 @@ const ProductsWithSortAndFiltersContainer = (): ReactNode => {
             <ProductsList currentPageData={currentPageData} />
           </Box>
         </Box>
-        <ProductsFooter productsData={dataWithMeta} handlePageChange={handlePageChange} currentPage={currentPage} />
+        <ProductsFooter productsMetadata={dataWithMeta.meta} handlePageChange={handlePageChange} currentPage={currentPage} />
       </Box>
     )
   );
