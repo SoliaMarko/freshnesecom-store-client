@@ -5,7 +5,7 @@ import {NewParams} from '../ProductsWithSortAndFiltersContainer/ProductsWithSort
 import {setFilters} from '@/store/slices/filters.slice';
 import {SortBy} from '@/enums/sort/sortBy.enum';
 import {Order} from '@/enums/sort/order.enum';
-import {useAppDispatch} from '@/hooks/apiHooks';
+import {useAppDispatch} from '@/hooks/api/apiHooks';
 
 interface SortBlockProps {
   handleSearchParamsChange: (params: NewParams) => void;

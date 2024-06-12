@@ -1,7 +1,7 @@
 import {ReactElement} from 'react';
 import {Box, Breadcrumbs, Link, Typography} from '@mui/material';
 import {ItemWithIDType} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
-import {UseBreadcrumbsReturnValues} from '@/hooks/useBreadcrumbs';
+import {UseBreadcrumbsReturnValues} from '@/hooks/global/useBreadcrumbs';
 
 interface BreadcrumbsBlockProps {
   breadcrumbs: ItemWithIDType<UseBreadcrumbsReturnValues>[];

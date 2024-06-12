@@ -4,5 +4,4 @@ export interface UserState {
   firstName?: string;
   lastName?: string;
   phoneNumber?: string;
-  wishlist?: string[];
 }

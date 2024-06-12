@@ -5,7 +5,7 @@ import StyledNavLink from '@/components/Custom/Links/StyledNavLink';
 import {NavLink} from 'react-router-dom';
 import PrimaryButton from '@/components/Custom/Buttons/PrimaryButton';
 import {selectUser} from '@/store/slices/user.slice';
-import {useAppSelector} from '@/hooks/apiHooks';
+import {useAppSelector} from '@/hooks/api/apiHooks';
 
 const Cart = (): ReactElement => {
   const user = useAppSelector(selectUser);

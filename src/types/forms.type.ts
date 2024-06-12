@@ -1,4 +1,4 @@
-import {SignUpFormModel} from '@/models/SignUpForm.model';
-import {LogInFormModel} from '@/models/LogInForm.model';
+import {SignUpFormModel} from '@/models/auth/SignUpForm.model';
+import {LogInFormModel} from '@/models/auth/LogInForm.model';
 
 export type FormType = SignUpFormModel | LogInFormModel;

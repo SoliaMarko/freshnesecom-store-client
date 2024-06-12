@@ -2,20 +2,25 @@ import {ReactElement, useEffect} from 'react';
 import {RouterProvider} from 'react-router-dom';
 import {CssBaseline, StyledEngineProvider, ThemeProvider} from '@mui/material';
 import router from './router';
-import {useAppDispatch} from './hooks/apiHooks';
+import {useAppDispatch} from './hooks/api/apiHooks';
 import {setUser} from './store/slices/user.slice';
 import {useGetUserQuery} from './store/services/authApi';
 import ToastProvider from './contexts/ToastProvider';
 import BackdropProvider from './contexts/BackdropProvider';
 import BreadcrumbsProvider from './contexts/BreadcrumbsProvider';
 import theme from './style/muiTheme';
+import {setWishlist} from './store/slices/wishlist.slice';
 
 function App(): ReactElement {
   const {data} = useGetUserQuery();
   const dispatch = useAppDispatch();
-
+  
   useEffect(() => {
-    if (data) dispatch(setUser(data));
+    if (data) {
+      const {wishlist, ...userData} = data;
+      dispatch(setUser(userData));
+      dispatch(setWishlist(wishlist));
+    }
   }, [data]);
 
   return (

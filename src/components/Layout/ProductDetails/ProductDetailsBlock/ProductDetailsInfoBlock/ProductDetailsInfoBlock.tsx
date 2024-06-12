@@ -8,7 +8,7 @@ import ProductPurchaseBlock from './ProductPurchaseBlock/ProductPurchaseBlock';
 import AddToWishListButton from '@/components/Custom/Buttons/ProductCardButtons/AddToWishListButton';
 import ProductTabs from './ProductTabs/ProductTabs';
 import {getProductTabsData} from '@/utils/productsHelpers/getProductTabsData';
-import {useToggleFavorite} from '@/hooks/useToggleFavorite';
+import {useToggleFavorite} from '@/hooks/products/useToggleFavorite';
 
 interface ProductDetailsInfoBlockProps {
   productData: TransformedProductType;

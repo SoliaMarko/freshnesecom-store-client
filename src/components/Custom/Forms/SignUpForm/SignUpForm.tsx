@@ -2,14 +2,14 @@ import {ReactElement, useContext} from 'react';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {SignUpFormSchema} from '@/validations/signUpForm.validation';
-import {SignUpFormModel} from '@/models/SignUpForm.model';
+import {SignUpFormModel} from '@/models/auth/SignUpForm.model';
 import {signUpFields} from '@/constants/formConstants/signUpFields.constant';
 import {useLoginUserMutation, useRegisterUserMutation} from '@/store/services/authApi';
 import CustomForm from '../CustomForm';
-import {useLogInSuccess} from '@/hooks/useLogInSuccess';
-import {useLogInError} from '@/hooks/useLogInError';
-import {useSignUpError} from '@/hooks/useSignUpError';
-import {useSignUpSuccess} from '@/hooks/useSignUpSuccess';
+import {useLogInSuccess} from '@/hooks/auth/useLogInSuccess';
+import {useLogInError} from '@/hooks/auth/useLogInError';
+import {useSignUpError} from '@/hooks/auth/useSignUpError';
+import {useSignUpSuccess} from '@/hooks/auth/useSignUpSuccess';
 import {ToastContext} from '@/contexts/ToastProvider';
 
 const SignUpForm = (): ReactElement => {

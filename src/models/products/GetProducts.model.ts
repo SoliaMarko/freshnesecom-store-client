@@ -1,12 +1,10 @@
-import {generalAppInfo} from '@/constants/globalConstants/global.constant';
 import {Brand} from '@/enums/products/brands.enum';
 import {Category} from '@/enums/products/categories.enum';
 import {Order} from '@/enums/sort/order.enum';
 import {SortBy} from '@/enums/sort/sortBy.enum';
+import {PaginationModel} from '../pagination/Pagination.model';
 
-export class GetProductsModel {
-  public page?: number = generalAppInfo.pagination.INITIAL_PAGE;
-  public itemsPerPage?: number = generalAppInfo.pagination.ITEMS_PER_PAGE;
+export class GetProductsModel extends PaginationModel {
   public minPrice?: number;
   public maxPrice?: number;
   public minRating?: number;

@@ -4,7 +4,7 @@ import PriceFilter from '@/features/filters/PriceFilter/PriceFilter';
 import {Category} from '@/enums/products/categories.enum';
 import {useEffect, useState} from 'react';
 import debounce from 'lodash.debounce';
-import {useAppDispatch} from '@/hooks/apiHooks';
+import {useAppDispatch} from '@/hooks/api/apiHooks';
 import {setFilters} from '@/store/slices/filters.slice';
 import {NewParams} from '@/components/Layout/Home/ProductsWithSortAndFiltersContainer/ProductsWithSortAndFiltersContainer';
 import RatingFilter from '@/features/filters/RatingFilter/RatingFilter';

@@ -9,7 +9,7 @@ import {TransformedProductType} from '@/interfaces/products/transformedProductTy
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ProductDetailsButton from '@/components/Custom/Buttons/ProductCardButtons/ProductDetailsButton';
-import {useToggleFavorite} from '@/hooks/useToggleFavorite';
+import {useToggleFavorite} from '@/hooks/products/useToggleFavorite';
 
 interface ProductItemCardProps {
   productData: TransformedProductType;

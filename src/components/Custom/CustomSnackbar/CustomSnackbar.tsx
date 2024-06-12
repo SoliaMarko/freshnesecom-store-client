@@ -1,7 +1,7 @@
 import {ReactElement, useContext} from 'react';
 import {Alert, Snackbar} from '@mui/material';
 import {ToastContext} from '@/contexts/ToastProvider';
-import {useToast} from '@/hooks/useToast';
+import {useToast} from '@/hooks/global/useToast';
 
 const CustomSnackbar = (): ReactElement | undefined => {
   const {toast, onHandleToast} = useContext(ToastContext);

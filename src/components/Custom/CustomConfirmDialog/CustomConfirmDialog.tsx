@@ -8,7 +8,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import {IRootState} from '@/types/IRootState.type';
 import {setConfirmation, resetConfirmation} from '@/store/slices/confirmation.slice';
-import {useAppDispatch} from '@/hooks/apiHooks';
+import {useAppDispatch} from '@/hooks/api/apiHooks';
 import {Typography} from '@mui/material';
 
 const CustomConfirmDialog = (): ReactElement => {

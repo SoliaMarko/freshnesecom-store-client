@@ -6,7 +6,7 @@ import Error from '@/pages/Error/Error';
 import {getTransformedArrayWithIDs} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 import {categoryOptions} from '@/constants/productsConstants/categories.constant';
 import CategoryRadioButton from './CategoryRadioButton/CategoryRadioButton';
-import {useAppDispatch} from '@/hooks/apiHooks';
+import {useAppDispatch} from '@/hooks/api/apiHooks';
 import {setLoading, resetLoading} from '@/store/slices/loading.slice';
 
 interface ProductsQuantityType {

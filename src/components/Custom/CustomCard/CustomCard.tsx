@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom';
 import {commonRoutes} from '@/constants/globalConstants/global.constant';
 import {confirmationQuestions} from '@/constants/confirmationQuestionsConstants/confirmationQuestions.constant';
 import {setConfirmation} from '@/store/slices/confirmation.slice';
-import {useAppDispatch} from '@/hooks/apiHooks';
+import {useAppDispatch} from '@/hooks/api/apiHooks';
 
 interface CustomCardProps {
   children: ReactNode;

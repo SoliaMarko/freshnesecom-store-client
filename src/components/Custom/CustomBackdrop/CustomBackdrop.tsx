@@ -1,7 +1,7 @@
 import {confirmationQuestions} from '@/constants/confirmationQuestionsConstants/confirmationQuestions.constant';
 import {commonRoutes} from '@/constants/globalConstants/global.constant';
 import {BackdropContext} from '@/contexts/BackdropProvider';
-import {useAppDispatch} from '@/hooks/apiHooks';
+import {useAppDispatch} from '@/hooks/api/apiHooks';
 import {setConfirmation} from '@/store/slices/confirmation.slice';
 import {Backdrop} from '@mui/material';
 import {ReactElement, useContext} from 'react';

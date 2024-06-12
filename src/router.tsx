@@ -38,7 +38,7 @@ const routes: ExtendedRouteObjectType[] = [
       {
         path: `/${productRoutes.PRODUCTS}`,
         element: <AllProducts />,
-        breadcrumb: 'Home'
+        breadcrumb: 'AllProducts'
       },
       {
         path: `/${productRoutes.PRODUCTS}/${productRoutes.ID}`,
