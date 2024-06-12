@@ -1,8 +1,8 @@
 import {ReactNode, useEffect, useRef, useState} from 'react';
 import {Box} from '@mui/material';
-import ProductsList from '@/components/Layout/Home/ProductsList/ProductsList';
+import ProductsList from '@/components/Layout/AllProducts/ProductsList/ProductsList';
 import Error from '@/pages/Error/Error';
-import ProductsFooter from '@/components/Layout/Home/ProductsFooter/ProductsFooter';
+import ProductsFooter from '@/components/Layout/AllProducts/ProductsFooter/ProductsFooter';
 import {useGetAllWishlistProductsQuery} from '@/store/services/userApi';
 import {useProducts} from '@/hooks/products/useProducts';
 import {ScrollableElement} from '@/interfaces/global/scrollableElement.interface';

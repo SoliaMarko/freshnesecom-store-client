@@ -1,6 +1,6 @@
 import {ReactElement} from 'react';
 import {Box, Typography} from '@mui/material';
-import ProductsWithSortAndFiltersContainer from '@/components/Layout/Home/ProductsWithSortAndFiltersContainer/ProductsWithSortAndFiltersContainer';
+import ProductsWithSortAndFiltersContainer from '@/components/Layout/AllProducts/ProductsWithSortAndFiltersContainer/ProductsWithSortAndFiltersContainer';
 
 const AllProducts = (): ReactElement => {
   return (

@@ -4,10 +4,12 @@ import {ReactElement} from 'react';
 import {NavLink} from 'react-router-dom';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CustomBadge from '@/components/Custom/CustomBadge/CustomBadge';
+import {useSelector} from 'react-redux';
+import {IRootState} from '@/types/IRootState.type';
 
 const FavoritesButton = (): ReactElement => {
-  // temporal variable
-  const productsInWishes = 0;
+  const {wishedProductIDs} = useSelector((state: IRootState) => state.wishlist);
+  const productsInWishes = wishedProductIDs.length;
 
   return (
     <NavLink to={`/${userRoutes.USER}/${userRoutes.FAVORITES}`}>

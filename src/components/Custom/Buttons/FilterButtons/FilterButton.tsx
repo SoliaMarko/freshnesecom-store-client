@@ -1,9 +1,9 @@
-import Filters from '@/components/Layout/Home/Filters/Filters';
+import Filters from '@/components/Layout/AllProducts/Filters/Filters';
 import {Drawer, IconButton} from '@mui/material';
 import clsx from 'clsx';
 import {ReactElement, useState} from 'react';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
-import {NewParams} from '@/components/Layout/Home/ProductsWithSortAndFiltersContainer/ProductsWithSortAndFiltersContainer';
+import {NewParams} from '@/components/Layout/AllProducts/ProductsWithSortAndFiltersContainer/ProductsWithSortAndFiltersContainer';
 
 interface FilterButtonProps {
   handleSearchParamsChange: (params: NewParams) => void;

@@ -12,10 +12,7 @@ import {GetProductsModel} from '@/models/products/GetProducts.model';
 import {ExtendedError} from '@/interfaces/error/extendedError.interface';
 import {SerializedError} from '@reduxjs/toolkit';
 import {DataWithMetaType} from '@/interfaces/products/dataWithMetaType.interface';
-
-export type NewParams = {
-  [key: string]: string | string[] | number;
-};
+import {NewParams} from '@/components/Layout/AllProducts/ProductsWithSortAndFiltersContainer/ProductsWithSortAndFiltersContainer';
 
 interface UseProductsParams {
   // TODO fix any
