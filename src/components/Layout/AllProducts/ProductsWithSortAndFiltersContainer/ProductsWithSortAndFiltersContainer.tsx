@@ -11,7 +11,7 @@ import {useProducts} from '@/hooks/products/useProducts';
 import {ScrollableElement} from '@/interfaces/global/scrollableElement.interface';
 
 export type NewParams = {
-  [key: string]: string | string[] | number;
+  [key: string]: unknown;
 };
 
 const ProductsWithSortAndFiltersContainer = (): ReactNode => {

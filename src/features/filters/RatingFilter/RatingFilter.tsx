@@ -6,15 +6,17 @@ import {CustomRatingThumb} from './CustomRatingThumb';
 
 interface RatingFilterProps {
   onChange: (rating: number[]) => void;
+  selectedRatingRange: [number, number];
   range?: RangeConstraints;
 }
 
 const defaultConstraints = {min: 0, max: 5};
 
-const RatingFilter = ({onChange, range = defaultConstraints}: RatingFilterProps): ReactElement => {
+const RatingFilter = ({onChange, selectedRatingRange, range = defaultConstraints}: RatingFilterProps): ReactElement => {
+  const [minRating, maxRating] = selectedRatingRange;
   const [ratingConstraints, setRatingConstraints] = useState<RangeConstraints>({
-    min: range.min,
-    max: range.max
+    min: minRating || range.min,
+    max: maxRating || range.max
   });
 
   const handleMinMaxChange = (min: number, max: number): void => {

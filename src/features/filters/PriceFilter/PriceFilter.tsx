@@ -14,16 +14,18 @@ export interface RangeConstraints {
 
 interface PriceFilterProps {
   onChange: (price: number[]) => void;
+  selectedPriceRange: [number, number];
 }
 
 const defaultConstraints = {min: products.MIN_POSSIBLE_PRICE, max: products.MAX_POSSIBLE_PRICE};
 
-const PriceFilter = ({onChange}: PriceFilterProps): ReactElement => {
+const PriceFilter = ({onChange, selectedPriceRange}: PriceFilterProps): ReactElement => {
   const {data: stats, isLoading} = useGetProductsStatsQuery();
+  const [minPriceSelected, maxPriceSelected] = selectedPriceRange;
   const [range, setRange] = useState<RangeConstraints>(defaultConstraints);
   const [priceConstraints, setPriceConstraints] = useState<RangeConstraints>({
-    min: range.min,
-    max: range.max
+    min: minPriceSelected || range.min,
+    max: maxPriceSelected || range.max
   });
   const dispatch = useAppDispatch();
 
@@ -51,7 +53,7 @@ const PriceFilter = ({onChange}: PriceFilterProps): ReactElement => {
       handleMinMaxChange(minPrice, maxPrice);
 
       setRange(() => {
-        return {min: minPrice, max: maxPrice};
+        return {min: minPriceSelected || minPrice, max: maxPriceSelected || maxPrice};
       });
 
       dispatch(resetLoading());

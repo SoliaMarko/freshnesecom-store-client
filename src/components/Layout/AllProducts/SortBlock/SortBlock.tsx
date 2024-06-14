@@ -2,19 +2,20 @@ import SortWidget from '@/features/sort/SortWidget';
 import {Box} from '@mui/material';
 import {ReactElement, useCallback, useEffect, useState} from 'react';
 import {NewParams} from '../ProductsWithSortAndFiltersContainer/ProductsWithSortAndFiltersContainer';
-import {setFilters} from '@/store/slices/filters.slice';
 import {SortBy} from '@/enums/sort/sortBy.enum';
 import {Order} from '@/enums/sort/order.enum';
-import {useAppDispatch} from '@/hooks/api/apiHooks';
+import {IRootState} from '@/types/IRootState.type';
+import {useSelector} from 'react-redux';
 
 interface SortBlockProps {
   handleSearchParamsChange: (params: NewParams) => void;
 }
 
 const SortBlock = ({handleSearchParamsChange}: SortBlockProps): ReactElement => {
-  const [selectedSortBy, setSelectedSortBy] = useState<SortBy>(SortBy.Recency);
-  const [selectedOrder, setSelectedOrder] = useState<Order>(Order.DESC);
-  const dispatch = useAppDispatch();
+  const {searchParamsFitlers} = useSelector((state: IRootState) => state.filter);
+  const {sortBy, order} = searchParamsFitlers;
+  const [selectedSortBy, setSelectedSortBy] = useState<SortBy>(sortBy || SortBy.Recency);
+  const [selectedOrder, setSelectedOrder] = useState<Order>(order || Order.DESC);
 
   const handleToggleSortBy = useCallback((sortBy: SortBy): void => {
     setSelectedSortBy(sortBy);
@@ -25,12 +26,10 @@ const SortBlock = ({handleSearchParamsChange}: SortBlockProps): ReactElement => 
   }, []);
 
   useEffect(() => {
-    dispatch(setFilters({sortBy: selectedSortBy}));
     handleSearchParamsChange({sortBy: selectedSortBy});
   }, [selectedSortBy]);
 
   useEffect(() => {
-    dispatch(setFilters({order: selectedOrder}));
     handleSearchParamsChange({order: selectedOrder});
   }, [selectedOrder]);
 
