@@ -20,7 +20,7 @@ const CustomPagination = ({count, currentPage = 1, disabled = false, handlePageC
   };
 
   return (
-    !!count && (
+    Boolean(count) && (
       <Box className={clsx('flex flex-1 flex-row items-center', classNames)}>
         <Typography className="text-primary-300">Page</Typography>
         <Stack spacing={2}>

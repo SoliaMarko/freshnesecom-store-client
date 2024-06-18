@@ -4,7 +4,7 @@ import PriceFilter from '@/features/filters/PriceFilter/PriceFilter';
 import {Category} from '@/enums/products/categories.enum';
 import {useEffect, useState} from 'react';
 import debounce from 'lodash.debounce';
-import {initialFilterValues, resetFilters} from '@/store/slices/filters.slice';
+import {initialFilterValues, resetFilters, updateFilters} from '@/store/slices/filters.slice';
 import {NewParams} from '@/components/Layout/AllProducts/ProductsWithSortAndFiltersContainer/ProductsWithSortAndFiltersContainer';
 import RatingFilter from '@/features/filters/RatingFilter/RatingFilter';
 import {useSelector} from 'react-redux';
@@ -57,13 +57,15 @@ const ProductFiltersForm = ({handleSearchParamsChange}: ProductFiltersFormProps)
 
   const resetSelectedBrands = (): void => {
     setSelectedBrands([]);
+    handleSearchParamsChange({brands: ''});
+    dispatch(updateFilters());
   };
 
   const handleResetFilters = (): void => {
     reset();
-    handleSearchParamsChange(initialFilterValues);
     setSelectedCategory(Category.AllCategories);
     setSelectedBrands([]);
+    handleSearchParamsChange(initialFilterValues);
     dispatch(resetFilters());
   };
 
@@ -85,7 +87,7 @@ const ProductFiltersForm = ({handleSearchParamsChange}: ProductFiltersFormProps)
       minRating: ratingRange[0],
       maxRating: ratingRange[1],
       category: category,
-      brands: brands || (brands as Brand[])?.join(',')
+      brands: (brands as unknown as Brand[])?.join(',') || brands
     };
 
     handleSearchParamsChange({page: 0, ...formattedFilters});

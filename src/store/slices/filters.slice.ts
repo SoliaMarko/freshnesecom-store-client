@@ -2,17 +2,15 @@ import {createSlice} from '@reduxjs/toolkit';
 import {RootState} from '../index';
 import {SortBy} from '@/enums/sort/sortBy.enum';
 import {Order} from '@/enums/sort/order.enum';
+import {Category} from '@/enums/products/categories.enum';
 
 const getSearchParams = (searchParams: URLSearchParams): any => {
   return Object.fromEntries(
     Array.from(searchParams.entries()).map(([key, value]) => {
-      if (value === 'null') {
-        return [key, null];
-      }
-
       if (key === 'brands') {
         const valuesArray = value.split(',');
-        const transformedValue = valuesArray.map((value: string) => parseFloat(value));
+        const transformedArray = valuesArray.map((value: string) => parseFloat(value));
+        const transformedValue = transformedArray[0] ? transformedArray : transformedArray[0];
         return [key, transformedValue];
       }
 
@@ -23,11 +21,11 @@ const getSearchParams = (searchParams: URLSearchParams): any => {
 
 export const initialFilterValues = {
   search: '',
-  minPrice: null,
-  maxPrice: null,
-  minRating: null,
-  maxRating: null,
-  category: null,
+  minPrice: '',
+  maxPrice: '',
+  minRating: '',
+  maxRating: '',
+  category: Category.AllCategories,
   brands: [],
   sortBy: SortBy.Recency,
   order: Order.DESC
@@ -45,7 +43,7 @@ const filterSlice = createSlice({
   reducers: {
     updateFilters(state) {
       const searchParams = getSearchParams(new URLSearchParams(window.location.search));
-      state.searchParamsFitlers = {...state.searchParamsFitlers, ...searchParams};
+      state.searchParamsFitlers = {...initialFilterValues, ...searchParams};
     },
 
     resetFilters(state) {
