@@ -12,10 +12,8 @@ import {GetProductsModel} from '@/models/products/GetProducts.model';
 import {ExtendedError} from '@/interfaces/error/extendedError.interface';
 import {SerializedError} from '@reduxjs/toolkit';
 import {DataWithMetaType} from '@/interfaces/products/dataWithMetaType.interface';
-
-export type NewParams = {
-  [key: string]: string | string[] | number;
-};
+import {NewParams} from '@/components/Layout/AllProducts/ProductsWithSortAndFiltersContainer/ProductsWithSortAndFiltersContainer';
+import {updateFilters} from '@/store/slices/filters.slice';
 
 interface UseProductsParams {
   // TODO fix any
@@ -37,7 +35,7 @@ export const useProducts = ({getProducts, scrollTo}: UseProductsParams): UseProd
   const [currentPage, setCurrentPage] = useState<number>(Number(searchParams.get('page')) || generalAppInfo.pagination.INITIAL_PAGE);
   const [pageAction, setPageAction] = useState<PaginationButtonAction>(PaginationButtonAction.SwitchPage);
   const [currentPageData, setCurrentPageData] = useState<ProductEntity[]>([]);
-  const filters = useSelector((state: IRootState) => state.filter);
+  const {searchParamsFitlers} = useSelector((state: IRootState) => state.filter);
   const dispatch = useAppDispatch();
 
   const {
@@ -47,7 +45,7 @@ export const useProducts = ({getProducts, scrollTo}: UseProductsParams): UseProd
   } = getProducts({
     page: currentPage,
     itemsPerPage: generalAppInfo.pagination.ITEMS_PER_PAGE,
-    ...filters
+    ...searchParamsFitlers
   });
 
   const scrollToProductListStart = (): void => {
@@ -55,16 +53,20 @@ export const useProducts = ({getProducts, scrollTo}: UseProductsParams): UseProd
   };
 
   const handlePageChange = (newPage: number, action: PaginationButtonAction): void => {
-    setSearchParams({page: newPage, ...filters});
+    handleSearchParamsChange({page: newPage});
     setCurrentPage(newPage);
     setPageAction(() => action);
   };
 
   const handleSearchParamsChange = (newParams: NewParams): void => {
-    setSearchParams({page: 0, ...filters, ...newParams});
-    setCurrentPage(0);
+    setSearchParams({...searchParamsFitlers, ...newParams});
+    setCurrentPage(Number(newParams?.page) || 0);
     setPageAction(() => PaginationButtonAction.SwitchPage);
   };
+
+  useEffect(() => {
+    dispatch(updateFilters());
+  }, [searchParams]);
 
   useEffect(() => {
     if (dataWithMeta && pageAction === PaginationButtonAction.SwitchPage) {

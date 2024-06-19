@@ -8,7 +8,7 @@ const CustomSpinner = (): ReactElement => {
 
   return (
     <Box>
-      <Backdrop sx={{color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1}} open={!!loading}>
+      <Backdrop sx={{color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1}} open={Boolean(loading)}>
         <CircularProgress color="inherit" />
       </Backdrop>
     </Box>

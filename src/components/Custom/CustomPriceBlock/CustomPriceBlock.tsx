@@ -15,7 +15,9 @@ const CustomPriceBlock = ({productData, titleClassNames, contentClassNames}: Cus
   return (
     <Box className="flex flex-col items-start justify-center">
       <Typography className={clsx('m-0 text-left text-secondary-200 sm:text-primary', titleClassNames)}>{priceAfterDiscount} USD</Typography>
-      <Typography className={clsx('m-0 font-semibold text-primary-300 line-through', contentClassNames)}>{!!discount && initialPrice}</Typography>
+      <Typography className={clsx('m-0 font-semibold text-primary-300 line-through', contentClassNames)}>
+        {Boolean(discount) && initialPrice}
+      </Typography>
     </Box>
   );
 };

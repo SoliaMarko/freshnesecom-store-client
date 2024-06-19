@@ -4,9 +4,8 @@ import PriceFilter from '@/features/filters/PriceFilter/PriceFilter';
 import {Category} from '@/enums/products/categories.enum';
 import {useEffect, useState} from 'react';
 import debounce from 'lodash.debounce';
-import {useAppDispatch} from '@/hooks/api/apiHooks';
-import {setFilters} from '@/store/slices/filters.slice';
-import {NewParams} from '@/components/Layout/Home/ProductsWithSortAndFiltersContainer/ProductsWithSortAndFiltersContainer';
+import {initialFilterValues, resetFilters, updateFilters} from '@/store/slices/filters.slice';
+import {NewParams} from '@/components/Layout/AllProducts/ProductsWithSortAndFiltersContainer/ProductsWithSortAndFiltersContainer';
 import RatingFilter from '@/features/filters/RatingFilter/RatingFilter';
 import {useSelector} from 'react-redux';
 import {IRootState} from '@/types/IRootState.type';
@@ -15,6 +14,8 @@ import BrandsFilter from '@/features/filters/BrandsFilter/BrandsFilter';
 import {brandOptions} from '@/constants/productsConstants/producer/brands.constant';
 import {ProductInfoOption} from '@/interfaces/products/productsInfoOptions.interface';
 import {Brand} from '@/enums/products/brands.enum';
+import ResetButton from '../../Buttons/FilterButtons/ResetButton';
+import {useAppDispatch} from '@/hooks/api/apiHooks';
 
 interface FormInputs {
   category: Category;
@@ -28,11 +29,9 @@ interface ProductFiltersFormProps {
 }
 
 const ProductFiltersForm = ({handleSearchParamsChange}: ProductFiltersFormProps) => {
-  const {minPrice, maxPrice, minRating, maxRating, category, brands} = useSelector((state: IRootState) => state.filter);
-  const [selectedCategory, setSelectedCategory] = useState<Category>(Category.AllCategories);
-  const [selectedBrands, setSelectedBrands] = useState<Brand[]>([]);
-  const [currentBrandOptions, setCurrentBrandOptions] = useState<ProductInfoOption[]>(brandOptions);
-  const {control, watch, getValues, handleSubmit} = useForm<FormInputs>({
+  const {searchParamsFitlers} = useSelector((state: IRootState) => state.filter);
+  const {minPrice, maxPrice, minRating, maxRating, category, brands} = searchParamsFitlers;
+  const {control, watch, getValues, handleSubmit, reset} = useForm<FormInputs>({
     mode: 'onChange',
     defaultValues: {
       priceRange: [minPrice, maxPrice],
@@ -41,6 +40,10 @@ const ProductFiltersForm = ({handleSearchParamsChange}: ProductFiltersFormProps)
       brands: brands
     }
   });
+  const {priceRange, ratingRange, category: categoryFromInput, brands: brandsFromInput} = getValues();
+  const [selectedCategory, setSelectedCategory] = useState<Category>(categoryFromInput);
+  const [selectedBrands, setSelectedBrands] = useState<Brand[]>(brandsFromInput as unknown as Brand[]);
+  const [currentBrandOptions, setCurrentBrandOptions] = useState<ProductInfoOption[]>(brandOptions);
   const dispatch = useAppDispatch();
 
   const handleAddSelectedBrand = (value: Brand): void => {
@@ -54,6 +57,16 @@ const ProductFiltersForm = ({handleSearchParamsChange}: ProductFiltersFormProps)
 
   const resetSelectedBrands = (): void => {
     setSelectedBrands([]);
+    handleSearchParamsChange({brands: ''});
+    dispatch(updateFilters());
+  };
+
+  const handleResetFilters = (): void => {
+    reset();
+    setSelectedCategory(Category.AllCategories);
+    setSelectedBrands([]);
+    handleSearchParamsChange(initialFilterValues);
+    dispatch(resetFilters());
   };
 
   const handleChangeSelectedCategory = (category: Category): void => {
@@ -74,10 +87,9 @@ const ProductFiltersForm = ({handleSearchParamsChange}: ProductFiltersFormProps)
       minRating: ratingRange[0],
       maxRating: ratingRange[1],
       category: category,
-      brands: brands?.join(',')
+      brands: (brands as unknown as Brand[])?.join(',') || brands
     };
 
-    dispatch(setFilters(formattedFilters));
     handleSearchParamsChange({page: 0, ...formattedFilters});
   };
 
@@ -112,8 +124,17 @@ const ProductFiltersForm = ({handleSearchParamsChange}: ProductFiltersFormProps)
             />
           )}
         />
-        <Controller control={control} name="ratingRange" render={({field: {onChange}}) => <RatingFilter onChange={onChange} />} />
-        <Controller control={control} name="priceRange" render={({field: {onChange}}) => <PriceFilter onChange={onChange} />} />
+        <Controller
+          control={control}
+          name="ratingRange"
+          render={({field: {onChange}}) => <RatingFilter onChange={onChange} selectedRatingRange={ratingRange} />}
+        />
+        <Controller
+          control={control}
+          name="priceRange"
+          render={({field: {onChange}}) => <PriceFilter onChange={onChange} selectedPriceRange={priceRange} />}
+        />
+        <ResetButton handleClick={handleResetFilters} />
       </Box>
     </form>
   );
