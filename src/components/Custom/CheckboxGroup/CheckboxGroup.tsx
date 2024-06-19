@@ -54,6 +54,7 @@ const CheckboxGroup = ({control, name, options, config = defaultConfig}: Checkbo
         <FormGroup>
           {options.map((option) => {
             const optionValue = option[config.value as keyof Option];
+            const optionLabel = option[config.label as keyof Option];
             const checked = value?.some((checked: string) => checked === optionValue);
             const selectedClasses = checked && 'font-semibold text-secondary';
 
@@ -64,7 +65,7 @@ const CheckboxGroup = ({control, name, options, config = defaultConfig}: Checkbo
                 }
                 label={
                   <Typography className={clsx('customH3 m-0 truncate font-normal hover:font-semibold hover:text-secondary', selectedClasses)}>
-                    {optionValue as string}
+                    {optionLabel as string}
                   </Typography>
                 }
                 key={optionValue as string}
