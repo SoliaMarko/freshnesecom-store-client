@@ -6,16 +6,19 @@ import {NavLink} from 'react-router-dom';
 import PrimaryButton from '@/components/Custom/Buttons/PrimaryButton';
 import {selectUser} from '@/store/slices/user.slice';
 import {useAppSelector} from '@/hooks/api/apiHooks';
+import ProductsNotFound from '@/components/Layout/AllProducts/ProductsNotFound/ProductsNotFound';
 
 const Cart = (): ReactElement => {
   const user = useAppSelector(selectUser);
 
   return (
-    <Box className="my-24 flex flex-col gap-6 md:my-48 md:gap-12">
-      <Typography className="customH1 text-center">{`Your ${storeInfo.NAME} Cart is empty`}</Typography>
-      <StyledNavLink to={`/${productRoutes.PRODUCTS}`} classNames="text-2xl">
-        Shop now
-      </StyledNavLink>
+    <Box className="mb-24 mt-12 flex flex-col gap-6 md:mb-52 md:mt-12 md:gap-12">
+      <ProductsNotFound>
+        <Typography className="customH2">{`Your ${storeInfo.NAME} Cart is empty`}</Typography>
+        <StyledNavLink to={`/${productRoutes.PRODUCTS}`} classNames="text-2xl">
+          Shop now
+        </StyledNavLink>
+      </ProductsNotFound>
       {!user.authorized && (
         <Box className="flex justify-center gap-12">
           <NavLink to={`/${commonRoutes.LOGIN}`}>

@@ -9,6 +9,7 @@ import SortBlock from '../SortBlock/SortBlock';
 import FilterButton from '@/components/Custom/Buttons/FilterButtons/FilterButton';
 import {useProducts} from '@/hooks/products/useProducts';
 import {ScrollableElement} from '@/interfaces/global/scrollableElement.interface';
+import ProductsNotFound from '../ProductsNotFound/ProductsNotFound';
 
 export type NewParams = {
   [key: string]: unknown;
@@ -39,7 +40,7 @@ const ProductsWithSortAndFiltersContainer = (): ReactNode => {
         <Box className="relative flex flex-row justify-between gap-4 pb-6 pt-8 lg:gap-10 lg:pb-11 lg:pt-16 2xl:pt-12" ref={productListRef}>
           <Filters handleSearchParamsChange={handleSearchParamsChange} />
           <Box className="w-full xl:w-3/4">
-            <ProductsList currentPageData={currentPageData} />
+            {currentPageData.length ? <ProductsList currentPageData={currentPageData} /> : <ProductsNotFound>No products found.</ProductsNotFound>}
           </Box>
         </Box>
         <ProductsFooter productsMetadata={dataWithMeta.meta} handlePageChange={handlePageChange} currentPage={currentPage} />

@@ -1,6 +1,6 @@
 import CustomSlider from '@/components/Custom/CustomSlider/CustomSlider';
 import {Box, Typography} from '@mui/material';
-import {ReactElement, useState} from 'react';
+import {ReactElement, useEffect, useState} from 'react';
 import {RangeConstraints} from '../PriceFilter/PriceFilter';
 import {CustomRatingThumb} from './CustomRatingThumb';
 
@@ -24,6 +24,10 @@ const RatingFilter = ({onChange, selectedRatingRange, range = defaultConstraints
     setRatingConstraints(updatedConstraints);
     onChange(Object.values(updatedConstraints));
   };
+
+  useEffect(() => {
+    handleMinMaxChange(minRating || range.min, maxRating || range.max);
+  }, [minRating, maxRating]);
 
   return (
     <Box className="flex max-h-64 w-full max-w-36 flex-col gap-4 pr-5 md:max-w-40 lg:max-w-56 xl:max-w-64 2xl:max-w-80">

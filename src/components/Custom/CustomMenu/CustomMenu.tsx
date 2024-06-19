@@ -3,15 +3,17 @@ import {Button, Menu} from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import MenuItems from './MenuItems';
 import {ItemWithIDType} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
+import clsx from 'clsx';
 
 interface CustomMenuProps {
   children: ReactNode;
   header?: string;
   options: ItemWithIDType<string>[] | ItemWithIDType<ReactElement>[];
   handleSelectOption?: (option: string) => void;
+  classNames?: string;
 }
 
-const CustomMenu = ({children, header, options, handleSelectOption}: CustomMenuProps): ReactElement => {
+const CustomMenu = ({children, header, options, handleSelectOption, classNames}: CustomMenuProps): ReactElement => {
   const [anchorElement, setAnchorElement] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorElement);
 
@@ -36,7 +38,7 @@ const CustomMenu = ({children, header, options, handleSelectOption}: CustomMenuP
         disableElevation
         onClick={handleOpen}
         endIcon={<KeyboardArrowDownIcon className="text-secondary" />}
-        className="border-none text-sm font-semibold capitalize text-primary hover:bg-primary-500 sm:text-base"
+        className={clsx('border-none text-sm font-semibold capitalize text-primary hover:bg-primary-500 sm:text-base', classNames)}
       >
         {children}
       </Button>

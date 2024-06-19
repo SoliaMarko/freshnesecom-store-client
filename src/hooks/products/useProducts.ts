@@ -19,6 +19,7 @@ interface UseProductsParams {
   // TODO fix any
   getProducts: (params: GetProductsModel) => any;
   scrollTo: RefObject<ScrollableElement>;
+  dependencies?: any;
 }
 
 interface UseProductsReturnValues {
@@ -30,7 +31,7 @@ interface UseProductsReturnValues {
   error: ExtendedError | SerializedError;
 }
 
-export const useProducts = ({getProducts, scrollTo}: UseProductsParams): UseProductsReturnValues => {
+export const useProducts = ({getProducts, scrollTo, dependencies}: UseProductsParams): UseProductsReturnValues => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState<number>(Number(searchParams.get('page')) || generalAppInfo.pagination.INITIAL_PAGE);
   const [pageAction, setPageAction] = useState<PaginationButtonAction>(PaginationButtonAction.SwitchPage);
@@ -47,6 +48,7 @@ export const useProducts = ({getProducts, scrollTo}: UseProductsParams): UseProd
     itemsPerPage: generalAppInfo.pagination.ITEMS_PER_PAGE,
     ...searchParamsFitlers
   });
+
 
   const scrollToProductListStart = (): void => {
     if (scrollTo.current) scrollTo.current.scrollIntoView({behavior: 'smooth'});
@@ -80,6 +82,12 @@ export const useProducts = ({getProducts, scrollTo}: UseProductsParams): UseProd
       dispatch(resetLoading());
     }
   }, [dataWithMeta]);
+
+  const productsQuery = getProducts({page: currentPage, itemsPerPage: generalAppInfo.pagination.ITEMS_PER_PAGE, ...searchParamsFitlers});
+
+  useEffect(() => {
+    productsQuery.refetch();
+  }, dependencies);
 
   useEffect(() => {
     if (isLoading) dispatch(setLoading());
