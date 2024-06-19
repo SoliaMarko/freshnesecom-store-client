@@ -85,6 +85,10 @@ const ProductFiltersForm = ({handleSearchParamsChange}: ProductFiltersFormProps)
     return () => subscription.unsubscribe();
   }, [watch]);
 
+  useEffect(() => {
+    handleChangeSelectedCategory(category);
+  }, [category]);
+
   return (
     <form>
       <Box className="flex flex-col items-center gap-3 md:gap-4 lg:gap-10">

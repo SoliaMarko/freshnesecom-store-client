@@ -1,13 +1,13 @@
 import {Box, Typography} from '@mui/material';
 import {ReactElement, useEffect} from 'react';
 import {Brand} from '@/enums/products/brands.enum';
-import {ProductInfoOption} from '@/interfaces/products/productsInfoOptions.interface';
+import {type Option} from '@/components/Custom/CheckboxGroup/CheckboxGroup';
 import CheckboxGroup from '@/components/Custom/CheckboxGroup/CheckboxGroup';
 import {Control} from 'react-hook-form';
 
 interface BrandsFilterProps {
   onChange: (brand: Brand[]) => void;
-  options: ProductInfoOption[];
+  options: Option[];
   selectedBrands: Brand[];
   control: Control<any>;
 }

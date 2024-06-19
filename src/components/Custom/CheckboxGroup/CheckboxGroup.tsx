@@ -9,7 +9,7 @@ const defaultConfig = {
   value: 'value'
 };
 
-type Option = {label: string; value: string};
+export type Option = {label: string; value: number};
 
 interface CheckboxGroupProps {
   control: Control<any>;
@@ -61,7 +61,13 @@ const CheckboxGroup = ({control, name, options, config = defaultConfig}: Checkbo
             return (
               <FormControlLabel
                 control={
-                  <Checkbox checked={checked} {...inputProps} inputRef={ref} onChange={() => handleChange(optionValue)} className="text-secondary" />
+                  <Checkbox
+                    checked={checked}
+                    {...inputProps}
+                    inputRef={ref}
+                    onChange={() => handleChange(optionValue as string)}
+                    className="text-secondary"
+                  />
                 }
                 label={
                   <Typography className={clsx('customH3 m-0 truncate font-normal hover:font-semibold hover:text-secondary', selectedClasses)}>

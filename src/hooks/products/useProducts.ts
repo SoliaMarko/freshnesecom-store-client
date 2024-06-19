@@ -18,7 +18,7 @@ import {updateFilters} from '@/store/slices/filters.slice';
 interface UseProductsParams {
   // TODO fix any
   getProducts: (params: GetProductsModel) => any;
-  scrollTo: RefObject<ScrollableElement>;
+  scrollTo?: RefObject<ScrollableElement>;
   dependencies?: any;
 }
 
@@ -26,7 +26,7 @@ interface UseProductsReturnValues {
   data: {currentPageData: ProductEntity[]; dataWithMeta: DataWithMetaType; currentPage: number};
   handlers: {
     handleSearchParamsChange: (newParams: NewParams) => void;
-    handlePageChange: (newPage: number, action: PaginationButtonAction) => void;
+    handlePageChange: (newPage: number, action?: PaginationButtonAction) => void;
   };
   error: ExtendedError | SerializedError;
 }
@@ -49,15 +49,14 @@ export const useProducts = ({getProducts, scrollTo, dependencies}: UseProductsPa
     ...searchParamsFitlers
   });
 
-
   const scrollToProductListStart = (): void => {
-    if (scrollTo.current) scrollTo.current.scrollIntoView({behavior: 'smooth'});
+    if (scrollTo?.current) scrollTo.current.scrollIntoView({behavior: 'smooth'});
   };
 
-  const handlePageChange = (newPage: number, action: PaginationButtonAction): void => {
+  const handlePageChange = (newPage: number, action?: PaginationButtonAction): void => {
     handleSearchParamsChange({page: newPage});
     setCurrentPage(newPage);
-    setPageAction(() => action);
+    setPageAction(() => action || PaginationButtonAction.SwitchPage);
   };
 
   const handleSearchParamsChange = (newParams: NewParams): void => {
