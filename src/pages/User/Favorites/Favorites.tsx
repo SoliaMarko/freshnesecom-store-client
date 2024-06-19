@@ -1,4 +1,4 @@
-import {ReactNode, useEffect, useRef, useState} from 'react';
+import {ReactNode, useCallback, useEffect, useRef, useState} from 'react';
 import {Box, Typography} from '@mui/material';
 import ProductsList from '@/components/Layout/AllProducts/ProductsList/ProductsList';
 import Error from '@/pages/Error/Error';
@@ -13,6 +13,7 @@ import {ProductsMetaData} from '@/utils/productsHelpers/ProductsMetaData';
 import ProductsNotFound from '@/components/Layout/AllProducts/ProductsNotFound/ProductsNotFound';
 import StyledNavLink from '@/components/Custom/Links/StyledNavLink';
 import {productRoutes} from '@/constants/globalConstants/global.constant';
+import debounce from 'lodash.debounce';
 
 const Favorites = (): ReactNode => {
   const productListRef = useRef<ScrollableElement>(null);
@@ -29,14 +30,24 @@ const Favorites = (): ReactNode => {
   const [wishlistProducts, setWishlistProducts] = useState<ProductEntity[]>(currentPageData);
   const [productsMeta, setProductsMeta] = useState(new ProductsMetaData(currentPage, wishlistProducts.length));
 
+  const debouncedFilter = useCallback(
+    debounce(() => {
+      if (dataWithMeta && wishedProductIDs) {
+        const filteredData = dataWithMeta.data.filter((product) => wishedProductIDs.includes(product._id));
+        setWishlistProducts(filteredData);
+        setProductsMeta(new ProductsMetaData(currentPage, filteredData.length));
+      }
+    }, 500),
+    [dataWithMeta, wishedProductIDs]
+  );
+
   useEffect(() => {
-    if (dataWithMeta && wishedProductIDs) {
-      setTimeout((): void => {
-        setWishlistProducts(dataWithMeta.data.filter((product) => wishedProductIDs.includes(product._id)));
-        setProductsMeta(new ProductsMetaData(currentPage, wishedProductIDs.length));
-      }, 600);
-    }
-  }, [dataWithMeta, wishedProductIDs]);
+    debouncedFilter();
+
+    return () => {
+      debouncedFilter.cancel();
+    };
+  }, [debouncedFilter]);
 
   useEffect(() => {
     setWishlistProducts(currentPageData);
