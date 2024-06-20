@@ -66,8 +66,6 @@ const SearchBar = ({classNames}: SearchBarProps): ReactElement => {
     handleToggleCategory(Category[option as keyof typeof Category]);
   };
 
-  console.log(getValues());
-
   return (
     <Paper component="form" className={clsx('flex w-full bg-primary-700 md:w-3/6', classNames)}>
       <Controller

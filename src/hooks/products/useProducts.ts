@@ -1,4 +1,4 @@
-import {RefObject, useEffect, useState} from 'react';
+import {RefObject, useCallback, useEffect, useState} from 'react';
 import {useSearchParams} from 'react-router-dom';
 import {generalAppInfo} from '@/constants/globalConstants/global.constant';
 import {ProductEntity} from '@/interfaces/products/productEntity.interface';
@@ -53,17 +53,23 @@ export const useProducts = ({getProducts, scrollTo, dependencies}: UseProductsPa
     if (scrollTo?.current) scrollTo.current.scrollIntoView({behavior: 'smooth'});
   };
 
-  const handlePageChange = (newPage: number, action?: PaginationButtonAction): void => {
-    handleSearchParamsChange({page: newPage});
-    setCurrentPage(newPage);
-    setPageAction(() => action || PaginationButtonAction.SwitchPage);
-  };
+  const handleSearchParamsChange = useCallback(
+    (newParams: NewParams): void => {
+      setSearchParams({...searchParamsFitlers, ...newParams});
+      setCurrentPage(Number(newParams?.page) || 0);
+      setPageAction(() => PaginationButtonAction.SwitchPage);
+    },
+    [currentPage, dataWithMeta, searchParamsFitlers]
+  );
 
-  const handleSearchParamsChange = (newParams: NewParams): void => {
-    setSearchParams({...searchParamsFitlers, ...newParams});
-    setCurrentPage(Number(newParams?.page) || 0);
-    setPageAction(() => PaginationButtonAction.SwitchPage);
-  };
+  const handlePageChange = useCallback(
+    (newPage: number, action?: PaginationButtonAction): void => {
+      handleSearchParamsChange({page: newPage});
+      setCurrentPage(newPage);
+      setPageAction(() => action || PaginationButtonAction.SwitchPage);
+    },
+    [currentPage, handleSearchParamsChange]
+  );
 
   useEffect(() => {
     dispatch(updateFilters());
@@ -86,7 +92,7 @@ export const useProducts = ({getProducts, scrollTo, dependencies}: UseProductsPa
 
   useEffect(() => {
     productsQuery.refetch();
-  }, dependencies);
+  }, [dependencies]);
 
   useEffect(() => {
     if (isLoading) dispatch(setLoading());
