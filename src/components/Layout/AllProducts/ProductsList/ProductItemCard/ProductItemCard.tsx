@@ -30,7 +30,12 @@ const ProductItemCard = ({productData}: ProductItemCardProps): ReactElement => {
       onDoubleClick={handleDoubleClick}
     >
       <Box className="relative flex min-h-80 sm:w-1/3">
-        <img src={mainImage} alt={`${title}-illustration`} loading="lazy" className="absolute left-0 top-0 h-full w-full rounded-xl object-cover" />
+        <img
+          src={mainImage}
+          alt={`${title}-illustration`}
+          loading="lazy"
+          className="absolute left-0 top-0 h-full w-full rounded-t-xl object-cover sm:rounded-l-xl sm:rounded-tr-none"
+        />
         {isLikeDisplayed ? (
           isFavorite ? (
             <FavoriteIcon className="absolute left-0 top-0 h-full w-full animate-ping text-red-500" />
@@ -41,12 +46,12 @@ const ProductItemCard = ({productData}: ProductItemCardProps): ReactElement => {
           ''
         )}
       </Box>
-      <Box className="flex h-2/3 flex-col items-start justify-between gap-1 p-3 sm:h-full sm:w-2/3 sm:flex-row sm:items-center sm:gap-2 sm:p-6">
+      <Box className="flex h-2/3 flex-col justify-between gap-1 p-3 sm:h-full sm:w-2/3 sm:flex-row sm:items-stretch sm:gap-2 sm:p-6">
         <Box className="flex w-full flex-col sm:w-1/2">
           <ProductItemMainInfo productData={productData} isFavorite={isFavorite} handleClickFavorite={handleIsFavorite} />
           <ProductItemAdditionalInfoList productData={productData} classNames="hidden sm:flex" />
         </Box>
-        <Box className="flex h-full w-full flex-col justify-between gap-3 sm:w-1/3">
+        <Box className="flex w-full flex-col justify-between gap-3 sm:w-1/3">
           <Box className="order-3 flex flex-row items-center justify-between sm:order-1">
             <ProductItemPriceInfo productData={productData} />
             <ProductDetailsButton id={id} classNames="w-34 sm:hidden h-12" />

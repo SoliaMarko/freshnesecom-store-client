@@ -69,8 +69,8 @@ const PriceFilter = ({onChange, selectedPriceRange}: PriceFilterProps): ReactEle
   }, [isLoading]);
 
   return (
-    <Box className="flex max-h-64 w-full max-w-36 flex-col gap-4 pr-5 md:max-w-40 lg:max-w-56 xl:max-w-64 2xl:max-w-80">
-      <Typography className="customH2 m-0 text-left">Price</Typography>
+    <Box className="flex max-h-64 w-full min-w-48 flex-col gap-4 pr-5 md:max-w-40 lg:max-w-56 xl:max-w-64 2xl:max-w-80">
+      <Typography className="heading m-0 text-left text-lg xl:text-2xl">Price</Typography>
       <CustomSlider range={range} values={priceConstraints} handleMinMax={handleMinMaxChange} classNames="text-secondary" thumb={CustomPriceThumb} />
       <RangeInputs range={range} values={priceConstraints} handleMin={handleMinChange} handleMax={handleMaxChange} />
     </Box>

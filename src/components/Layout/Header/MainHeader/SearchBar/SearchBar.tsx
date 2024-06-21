@@ -1,4 +1,4 @@
-import {ReactElement, useCallback, useEffect} from 'react';
+import {ReactElement, useEffect} from 'react';
 import {Divider, IconButton, InputBase, Paper} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import CustomMenu from '@/components/Custom/CustomMenu/CustomMenu';
@@ -58,9 +58,9 @@ const SearchBar = ({classNames}: SearchBarProps): ReactElement => {
     return () => subscription.unsubscribe();
   }, [watch]);
 
-  const handleToggleCategory = useCallback((category: Category): void => {
+  const handleToggleCategory = (category: Category): void => {
     handleSearchParamsChange({category: category});
-  }, []);
+  };
 
   const handleSelectCategory = (option: string): void => {
     handleToggleCategory(Category[option as keyof typeof Category]);

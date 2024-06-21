@@ -16,7 +16,7 @@ const CategoryRadioButton = ({children, currentCategory, quantityInCurrentCatego
 
   return (
     <FormControlLabel
-      className="m-0 flex-1 flex-row justify-start"
+      className="m-0 min-w-56 flex-1 flex-row justify-start"
       name="category-filter-radio"
       value={currentCategory}
       control={<Radio className="hidden p-0" />}
@@ -24,11 +24,11 @@ const CategoryRadioButton = ({children, currentCategory, quantityInCurrentCatego
       label={
         <Box
           className={clsx(
-            'flex min-w-36 flex-1 flex-row justify-between rounded-lg px-2 py-1 capitalize text-primary hover:bg-secondary-400 md:min-w-40 lg:min-w-56 xl:min-w-64 2xl:min-w-80',
+            'flex min-w-56 flex-1 flex-row items-center justify-between rounded-lg px-2 py-1 capitalize text-primary hover:bg-secondary-400 xl:min-w-64 2xl:min-w-80',
             selectedClasses
           )}
         >
-          <Typography className="customH3 m-0 truncate font-normal">{children}</Typography>
+          <Typography className="heading m-0 truncate text-sm font-normal xl:text-lg">{children}</Typography>
           <CustomChip value={quantityInCurrentCategory.toString()} classNames="text-secondary bg-secondary-500" />
         </Box>
       }

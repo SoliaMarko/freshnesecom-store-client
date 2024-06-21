@@ -18,8 +18,8 @@ const BrandsFilter = ({onChange, options, selectedBrands, control}: BrandsFilter
   }, [selectedBrands]);
 
   return (
-    <Box className="flex max-h-64 max-w-36 flex-col gap-4 pr-5 md:max-w-40 lg:max-w-56 xl:max-w-64 2xl:max-w-80">
-      <Typography className="customH2 m-0 text-left text-primary">Brands</Typography>
+    <Box className="flex max-h-64 w-36 min-w-56 flex-col gap-4 xl:w-80">
+      <Typography className="heading m-0 text-left text-lg text-primary xl:text-2xl">Brands</Typography>
       <Box className="overflow-y-auto overflow-x-hidden">
         <CheckboxGroup name="brands" options={options} control={control} />
       </Box>

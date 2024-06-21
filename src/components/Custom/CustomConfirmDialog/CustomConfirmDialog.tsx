@@ -30,7 +30,7 @@ const CustomConfirmDialog = (): ReactElement => {
     <Dialog open={isOpen} onClose={handleCancel} aria-labelledby={`alert-dialog-${title}`} aria-describedby={`alert-dialog-${content}`}>
       <DialogTitle id={`${type}-dialog-${title}`}>{title}</DialogTitle>
       <DialogContent>
-        <DialogContentText className="bg-red-600 p-14" id={`${type}-dialog-${content}`}>
+        <DialogContentText className="p-14" id={`${type}-dialog-${content}`}>
           {content}
         </DialogContentText>
       </DialogContent>

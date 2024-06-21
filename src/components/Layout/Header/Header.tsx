@@ -2,7 +2,7 @@ import {ReactElement} from 'react';
 import {Divider} from '@mui/material';
 import Navigation from './Navigation/Navigation';
 import MainHeader from './MainHeader/MainHeader';
-import Menus from './MenusBlock/MenusBlock';
+import MenusBlock from './MenusBlock/MenusBlock';
 
 const Header = (): ReactElement => {
   return (
@@ -10,7 +10,7 @@ const Header = (): ReactElement => {
       <Navigation />
       <Divider />
       <MainHeader />
-      <Menus />
+      <MenusBlock classNames="hidden xl:flex" />
     </header>
   );
 };

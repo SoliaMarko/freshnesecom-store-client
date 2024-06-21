@@ -2,10 +2,15 @@ import {ReactElement} from 'react';
 import {Box} from '@mui/material';
 import {temporalCategories} from '@/temporalData/temporalData';
 import CustomMenu from '@/components/Custom/CustomMenu/CustomMenu';
+import clsx from 'clsx';
 
-const MenusBlock = (): ReactElement => {
+interface MenusBlockProps {
+  classNames?: string;
+}
+
+const MenusBlock = ({classNames}: MenusBlockProps): ReactElement => {
   return (
-    <Box className="mx-4 mb-3.5 mt-2 hidden items-center justify-between bg-primary-700 px-2 py-3 md:flex md:px-8">
+    <Box className={clsx('mx-4 mb-3.5 mt-2 items-center justify-between bg-primary-700 px-2 py-3 md:flex md:px-8', classNames)}>
       {temporalCategories.map((categoryInfo) => {
         const {
           id,
