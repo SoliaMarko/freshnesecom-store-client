@@ -4,19 +4,38 @@ import {useWatch, useController, Control} from 'react-hook-form';
 import {ReactElement, ReactNode} from 'react';
 import clsx from 'clsx';
 
-const defaultConfig = {
-  label: 'label',
-  value: 'value'
-};
-
 export type Option = {label: string; value: number};
+
+export type OptionConfig = {label: string; value: string};
 
 interface CheckboxGroupProps {
   control: Control<any>;
   name: string;
   options: Option[];
-  config?: {label: string; value: string};
+  config?: OptionConfig;
 }
+
+const defaultConfig = {
+  label: 'label',
+  value: 'value'
+};
+
+const getTransformedCheckedItemsArray = (array: string[], item: string): string[] => {
+  const transformedArray = [...array];
+
+  if (transformedArray.length > 0) {
+    const index = transformedArray.findIndex((value: string) => value === item);
+    if (index === -1) {
+      transformedArray.push(item);
+    } else {
+      transformedArray.splice(index, 1);
+    }
+  } else {
+    transformedArray.push(item);
+  }
+
+  return transformedArray;
+};
 
 const CheckboxGroup = ({control, name, options, config = defaultConfig}: CheckboxGroupProps): ReactElement => {
   const {
@@ -30,20 +49,8 @@ const CheckboxGroup = ({control, name, options, config = defaultConfig}: Checkbo
 
   const checkboxIds = useWatch({control, name: name}) || [];
 
-  const handleChange = (value: string): void => {
-    const newArray = [...checkboxIds];
-    const item = value;
-
-    if (newArray.length > 0) {
-      const index = newArray.findIndex((x) => x === item);
-      if (index === -1) {
-        newArray.push(item);
-      } else {
-        newArray.splice(index, 1);
-      }
-    } else {
-      newArray.push(item);
-    }
+  const handleChange = (item: string): void => {
+    const newArray = getTransformedCheckedItemsArray([...checkboxIds], item);
 
     onChange(newArray);
   };
@@ -81,7 +88,7 @@ const CheckboxGroup = ({control, name, options, config = defaultConfig}: Checkbo
         </FormGroup>
       </FormControl>
       <FormHelperText error variant="outlined">
-        {(errors?.[name] as ReactNode) || ' '}
+        {(errors?.[name] as ReactNode) || ''}
       </FormHelperText>
     </>
   );
