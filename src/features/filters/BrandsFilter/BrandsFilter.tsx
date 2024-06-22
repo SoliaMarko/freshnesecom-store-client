@@ -1,24 +1,18 @@
 import {Box, Typography} from '@mui/material';
 import {ReactElement, useEffect} from 'react';
-import {getTransformedArrayWithIDs} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
 import {Brand} from '@/enums/products/brands.enum';
-import BrandCheckboxItem from './BrandCheckboxItem/BrandCheckboxItem';
-import {ProductInfoOption} from '@/interfaces/products/productsInfoOptions.interface';
+import {type Option} from '@/components/Custom/CheckboxGroup/CheckboxGroup';
+import CheckboxGroup from '@/components/Custom/CheckboxGroup/CheckboxGroup';
+import {Control} from 'react-hook-form';
 
 interface BrandsFilterProps {
   onChange: (brand: Brand[]) => void;
-  options: ProductInfoOption[];
-  handleAddSelectedBrand: (brand: Brand) => void;
-  handleRemoveSelectedBrand: (brand: Brand) => void;
+  options: Option[];
   selectedBrands: Brand[];
+  control: Control<any>;
 }
 
-const BrandsFilter = ({onChange, options, handleAddSelectedBrand, handleRemoveSelectedBrand, selectedBrands}: BrandsFilterProps): ReactElement => {
-  const handleCheckboxChange = (value: number, isChecked: boolean): void => {
-    if (isChecked) handleAddSelectedBrand(value);
-    else handleRemoveSelectedBrand(value);
-  };
-
+const BrandsFilter = ({onChange, options, selectedBrands, control}: BrandsFilterProps): ReactElement => {
   useEffect(() => {
     onChange(selectedBrands);
   }, [selectedBrands]);
@@ -27,23 +21,7 @@ const BrandsFilter = ({onChange, options, handleAddSelectedBrand, handleRemoveSe
     <Box className="flex max-h-64 max-w-36 flex-col gap-4 pr-5 md:max-w-40 lg:max-w-56 xl:max-w-64 2xl:max-w-80">
       <Typography className="customH2 m-0 text-left text-primary">Brands</Typography>
       <Box className="overflow-y-auto overflow-x-hidden">
-        {getTransformedArrayWithIDs(options).map((categoryInfo) => {
-          const {
-            id,
-            value: {value, label}
-          } = categoryInfo;
-
-          return (
-            <BrandCheckboxItem
-              key={id}
-              currentBrand={value}
-              selectedBrands={selectedBrands}
-              onChange={(event) => handleCheckboxChange(value, event.target.checked)}
-            >
-              {label}
-            </BrandCheckboxItem>
-          );
-        })}
+        <CheckboxGroup name="brands" options={options} control={control} />
       </Box>
     </Box>
   );

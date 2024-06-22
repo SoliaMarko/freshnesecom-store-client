@@ -1,11 +1,12 @@
 import {commonRoutes} from '@/constants/globalConstants/global.constant';
 import {useAddToWishistMutation, useRemoveFromWishistMutation} from '@/store/services/userApi';
 import {IRootState} from '@/types/IRootState.type';
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {useAppDispatch} from '../api/apiHooks';
 import {addToWishlist as addToWishlistLocally, removeFromWishlist as removeFromWishlistLocally} from '@/store/slices/wishlist.slice';
+import debounce from 'lodash.debounce';
 
 interface UseToggleFavoriteParams {
   productID: string;
@@ -42,6 +43,11 @@ export const useToggleFavorite = ({productID, isHandledLikeDisplay}: UseToggleFa
     dispatch(addToWishlistLocally(productID));
   };
 
+  const handleLikeDisplay = () => {
+    setIsLikeDisplayed(true);
+    debouncedHandleLikeDisplay();
+  };
+
   const handleIsFavorite = (): void => {
     if (!authorized) {
       navigate(`/${commonRoutes.LOGIN}`);
@@ -58,10 +64,18 @@ export const useToggleFavorite = ({productID, isHandledLikeDisplay}: UseToggleFa
     isHandledLikeDisplay && handleLikeDisplay();
   };
 
-  const handleLikeDisplay = (): void => {
-    setIsLikeDisplayed(true);
-    setTimeout(() => setIsLikeDisplayed(false), 600);
-  };
+  const debouncedHandleLikeDisplay = useCallback(
+    debounce(() => {
+      setIsLikeDisplayed(false);
+    }, 500),
+    []
+  );
+
+  useEffect(() => {
+    return () => {
+      debouncedHandleLikeDisplay.cancel();
+    };
+  }, [debouncedHandleLikeDisplay]);
 
   return {isFavorite, isLikeDisplayed, handleIsFavorite};
 };

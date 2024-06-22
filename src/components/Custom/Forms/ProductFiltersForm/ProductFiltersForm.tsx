@@ -13,7 +13,6 @@ import CategoriesFilter from '@/features/filters/CategoriesFilter/CategoriesFilt
 import BrandsFilter from '@/features/filters/BrandsFilter/BrandsFilter';
 import {brandOptions} from '@/constants/productsConstants/producer/brands.constant';
 import {ProductInfoOption} from '@/interfaces/products/productsInfoOptions.interface';
-import {Brand} from '@/enums/products/brands.enum';
 import ResetButton from '../../Buttons/FilterButtons/ResetButton';
 import {useAppDispatch} from '@/hooks/api/apiHooks';
 
@@ -30,41 +29,26 @@ interface ProductFiltersFormProps {
 
 const ProductFiltersForm = ({handleSearchParamsChange}: ProductFiltersFormProps) => {
   const {searchParamsFitlers} = useSelector((state: IRootState) => state.filter);
-  const {minPrice, maxPrice, minRating, maxRating, category, brands} = searchParamsFitlers;
+  const {category, brands, minRating, maxRating, minPrice, maxPrice} = searchParamsFitlers;
   const {control, watch, getValues, handleSubmit, reset} = useForm<FormInputs>({
     mode: 'onChange',
     defaultValues: {
       priceRange: [minPrice, maxPrice],
       ratingRange: [minRating, maxRating],
-      category: category,
+      category: Category.AllCategories,
       brands: brands
     }
   });
-  const {priceRange, ratingRange, category: categoryFromInput, brands: brandsFromInput} = getValues();
-  const [selectedCategory, setSelectedCategory] = useState<Category>(categoryFromInput);
-  const [selectedBrands, setSelectedBrands] = useState<Brand[]>(brandsFromInput as unknown as Brand[]);
   const [currentBrandOptions, setCurrentBrandOptions] = useState<ProductInfoOption[]>(brandOptions);
   const dispatch = useAppDispatch();
 
-  const handleAddSelectedBrand = (value: Brand): void => {
-    if (selectedBrands.length) setSelectedBrands((prev) => [...prev, value]);
-    else setSelectedBrands([value]);
-  };
-
-  const handleRemoveSelectedBrand = (value: Brand): void => {
-    setSelectedBrands((prev) => prev.filter((brand) => brand !== value));
-  };
-
   const resetSelectedBrands = (): void => {
-    setSelectedBrands([]);
-    handleSearchParamsChange({brands: ''});
+    handleSearchParamsChange({brands: []});
     dispatch(updateFilters());
   };
 
   const handleResetFilters = (): void => {
     reset();
-    setSelectedCategory(Category.AllCategories);
-    setSelectedBrands([]);
     handleSearchParamsChange(initialFilterValues);
     dispatch(resetFilters());
   };
@@ -72,10 +56,10 @@ const ProductFiltersForm = ({handleSearchParamsChange}: ProductFiltersFormProps)
   const handleChangeSelectedCategory = (category: Category): void => {
     const categoryRegex = new RegExp(`^${category}`);
 
-    if (category === 0) setCurrentBrandOptions(brandOptions);
+    if (category === Category.AllCategories) setCurrentBrandOptions(brandOptions);
     else setCurrentBrandOptions(brandOptions.filter((option) => categoryRegex.test(option.value.toString())));
 
-    setSelectedCategory(category);
+    handleSearchParamsChange({category: category});
     resetSelectedBrands();
   };
 
@@ -87,7 +71,7 @@ const ProductFiltersForm = ({handleSearchParamsChange}: ProductFiltersFormProps)
       minRating: ratingRange[0],
       maxRating: ratingRange[1],
       category: category,
-      brands: (brands as unknown as Brand[])?.join(',') || brands
+      brands: brands?.join(',') || brands
     };
 
     handleSearchParamsChange({page: 0, ...formattedFilters});
@@ -101,38 +85,36 @@ const ProductFiltersForm = ({handleSearchParamsChange}: ProductFiltersFormProps)
     return () => subscription.unsubscribe();
   }, [watch]);
 
+  useEffect(() => {
+    handleChangeSelectedCategory(category);
+  }, [category]);
+
   return (
     <form>
-      <Box className="flex flex-col items-center gap-6 md:gap-8 lg:gap-12">
+      <Box className="flex flex-col items-center gap-3 md:gap-4 lg:gap-10">
         <Controller
           control={control}
           name="category"
           render={({field: {onChange}}) => (
-            <CategoriesFilter onChange={onChange} handleChangeSelectedCategory={handleChangeSelectedCategory} selectedCategory={selectedCategory} />
+            <CategoriesFilter onChange={onChange} handleChangeSelectedCategory={handleChangeSelectedCategory} selectedCategory={category} />
           )}
         />
         <Controller
           control={control}
           name="brands"
           render={({field: {onChange}}) => (
-            <BrandsFilter
-              onChange={onChange}
-              options={currentBrandOptions}
-              handleAddSelectedBrand={handleAddSelectedBrand}
-              handleRemoveSelectedBrand={handleRemoveSelectedBrand}
-              selectedBrands={selectedBrands}
-            />
+            <BrandsFilter onChange={onChange} options={currentBrandOptions} selectedBrands={brands} control={control} />
           )}
         />
         <Controller
           control={control}
           name="ratingRange"
-          render={({field: {onChange}}) => <RatingFilter onChange={onChange} selectedRatingRange={ratingRange} />}
+          render={({field: {onChange}}) => <RatingFilter onChange={onChange} selectedRatingRange={[minRating, maxRating]} />}
         />
         <Controller
           control={control}
           name="priceRange"
-          render={({field: {onChange}}) => <PriceFilter onChange={onChange} selectedPriceRange={priceRange} />}
+          render={({field: {onChange}}) => <PriceFilter onChange={onChange} selectedPriceRange={[minPrice, maxPrice]} />}
         />
         <ResetButton handleClick={handleResetFilters} />
       </Box>

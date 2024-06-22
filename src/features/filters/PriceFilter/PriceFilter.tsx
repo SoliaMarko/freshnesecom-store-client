@@ -61,6 +61,10 @@ const PriceFilter = ({onChange, selectedPriceRange}: PriceFilterProps): ReactEle
   }, [stats]);
 
   useEffect(() => {
+    handleMinMaxChange(minPriceSelected || range.min, maxPriceSelected || range.max);
+  }, [minPriceSelected, maxPriceSelected]);
+
+  useEffect(() => {
     if (isLoading) dispatch(setLoading());
   }, [isLoading]);
 
