@@ -21,8 +21,7 @@ const CustomBadge = ({content, alignY = 'bottom', alignX = 'left', classNames}: 
       overlap="circular"
       badgeContent={content.toString()}
       color="secondary"
-      className={clsx('absolute bottom-3 left-3 bg-green-500 text-white', classNames)}
-      sx={{bgcolor: 'red'}}
+      className={clsx('absolute bottom-3 left-3', classNames)}
     ></Badge>
   );
 };

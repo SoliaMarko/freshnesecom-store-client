@@ -10,15 +10,17 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ProductDetailsButton from '@/components/Custom/Buttons/ProductCardButtons/ProductDetailsButton';
 import {useToggleFavorite} from '@/hooks/products/useToggleFavorite';
+import clsx from 'clsx';
 
 interface ProductItemCardProps {
   productData: TransformedProductType;
 }
 
 const ProductItemCard = ({productData}: ProductItemCardProps): ReactElement => {
-  const {id, title, images} = productData;
+  const {id, title, images, inStockCount} = productData;
   const mainImage = images[0].value;
   const {isFavorite, isLikeDisplayed, handleIsFavorite} = useToggleFavorite({productID: id, isHandledLikeDisplay: true});
+  const imageEffects = inStockCount || 'grayscale';
 
   const handleDoubleClick = (): void => {
     handleIsFavorite();
@@ -34,7 +36,7 @@ const ProductItemCard = ({productData}: ProductItemCardProps): ReactElement => {
           src={mainImage}
           alt={`${title}-illustration`}
           loading="lazy"
-          className="absolute left-0 top-0 h-full w-full rounded-t-xl object-cover sm:rounded-l-xl sm:rounded-tr-none"
+          className={clsx('absolute left-0 top-0 h-full w-full rounded-t-xl object-cover sm:rounded-l-xl sm:rounded-tr-none', imageEffects)}
         />
         {isLikeDisplayed ? (
           isFavorite ? (
@@ -57,7 +59,13 @@ const ProductItemCard = ({productData}: ProductItemCardProps): ReactElement => {
             <ProductDetailsButton id={id} classNames="w-34 sm:hidden h-12" />
           </Box>
           <ProductItemDeliveryDetails productData={productData} classNames="order-2" />
-          <ProductItemButtons productData={productData} isFavorite={isFavorite} handleClickFavorite={handleIsFavorite} classNames="order-3" />
+          <ProductItemButtons
+            productData={productData}
+            isFavorite={isFavorite}
+            isInStock={Boolean(inStockCount)}
+            handleClickFavorite={handleIsFavorite}
+            classNames="order-3"
+          />
         </Box>
       </Box>
     </Box>
