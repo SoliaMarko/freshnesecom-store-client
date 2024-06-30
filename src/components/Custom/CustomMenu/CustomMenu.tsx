@@ -38,7 +38,10 @@ const CustomMenu = ({children, header, options, handleSelectOption, classNames}:
         disableElevation
         onClick={handleOpen}
         endIcon={<KeyboardArrowDownIcon className="text-secondary" />}
-        className={clsx('border-none text-sm font-semibold capitalize text-primary hover:bg-primary-500 sm:text-base', classNames)}
+        className={clsx(
+          'flex flex-row justify-between border-none text-lg font-semibold capitalize text-primary hover:bg-primary-500 sm:text-base',
+          classNames
+        )}
       >
         {children}
       </Button>

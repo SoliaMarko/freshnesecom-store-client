@@ -23,7 +23,7 @@ const TabsBlock = ({value, onChange, tabsData: tabs}: TabsBlockProps): ReactElem
         const tabContentLength = content?.length;
         const tabLabel = (
           <Box className="flex flex-row items-center gap-1 sm:gap-3">
-            <Typography className="m-0 text-xs font-semibold capitalize sm:text-lg">{header}</Typography>
+            <Typography className="m-0 text-sm font-semibold capitalize sm:text-lg">{header}</Typography>
             {hasHeaderChip && <CustomChip value={tabContentLength || 0} />}
           </Box>
         );

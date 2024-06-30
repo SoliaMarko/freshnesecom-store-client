@@ -12,7 +12,7 @@ const MenuItems = ({items, onClick}: MenuItemsProps): ReactElement[] => {
     const {id, value} = item;
 
     return (
-      <MenuItem key={id} onClick={() => onClick(value as string)} disableRipple>
+      <MenuItem key={id} onClick={() => onClick(value as string)} className="bg-primary-700 hover:bg-primary-500" disableRipple>
         {value}
       </MenuItem>
     );

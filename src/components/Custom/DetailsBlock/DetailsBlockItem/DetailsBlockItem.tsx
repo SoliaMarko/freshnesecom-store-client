@@ -3,14 +3,13 @@ import {Box, Typography} from '@mui/material';
 import {ReactElement} from 'react';
 
 interface DetailsBlockItemProps {
-  title?: string;
+  title: string;
   content?: string;
   valueColor?: string;
 }
 
 const DetailsBlockItem = ({title = '', content = ''}: DetailsBlockItemProps): ReactElement | undefined => {
   const formattedTitle = getFormatedLabel(title);
-  if (!title || !content) return;
 
   return (
     <Box className="flex flex-row items-center justify-start gap-2 sm:gap-0">

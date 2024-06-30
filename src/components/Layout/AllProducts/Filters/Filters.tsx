@@ -2,14 +2,16 @@ import {ReactElement} from 'react';
 import {Box} from '@mui/material';
 import {NewParams} from '../ProductsWithSortAndFiltersContainer/ProductsWithSortAndFiltersContainer';
 import ProductFiltersForm from '@/components/Custom/Forms/ProductFiltersForm/ProductFiltersForm';
+import clsx from 'clsx';
 
 interface FilterProps {
   handleSearchParamsChange: (params: NewParams) => void;
+  classNames?: string;
 }
 
-const Filters = ({handleSearchParamsChange}: FilterProps): ReactElement => {
+const Filters = ({handleSearchParamsChange, classNames}: FilterProps): ReactElement => {
   return (
-    <Box className="sticky top-6 hidden h-full max-h-lvh w-1/4 overflow-y-auto xl:block">
+    <Box className={clsx('top-6 h-full max-h-lvh overflow-y-auto xl:block', classNames)}>
       <ProductFiltersForm handleSearchParamsChange={handleSearchParamsChange} />
     </Box>
   );

@@ -2,7 +2,7 @@
 export default {
   corePlugins: {preflight: false},
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
-  important: '#root',
+  important: true,
   theme: {
     extend: {
       aspectRatio: {

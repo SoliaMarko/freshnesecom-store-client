@@ -17,7 +17,7 @@ const CustomChip = ({value, classNames}: CustomChipProps): ReactElement => {
       label={value}
       variant="outlined"
       className={clsx(
-        'rounded-2xl border-transparent bg-primary-600 p-1 font-display text-xs font-semibold text-primary sm:px-2.5 sm:text-sm',
+        'rounded-2xl border-transparent bg-primary-600 font-display text-xs font-semibold text-primary xl:px-2.5 xl:text-sm',
         classNames
       )}
       onClick={handleClick}

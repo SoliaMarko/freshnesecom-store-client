@@ -38,7 +38,7 @@ const ProductsWithSortAndFiltersContainer = (): ReactNode => {
           <SortBlock handleSearchParamsChange={handleSearchParamsChange} />
         </Box>
         <Box className="relative flex flex-row justify-between gap-4 pb-6 pt-8 lg:gap-10 lg:pb-11 lg:pt-16 2xl:pt-12" ref={productListRef}>
-          <Filters handleSearchParamsChange={handleSearchParamsChange} />
+          <Filters handleSearchParamsChange={handleSearchParamsChange} classNames="hidden sticky w-1/4" />
           <Box className="w-full xl:w-3/4">
             {currentPageData.length ? <ProductsList currentPageData={currentPageData} /> : <ProductsNotFound>No products found.</ProductsNotFound>}
           </Box>

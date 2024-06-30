@@ -23,7 +23,7 @@ const RangeInputs = ({range, values, handleMin, handleMax}: RangeInputsProps): R
   };
 
   return (
-    <Box className="justify-space flex flex-row items-center gap-6">
+    <Box className="justify-space flex flex-col items-center gap-2 xl:flex-row xl:gap-6">
       <Box className="flex-1">
         <CustomNumberField label="Min" placeholder={min} value={minSelected} onChangeHandler={handleMinChange} />
       </Box>

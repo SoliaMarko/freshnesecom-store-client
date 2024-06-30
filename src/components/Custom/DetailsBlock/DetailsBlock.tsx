@@ -1,6 +1,7 @@
 import {ReactElement} from 'react';
 import DetailsBlockItem from './DetailsBlockItem/DetailsBlockItem';
 import {ItemWithIDType} from '@/utils/arrayFormaters/getTransformedArrayWithIDs';
+import {Typography} from '@mui/material';
 
 type DetailsBlockProps = {
   keys?: ItemWithIDType<string>[];
@@ -18,6 +19,7 @@ const DetailsBlock = ({keys = [], details}: DetailsBlockProps): ReactElement => 
 
         return <DetailsBlockItem key={id} title={title} content={content} />;
       })}
+      {!details.stock && <Typography className="text-left text-red-400">Out of stock</Typography>}
     </>
   );
 };

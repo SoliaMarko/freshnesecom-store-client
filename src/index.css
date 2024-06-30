@@ -45,6 +45,27 @@ body {
   border: 1px solid #ebebeb;
 }
 
+@media (max-width: 910px) {
+  ::-webkit-scrollbar {
+    width: 0.4rem;
+    height: 0.4rem;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+  }
+
+  .app *::-webkit-scrollbar {
+    width: 0.2rem;
+    height: 0.2rem;
+    border: 20px;
+  }
+
+  .app *::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+  }
+}
+
 /* heading */
 
 .heading {

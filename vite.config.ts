@@ -20,6 +20,7 @@ export default defineConfig({
       '@models': path.resolve(__dirname, './src/models'),
       '@pages': path.resolve(__dirname, './src/pages'),
       '@store': path.resolve(__dirname, './src/store'),
+      '@style': path.resolve(__dirname, './src/style'),
       '@types': path.resolve(__dirname, './src/types'),
       '@utils': path.resolve(__dirname, './src/utils'),
       '@validations': path.resolve(__dirname, './src/validations')

@@ -1,5 +1,5 @@
 import Filters from '@/components/Layout/AllProducts/Filters/Filters';
-import {Drawer, IconButton} from '@mui/material';
+import {IconButton, SwipeableDrawer} from '@mui/material';
 import clsx from 'clsx';
 import {ReactElement, useState} from 'react';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
@@ -30,9 +30,18 @@ const FilterButton = ({handleSearchParamsChange, classNames}: FilterButtonProps)
       <IconButton onClick={handleOpenDrawer}>
         <FilterAltIcon className={clsx('text-3xl text-primary', classNames)} />
       </IconButton>
-      <Drawer open={isDrawerOpen} onClose={handleCloseDrawer} anchor="left" variant="temporary">
-        <Filters handleSearchParamsChange={handleSearchParamsChange} />
-      </Drawer>
+      <SwipeableDrawer
+        open={isDrawerOpen}
+        onOpen={handleOpenDrawer}
+        onClose={handleCloseDrawer}
+        anchor="left"
+        className="w-96"
+        PaperProps={{
+          className: 'overflow-hidden min-w-72'
+        }}
+      >
+        <Filters handleSearchParamsChange={handleSearchParamsChange} classNames="w-full my-4 mx-4 flex justify-center" />
+      </SwipeableDrawer>
     </>
   );
 };

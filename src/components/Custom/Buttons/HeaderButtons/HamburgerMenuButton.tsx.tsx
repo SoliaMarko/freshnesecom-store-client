@@ -1,7 +1,6 @@
-import {Drawer, IconButton} from '@mui/material';
+import {Box, IconButton, SwipeableDrawer} from '@mui/material';
 import {ReactElement, useState} from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import clsx from 'clsx';
 import MenusBlock from '@/components/Layout/Header/MenusBlock/MenusBlock';
 
 interface HamburgerMenuButtonProps {
@@ -24,14 +23,22 @@ const HamburgerMenuButton = ({classNames}: HamburgerMenuButtonProps): ReactEleme
   };
 
   return (
-    <>
+    <Box className={classNames}>
       <IconButton onClick={handleOpenDrawer}>
-        <MenuIcon className={clsx('text-2xl text-primary sm:text-3xl', classNames)} />
+        <MenuIcon className="text-2xl text-primary sm:text-3xl" />
       </IconButton>
-      <Drawer open={isDrawerOpen} onClose={handleCloseDrawer} anchor="right" variant="temporary">
+      <SwipeableDrawer
+        open={isDrawerOpen}
+        onOpen={handleOpenDrawer}
+        onClose={handleCloseDrawer}
+        anchor="right"
+        ModalProps={{
+          keepMounted: false
+        }}
+      >
         <MenusBlock />
-      </Drawer>
-    </>
+      </SwipeableDrawer>
+    </Box>
   );
 };
 
